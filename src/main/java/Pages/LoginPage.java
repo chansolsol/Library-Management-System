@@ -2,10 +2,21 @@ package Pages;
 
 import javax.swing.*;
 import java.awt.*;
-import Res.RoundedButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 
-public class LoginPage {
-    public LoginPage() {
+import Res.*;
+
+
+public class LoginPage extends JFrame implements ActionListener {
+    public LoginPage(){
+        try{
+            init();
+        }catch(Exception e){
+        }
+    }
+    public void init() {
         JFrame frameLoginPage = new JFrame();
 
         java.awt.Font mainFont50 = new java.awt.Font("배달의민족 도현", java.awt.Font.PLAIN, 50);   //폰트 설정
@@ -65,6 +76,8 @@ public class LoginPage {
         ButtonLogin.setFont(mainFont30);
         ButtonLogin.setBackground(mainBlue);
         ButtonLogin.setForeground(Color.white);
+        ButtonLogin.setActionCommand("login");
+        ButtonLogin.addActionListener(this);
 
         JButton ButtonSignUp = new JButton("회원가입");
         ButtonSignUp.setBounds(490,430,150,50);
@@ -72,6 +85,8 @@ public class LoginPage {
         ButtonSignUp.setBorderPainted(false);
         ButtonSignUp.setContentAreaFilled(false);
         ButtonSignUp.setFocusPainted(false);
+        ButtonSignUp.setActionCommand("signUp");
+        ButtonSignUp.addActionListener(this);
 
         JButton ButtonNonMemLogin = new JButton("비회원 로그인");
         ButtonNonMemLogin.setBounds(640,430,170,50);
@@ -79,6 +94,8 @@ public class LoginPage {
         ButtonNonMemLogin.setBorderPainted(false);
         ButtonNonMemLogin.setContentAreaFilled(false);
         ButtonNonMemLogin.setFocusPainted(false);
+        ButtonNonMemLogin.setActionCommand("guest");
+        ButtonNonMemLogin.addActionListener(this);
 
         JPanel panelLoginLine = new JPanel();
         panelLoginLine.setBounds(540, 340, 210, 2);
@@ -128,5 +145,20 @@ public class LoginPage {
 
         frameLoginPage.setResizable(false);
         frameLoginPage.setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e) {
+
+        String event = e.getActionCommand();
+
+
+        if (event.equals("login")) {
+
+        } else if (event.equals("signUp")) {
+            this.setVisible(false);
+
+        } else if (event.equals("guest")){
+            this.setVisible(false);
+        }
+
     }
 }

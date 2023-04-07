@@ -1,8 +1,12 @@
-import Pages.*;
+import Pages.mainFrame;
 
+import javax.swing.*;
+import java.awt.*;
 public class App {
     public static void main(String[] args) {
 
-        LoginPage LP= new LoginPage();
+        mainFrame mf = new mainFrame();
+
     }
+
 }

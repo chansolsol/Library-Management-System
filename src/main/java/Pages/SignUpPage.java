@@ -14,9 +14,14 @@ public class SignUpPage extends JFrame implements ActionListener {
     public SignUpPage() {
 
         setSize(1280, 720);
-        setVisible(true);
         setLayout(null);
         setLocationRelativeTo(null);
+        setVisible(true);
+
+        setTitle("Library Management System");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
 
         java.awt.Font mainFont50 = new java.awt.Font("배달의민족 도현", java.awt.Font.PLAIN, 50);   //폰트 설정
         java.awt.Font mainFont40 = new java.awt.Font("배달의민족 도현", java.awt.Font.PLAIN, 40);
@@ -25,17 +30,18 @@ public class SignUpPage extends JFrame implements ActionListener {
         java.awt.Font inputBoxFont = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD,25);
 
         Color mainBlue = new Color(1, 108, 205);
-        Color mainGray = new Color(192,192,192);
 
         JPanel panelMainBlue = new JPanel();
         panelMainBlue.setBounds(0, 0, 1280, 80);
         panelMainBlue.setBackground(mainBlue);
+        add(panelMainBlue);
 
         JLabel labelMain = new JLabel("도서관 시스템");
         labelMain.setBounds(382, 0, 500, 90);
         labelMain.setHorizontalAlignment(JLabel.CENTER);
         labelMain.setFont(mainFont50);
         labelMain.setForeground(Color.white);
+        panelMainBlue.add(labelMain);
 
         JLabel labelLogin = new JLabel("회원 가입");
         labelLogin.setBounds(530, 210, 220, 50);
@@ -52,7 +58,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         labelPW.setHorizontalAlignment(JLabel.CENTER);
         labelPW.setFont(mainFont20);
 
-        /*JTextField textID = new JTextField();
+        JTextField textID = new JTextField();
         textID.setBounds(550,300,200,35);
         textID.setFont(inputBoxFont);
         textID.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -61,7 +67,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         textPassword.setBounds(550,360,200,35);
         textPassword.setFont(inputBoxFont);
         textPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-*/
+
         RoundedButton ButtonLogin = new RoundedButton("회원가입");
         ButtonLogin.setBounds(780,320,120,85);
         ButtonLogin.setFont(mainFont30);
@@ -96,8 +102,8 @@ public class SignUpPage extends JFrame implements ActionListener {
         add(labelID);
         add(labelPW);
 
-       // add(textID);
-       // add(textPassword);
+        add(textID);
+        add(textPassword);
 
         add(ButtonLogin);
 
@@ -106,6 +112,8 @@ public class SignUpPage extends JFrame implements ActionListener {
 
         add(panelLoginWhite);
         add(panelLoginBlue);
+
+        getContentPane().setBackground(Color.white);
 
     }
 

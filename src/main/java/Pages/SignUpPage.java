@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.*;
 
 import Res.*;
@@ -143,6 +145,7 @@ public class SignUpPage extends JFrame implements ActionListener {
 
         getContentPane().setBackground(Color.white);
 
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -159,12 +162,11 @@ public class SignUpPage extends JFrame implements ActionListener {
             } else if (!textID.getText().equals("") && !textPassword.getText().equals("") && textName.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "이름을 입력해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
             } else {
-                gson.signup(ID, password, username);    //signup 메소드 실행
-
-                LoginPage loginPage = new LoginPage();
-                this.setVisible(false);
-                dispose();
-                System.out.print("ㅇㅇ");
+                if(gson.signup(ID, password, username)){    //signup 메소드 실행
+                    LoginPage loginPage = new LoginPage();
+                    this.setVisible(false);
+                    dispose();
+                } else {}
             }
         }
 
@@ -173,8 +175,6 @@ public class SignUpPage extends JFrame implements ActionListener {
             this.setVisible(false);
             dispose();
 
-
         }
-
     }
 }

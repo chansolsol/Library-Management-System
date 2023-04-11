@@ -41,6 +41,7 @@ public class GsonMethod {
         }
     }
 
+
     /** 회원 정보를 저장하는 JSON 파일에서 모든 회원 정보를 가져옴 */
     /*
     private static List<User> getUsers() {
@@ -111,7 +112,7 @@ public class GsonMethod {
         }
         addUser(new User(id, password, username));
         signSave();
-        alert.showMessageDialog(null, "회원가입 성공!", "알림", JOptionPane.ERROR_MESSAGE);
+        alert.showMessageDialog(null, "회원가입 성공!", "알림", JOptionPane.INFORMATION_MESSAGE);
         return true;
     }
 }

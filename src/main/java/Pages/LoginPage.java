@@ -11,6 +11,10 @@ import Res.*;
 
 public class LoginPage extends JFrame implements ActionListener {
 
+    GsonMethod gson = new GsonMethod();
+    private JTextField textID;
+    private JPasswordField textPassword;
+
     public LoginPage() {
 
         setSize(1280, 720); //JFrame 크기 설정
@@ -28,6 +32,9 @@ public class LoginPage extends JFrame implements ActionListener {
         java.awt.Font inputBoxFont = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD,20);
 
         Color mainBlue = new Color(1, 108, 205);    //메인 색상 설정
+
+        GsonMethod gson = new GsonMethod();
+        gson.signInit();    //signInit 메소드 실행
 
 
         JPanel panelMainBlue = new JPanel();    //"도서관 시스템" 라벨이 위치할 메인 패널
@@ -73,7 +80,7 @@ public class LoginPage extends JFrame implements ActionListener {
         labelPW.setFont(mainFont20);
         panelLoginWhite.add(labelPW);
 
-        JTextField textID = new JTextField();   //아이디가 입력될 JTextField
+        textID = new JTextField();   //아이디가 입력될 JTextField
         textID.setBounds(185,100,200,35);
         textID.setFont(inputBoxFont);
         textID.setBorder(null);
@@ -85,7 +92,7 @@ public class LoginPage extends JFrame implements ActionListener {
         panelIDLine.setBackground(mainBlue);
         panelLoginWhite.add(panelIDLine);
 
-        JPasswordField textPassword = new JPasswordField(); //비밀번호가 입력될 JPasswordField
+        textPassword = new JPasswordField(); //비밀번호가 입력될 JPasswordField
         textPassword.setBounds(185,160,200,35);
         textPassword.setFont(inputBoxFont);
         textPassword.setBorder(null);
@@ -133,10 +140,19 @@ public class LoginPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String event = e.getActionCommand();
+        JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (event.equals("login")) {
+            String ID = textID.getText();   //아이디 문자열 가져오기
+            String password = new String(textPassword.getPassword());   //비밀번호 문자열 가져오기
 
-
+                if (gson.login(ID ,password)) {     //로그인 정보 일치 시 메인페이지 출력
+                    MainPage mainPage = new MainPage();
+                    mainPage.setVisible(true);
+                    dispose();
+                } else {    //로그인 정보 불일치 시 에러 메시지박스 출력
+                    alert.showMessageDialog(null, "존재하지 않는 아이디입니다.", "알림", JOptionPane.ERROR_MESSAGE);
+                }
 
         } else if (event.equals("signUp")) {
             SignUpPage SP = new SignUpPage();   //회원가입 페이지 생성, (JFrame SignUpPage 생성)

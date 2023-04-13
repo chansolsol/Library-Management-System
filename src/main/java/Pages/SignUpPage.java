@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.*;
 
 import Res.*;
@@ -12,6 +14,10 @@ import Res.*;
 
 public class SignUpPage extends JFrame implements ActionListener {
 
+    GsonMethod gson = new GsonMethod();
+    JTextField textID;
+    JPasswordField textPassword;
+    JTextField textName;
 
     public SignUpPage() {
 
@@ -81,7 +87,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         labelName.setFont(mainFont20);
         panelSignUpWhite.add(labelName);
 
-        JTextField textID = new JTextField();   //아이디가 입력될 JTextField
+        textID = new JTextField();   //아이디가 입력될 JTextField
         textID.setBounds(185,75,200,35);
         textID.setFont(inputBoxFont);
         textID.setBorder(null);
@@ -93,7 +99,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         panelIDLine.setBackground(mainBlue);
         panelSignUpWhite.add(panelIDLine);
 
-        JPasswordField textPassword = new JPasswordField(); //비밀번호가 입력될 JPasswordField
+        textPassword = new JPasswordField(); //비밀번호가 입력될 JPasswordField
         textPassword.setBounds(185,130,200,35);
         textPassword.setFont(inputBoxFont);
         textPassword.setBorder(null);
@@ -105,7 +111,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         panelPasswordLine.setBackground(mainBlue);
         panelSignUpWhite.add(panelPasswordLine);
 
-        JTextField textName = new JTextField(); //비밀번호가 입력될 JTextField
+        textName = new JTextField(); //이름이 입력될 JTextField
         textName.setBounds(185,185,200,35);
         textName.setFont(inputBoxFont);
         textName.setBorder(null);
@@ -123,7 +129,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         ButtonSignUp.setFont(mainFont30);
         ButtonSignUp.setBackground(mainBlue);
         ButtonSignUp.setForeground(Color.white);
-        ButtonSignUp.setActionCommand("login");
+        ButtonSignUp.setActionCommand("Register");
         ButtonSignUp.addActionListener(this);
         panelSignUpWhite.add(ButtonSignUp);
 
@@ -139,21 +145,36 @@ public class SignUpPage extends JFrame implements ActionListener {
 
         getContentPane().setBackground(Color.white);
 
+
     }
 
     public void actionPerformed(ActionEvent e) {
         String event = e.getActionCommand();
+        JOptionPane alert = new JOptionPane();  //알림 패널 생성
+
+        String ID = textID.getText();   //아이디 문자열 가져오기
+        String password = new String(textPassword.getPassword());   //비밀번호 문자열 가져오기
+        String username = textName.getText();
 
         if (event.equals("Register")) {
-
+            if (textID.getText().equals("") || textPassword.getText().equals("")) { //아이디나 비밀번호, 이름 미입력시 에러 메시지박스
+                JOptionPane.showMessageDialog(null, "ID 또는 비밀번호를 입력해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
+            } else if (!textID.getText().equals("") && !textPassword.getText().equals("") && textName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "이름을 입력해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if(gson.signup(ID, password, username)){    //signup 메소드 실행
+                    LoginPage loginPage = new LoginPage();
+                    this.setVisible(false);
+                    dispose();
+                } else {}
+            }
         }
+
         if (event.equals("BackPage")) {
             LoginPage LP = new LoginPage(); //로그인 페이지 생성, (JFrame LoginPage 생성)
             this.setVisible(false);
             dispose();
 
-
         }
-
     }
 }

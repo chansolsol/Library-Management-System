@@ -1,16 +1,14 @@
-import Pages.LoginPage;
-import Pages.SignUpPage;
-import Res.GsonMethod;
+import AdminPages.*;
+import Pages.*;
 
 public class App {
     public static void main(String[] args) {
 
 
 
-        //mainFrame mf = new mainFrame();
-        LoginPage LP = new LoginPage();
-        //SignUpPage SP = new SignUpPage();
+        //LoginPage LP = new LoginPage();
 
+        AdminPage AP = new AdminPage();
 
 
 

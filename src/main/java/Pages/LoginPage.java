@@ -63,7 +63,7 @@ public class LoginPage extends JFrame implements ActionListener {
         panelLoginWhite.setLayout(null);
 
         JLabel labelLogin = new JLabel("회원 로그인");   //"회원 로그인" 메인 라벨
-        labelLogin.setBounds(169, 20, 220, 50);
+        labelLogin.setBounds(169, 15, 220, 50);
         labelLogin.setHorizontalAlignment(JLabel.CENTER);
         labelLogin.setFont(mainFont40);
         panelLoginWhite.add(labelLogin);

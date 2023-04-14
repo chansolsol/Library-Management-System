@@ -64,7 +64,7 @@ public class SignUpPage extends JFrame implements ActionListener {
         panelSignUpWhite.setLayout(null);
 
         JLabel labelSignUp = new JLabel("회원 가입");   //"회원 가입" 메인 라벨
-        labelSignUp.setBounds(169, 20, 220, 50);
+        labelSignUp.setBounds(169, 15, 220, 50);
         labelSignUp.setHorizontalAlignment(JLabel.CENTER);
         labelSignUp.setFont(mainFont40);
         panelSignUpWhite.add(labelSignUp);

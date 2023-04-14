@@ -1,4 +1,7 @@
-package Pages;
+package AdminPages;
+
+import Pages.TextSearchResultPage;
+import Res.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,19 +9,30 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-public class MainPage extends JFrame implements ActionListener{
+public class AdminPage extends JFrame implements ActionListener{
 
-
-    JComboBox<String> selectOption;
     JTextField textSearch;
 
-    public MainPage(){
+    JButton ButtonSearch;
+    JButton ButtonCreateBook;
+    JButton ButtonUpdateBook;
+    JButton ButtonDeleteBook;
+
+    JComboBox<String> selectOption;
+
+    JPanel panelMainBlue;
+    JLabel labelMain;
+    JPanel panelSearch;
+
+
+
+    public AdminPage(){
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
         setLocationRelativeTo(null);    //JFrame 생성시 화면 중앙에 배치
         setVisible(true);   //JFrame 시각화
-        setTitle("Library Management System : MainPage");
+        setTitle("Library Management System : AdminPage");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //창을 닫을시 JFrame 메모리 자원 회수
         setResizable(false);     //JFrame 사이즈 조절 제한
 
@@ -32,13 +46,13 @@ public class MainPage extends JFrame implements ActionListener{
 
         Color mainBlue = new Color(1, 108, 205);    //메인 색상 설정
 
-        JPanel panelMainBlue = new JPanel();
+        panelMainBlue = new JPanel();
         panelMainBlue.setBounds(0, 0, 1280, 80);
         panelMainBlue.setBackground(mainBlue);
         add(panelMainBlue);
         panelMainBlue.setLayout(null);
 
-        JLabel labelMain = new JLabel("도서관 시스템");   //"도서관 시스템" 메인 라벨
+        labelMain = new JLabel("도서관 관리 시스템");   //"도서관 시스템" 메인 라벨
         labelMain.setBounds(382, 0, 500, 80);
         labelMain.setHorizontalAlignment(JLabel.CENTER);
         labelMain.setFont(mainFont50);
@@ -59,12 +73,12 @@ public class MainPage extends JFrame implements ActionListener{
         textSearch.setLayout(null);
         add(textSearch);
 
-        JPanel panelSearch = new JPanel();  //도서 검색 텍스트 입력 구분선
+        panelSearch = new JPanel();  //도서 검색 텍스트 입력 구분선
         panelSearch.setBounds(390, 140, 450, 2);
         panelSearch.setBackground(mainBlue);
         add(panelSearch);
 
-        JButton ButtonSearch = new JButton("\uE71E");   //도서 검색 버튼
+        ButtonSearch = new JButton("\uE71E");   //도서 검색 버튼
         ButtonSearch.setBounds(845,100,55,40);
         ButtonSearch.setFont(SearchIconFont);
         //ButtonSearch.setBorderPainted(false);
@@ -74,14 +88,36 @@ public class MainPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
-        JButton ButtonMyPage = new JButton("");   //회원 정보 페이지 버튼
-        ButtonMyPage.setBounds(1100,100,120,40);
-        ButtonMyPage.setFont(mainFont20);
-        ButtonMyPage.setContentAreaFilled(false);
-        ButtonMyPage.setFocusPainted(false);
-        ButtonMyPage.setActionCommand("MyPage");  //
-        ButtonMyPage.addActionListener(this);
-        add(ButtonMyPage);
+
+        ButtonCreateBook = new JButton("도서 생성");   //도서 추가
+        ButtonCreateBook.setBounds(540,200,200,40);
+        ButtonCreateBook.setFont(mainFont20);
+        ButtonCreateBook.setContentAreaFilled(false);
+        ButtonCreateBook.setFocusPainted(false);
+        ButtonCreateBook.setActionCommand("CreateBook");  //
+        ButtonCreateBook.addActionListener(this);
+        add(ButtonCreateBook);
+
+        ButtonUpdateBook = new JButton("도서 수정");   //도서 업데이트
+        ButtonUpdateBook.setBounds(540,270,200,40);
+        ButtonUpdateBook.setFont(mainFont20);
+        ButtonUpdateBook.setContentAreaFilled(false);
+        ButtonUpdateBook.setFocusPainted(false);
+        ButtonUpdateBook.setActionCommand("UpdateBook");  //
+        ButtonUpdateBook.addActionListener(this);
+        add(ButtonUpdateBook);
+
+        ButtonDeleteBook = new JButton("도서 삭제");   //도서 삭제
+        ButtonDeleteBook.setBounds(540,340,200,40);
+        ButtonDeleteBook.setFont(mainFont20);
+        ButtonDeleteBook.setContentAreaFilled(false);
+        ButtonDeleteBook.setFocusPainted(false);
+        ButtonDeleteBook.setActionCommand("DeleteBook");
+        ButtonDeleteBook.addActionListener(this);
+        add(ButtonDeleteBook);
+
+
+
 
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
@@ -92,11 +128,19 @@ public class MainPage extends JFrame implements ActionListener{
         String event = e.getActionCommand();
 
         if (event.equals("TextSearch")) {
-            TextSearchResultPage SR = new TextSearchResultPage();
+            //TextSearchResultPage SR = new TextSearchResultPage();
+            //setVisible(false);
+            //dispose();
+        } else if (event.equals("CreateBook")) {
+            CreateBook CB = new CreateBook();
             setVisible(false);
             dispose();
 
-        } else if (event.equals("MyPage")) {
+
+        } else if (event.equals("UpdateBook")){
+            //setVisible(false);
+            //dispose();
+        } else if (event.equals("DeleteBook")){
             //setVisible(false);
             //dispose();
         } else if (event.equals("")){

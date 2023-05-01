@@ -6,10 +6,9 @@ public class App {
 
 
 
-        LoginPage LP = new LoginPage();
+        //LoginPage LP = new LoginPage();
 
-        //AdminPage AP = new AdminPage();
-    //dddd
+        AdminPage AP = new AdminPage();
 
 
     }

@@ -153,10 +153,11 @@ public class LoginPage extends JFrame implements ActionListener {
                         adminPage.setVisible(true);
                         dispose();
                         return;
+                    } else {
+                        MainPage mainPage = new MainPage();
+                        mainPage.setVisible(true);
+                        dispose();
                     }
-                    MainPage mainPage = new MainPage();
-                    mainPage.setVisible(true);
-                    dispose();
                 } else {    //로그인 정보 불일치 시 에러 메시지박스 출력
                     alert.showMessageDialog(null, "존재하지 않는 아이디입니다.", "알림", JOptionPane.ERROR_MESSAGE);
                 }

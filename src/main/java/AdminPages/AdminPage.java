@@ -1,13 +1,11 @@
 package AdminPages;
 
 import Pages.TextSearchResultPage;
-import Res.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class AdminPage extends JFrame implements ActionListener{
 
@@ -128,21 +126,24 @@ public class AdminPage extends JFrame implements ActionListener{
         String event = e.getActionCommand();
 
         if (event.equals("TextSearch")) {
-            //TextSearchResultPage SR = new TextSearchResultPage();
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("CreateBook")) {
-            CreateBook CB = new CreateBook();
+            String keyword = textSearch.getText();
+            TextSearchResultAdminPage SR = new TextSearchResultAdminPage(keyword);
             setVisible(false);
             dispose();
 
+        } else if (event.equals("CreateBook")) {
+            CreateBookPage CB = new CreateBookPage();
+            setVisible(false);
+            dispose();
 
         } else if (event.equals("UpdateBook")){
-            //setVisible(false);
-            //dispose();
+            UpdateBookPage UB = new UpdateBookPage();
+            setVisible(false);
+            dispose();
         } else if (event.equals("DeleteBook")){
-            //setVisible(false);
-            //dispose();
+            DeleteBookPage DB = new DeleteBookPage();
+            setVisible(false);
+            dispose();
         } else if (event.equals("")){
             //setVisible(false);
             //dispose();

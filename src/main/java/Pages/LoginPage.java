@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+import AdminPages.AdminPage;
 import Res.*;
 
 
@@ -147,6 +148,12 @@ public class LoginPage extends JFrame implements ActionListener {
             String password = new String(textPassword.getPassword());   //비밀번호 문자열 가져오기
 
                 if (gson.login(ID ,password)) {     //로그인 정보 일치 시 메인페이지 출력
+                    if (ID.equals("admin")) {   //admin 로그인
+                        AdminPage adminPage = new AdminPage();
+                        adminPage.setVisible(true);
+                        dispose();
+                        return;
+                    }
                     MainPage mainPage = new MainPage();
                     mainPage.setVisible(true);
                     dispose();

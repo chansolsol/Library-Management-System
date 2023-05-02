@@ -92,7 +92,8 @@ public class MainPage extends JFrame implements ActionListener{
         String event = e.getActionCommand();
 
         if (event.equals("TextSearch")) {
-            TextSearchResultPage SR = new TextSearchResultPage();
+            String keyword = textSearch.getText();
+            TextSearchResultPage SR = new TextSearchResultPage(keyword);
             setVisible(false);
             dispose();
 

@@ -167,7 +167,7 @@ public class LoginPage extends JFrame implements ActionListener {
             setVisible(false);
             dispose();  //로그인 페이지 자원 회수
         } else if (event.equals("guest")){
-            MainPage MP = new MainPage();   //비회원 로그인 페이지 생성, (JFrame SignUpPage 생성)
+            MainGuestPage MP = new MainGuestPage();   //비회원 로그인 페이지 생성, (JFrame SignUpPage 생성)
             setVisible(false);
             dispose();
         }

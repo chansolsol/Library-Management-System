@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-public class MainPage extends JFrame implements ActionListener{
+public class MainGuestPage extends JFrame implements ActionListener{
 
     JComboBox<String> selectOption;
     JTextField textSearch;
@@ -15,7 +15,7 @@ public class MainPage extends JFrame implements ActionListener{
     JButton ButtonMyPage;
     JButton ButtonLoanBook;
 
-    public MainPage(){
+    public MainGuestPage(){
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -76,24 +76,6 @@ public class MainPage extends JFrame implements ActionListener{
         ButtonSearch.setActionCommand("TextSearch");
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
-
-        ButtonMyPage = new JButton("마이페이지");   //회원 정보 페이지 버튼
-        ButtonMyPage.setBounds(1100,100,120,40);
-        ButtonMyPage.setFont(mainFont20);
-        ButtonMyPage.setContentAreaFilled(false);
-        ButtonMyPage.setFocusPainted(false);
-        ButtonMyPage.setActionCommand("MyPage");  //
-        ButtonMyPage.addActionListener(this);
-        add(ButtonMyPage);
-
-        ButtonLoanBook = new JButton("도서 대출/반납/연장");   //도서 추가
-        ButtonLoanBook.setBounds(520,200,240,40);
-        ButtonLoanBook.setFont(mainFont20);
-        ButtonLoanBook.setContentAreaFilled(false);
-        ButtonLoanBook.setFocusPainted(false);
-        ButtonLoanBook.setActionCommand("LoanReturnRenewBook");  //
-        ButtonLoanBook.addActionListener(this);
-        add(ButtonLoanBook);
 
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정

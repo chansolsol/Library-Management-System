@@ -56,28 +56,28 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         }
         controller.addAll(books);
         List<Book> searchedBooks = controller.searchBooks(keyword);
+        int resultBookSize = searchedBooks.size();
 
+        Book[] ResultBooks = new Book[resultBookSize];
 
-        Book firstBook = searchedBooks.get(0);
-        String title1 = firstBook.getTitle();
-        String Author1 = firstBook.getAuthor();
-        String Publisher1 = firstBook.getPublisher();
-        String Year1 = firstBook.getYear();
-        String ID1 = firstBook.getId();
+        for (int i = 0; i < resultBookSize; i++) {
+            ResultBooks[i] = searchedBooks.get(i);
+        }
 
-        Book SecondBook = searchedBooks.get(1);
-        String title2 = SecondBook.getTitle();
-        String Author2 = SecondBook.getAuthor();
-        String Publisher2 = SecondBook.getPublisher();
-        String Year2 = SecondBook.getYear();
-        String ID2 = SecondBook.getId();
+        String[] title = new String[resultBookSize];
+        String[] author = new String[resultBookSize];
+        String[] publisher = new String[resultBookSize];
+        String[] year = new String[resultBookSize];
+        String[] id = new String[resultBookSize];
 
-        Book ThirdBook = searchedBooks.get(2);
-        String title3 = ThirdBook.getTitle();
-        String Author3 = ThirdBook.getAuthor();
-        String Publisher3 = ThirdBook.getPublisher();
-        String Year3 = ThirdBook.getYear();
-        String ID3 = ThirdBook.getId();
+        for (int i = 0; i < resultBookSize; i++) {
+            Book book = ResultBooks[i];
+            title[i] = book.getTitle();
+            author[i] = book.getAuthor();
+            publisher[i] = book.getPublisher();
+            year[i] = book.getYear();
+            id[i] = book.getId();
+        }
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -138,97 +138,101 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
-        labelBook1Title = new JLabel(title1);   //도서1 제목
-        labelBook1Title.setBounds(400, 200, 120, 35);
-        //labelBook1Title.setHorizontalAlignment(JLabel.CENTER);
-        labelBook1Title.setFont(mainFont20);
-        add(labelBook1Title);
+        if ((resultBookSize % 3) == 1){
+            labelBook1Title = new JLabel(title[0]);   //도서1 제목
+            labelBook1Title.setBounds(400, 200, 120, 35);
+            //labelBook1Title.setHorizontalAlignment(JLabel.CENTER);
+            labelBook1Title.setFont(mainFont20);
+            add(labelBook1Title);
 
-        labelBook1Author = new JLabel(Author1);   //도서1 저자
-        labelBook1Author.setBounds(400, 240, 120, 35);
-        //labelBook1Author.setHorizontalAlignment(JLabel.CENTER);
-        labelBook1Author.setFont(mainFont20);
-        add(labelBook1Author);
+            labelBook1Author = new JLabel(author[0]);   //도서1 저자
+            labelBook1Author.setBounds(400, 240, 120, 35);
+            //labelBook1Author.setHorizontalAlignment(JLabel.CENTER);
+            labelBook1Author.setFont(mainFont20);
+            add(labelBook1Author);
 
-        labelBook1Publisher = new JLabel(Publisher1);   //도서1 출판사
-        labelBook1Publisher.setBounds(525, 240, 120, 35);
-        //labelBook1Publisher.setHorizontalAlignment(JLabel.CENTER);
-        labelBook1Publisher.setFont(mainFont20);
-        add(labelBook1Publisher);
+            labelBook1Publisher = new JLabel(publisher[0]);   //도서1 출판사
+            labelBook1Publisher.setBounds(525, 240, 120, 35);
+            //labelBook1Publisher.setHorizontalAlignment(JLabel.CENTER);
+            labelBook1Publisher.setFont(mainFont20);
+            add(labelBook1Publisher);
 
-        labelBook1PublicationDate = new JLabel(Year1);   //도서1 출판년도
-        labelBook1PublicationDate.setBounds(650, 240, 120, 35);
-        //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
-        labelBook1PublicationDate.setFont(mainFont20);
-        add(labelBook1PublicationDate);
+            labelBook1PublicationDate = new JLabel(year[0]);   //도서1 출판년도
+            labelBook1PublicationDate.setBounds(650, 240, 120, 35);
+            //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
+            labelBook1PublicationDate.setFont(mainFont20);
+            add(labelBook1PublicationDate);
 
-        labelBook1ID = new JLabel(ID1);   //도서1 관리번호
-        labelBook1ID.setBounds(775, 240, 120, 35);
-        //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
-        labelBook1ID.setFont(mainFont20);
-        add(labelBook1ID);
+            labelBook1ID = new JLabel(id[0]);   //도서1 관리번호
+            labelBook1ID.setBounds(775, 240, 120, 35);
+            //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
+            labelBook1ID.setFont(mainFont20);
+            add(labelBook1ID);
+        }
 
+        if ((resultBookSize % 3) == 2){
+            labelBook2Title = new JLabel(title[1]);   //도서2 제목
+            labelBook2Title.setBounds(400, 300, 120, 35);
+            //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
+            labelBook2Title.setFont(mainFont20);
+            add(labelBook2Title);
 
-        labelBook2Title = new JLabel(title2);   //도서2 제목
-        labelBook2Title.setBounds(400, 300, 120, 35);
-        //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
-        labelBook2Title.setFont(mainFont20);
-        add(labelBook2Title);
+            labelBook2Author = new JLabel(author[1]);   //도서2 저자
+            labelBook2Author.setBounds(400, 340, 120, 35);
+            //labelBook2Author.setHorizontalAlignment(JLabel.CENTER);
+            labelBook2Author.setFont(mainFont20);
+            add(labelBook2Author);
 
-        labelBook2Author = new JLabel(Author2);   //도서2 저자
-        labelBook2Author.setBounds(400, 340, 120, 35);
-        //labelBook2Author.setHorizontalAlignment(JLabel.CENTER);
-        labelBook2Author.setFont(mainFont20);
-        add(labelBook2Author);
+            labelBook2Publisher = new JLabel(publisher[1]);   //도서2 출판사
+            labelBook2Publisher.setBounds(525, 340, 120, 35);
+            //labelBook2Publisher.setHorizontalAlignment(JLabel.CENTER);
+            labelBook2Publisher.setFont(mainFont20);
+            add(labelBook2Publisher);
 
-        labelBook2Publisher = new JLabel(Publisher2);   //도서2 출판사
-        labelBook2Publisher.setBounds(525, 340, 120, 35);
-        //labelBook2Publisher.setHorizontalAlignment(JLabel.CENTER);
-        labelBook2Publisher.setFont(mainFont20);
-        add(labelBook2Publisher);
+            labelBook2PublicationDate = new JLabel(year[1]);   //도서2 출판년도
+            labelBook2PublicationDate.setBounds(650, 340, 120, 35);
+            //labelBook2PublicationDate.setHorizontalAlignment(JLabel.CENTER);
+            labelBook2PublicationDate.setFont(mainFont20);
+            add(labelBook2PublicationDate);
 
-        labelBook2PublicationDate = new JLabel(Year2);   //도서2 출판년도
-        labelBook2PublicationDate.setBounds(650, 340, 120, 35);
-        //labelBook2PublicationDate.setHorizontalAlignment(JLabel.CENTER);
-        labelBook2PublicationDate.setFont(mainFont20);
-        add(labelBook2PublicationDate);
+            labelBook2ID = new JLabel(id[1]);   //도서2 관리번호
+            labelBook2ID.setBounds(775, 340, 120, 35);
+            //labelBook2ID.setHorizontalAlignment(JLabel.CENTER);
+            labelBook2ID.setFont(mainFont20);
+            add(labelBook2ID);
+        }
 
-        labelBook2ID = new JLabel(ID2);   //도서2 관리번호
-        labelBook2ID.setBounds(775, 340, 120, 35);
-        //labelBook2ID.setHorizontalAlignment(JLabel.CENTER);
-        labelBook2ID.setFont(mainFont20);
-        add(labelBook2ID);
+        if ((resultBookSize % 3) == 3){
+            labelBook3Title = new JLabel(title[2]);   //도서3 제목
+            labelBook3Title.setBounds(400, 400, 120, 35);
+            //labelBook3Title.setHorizontalAlignment(JLabel.CENTER);
+            labelBook3Title.setFont(mainFont20);
+            add(labelBook3Title);
 
+            labelBook3Author = new JLabel(author[2]);   //도서3 저자
+            labelBook3Author.setBounds(400, 440, 120, 35);
+            //labelBook3Author.setHorizontalAlignment(JLabel.CENTER);
+            labelBook3Author.setFont(mainFont20);
+            add(labelBook3Author);
 
-        labelBook3Title = new JLabel(title3);   //도서3 제목
-        labelBook3Title.setBounds(400, 400, 120, 35);
-        //labelBook3Title.setHorizontalAlignment(JLabel.CENTER);
-        labelBook3Title.setFont(mainFont20);
-        add(labelBook3Title);
+            labelBook3Publisher = new JLabel(publisher[2]);   //도서3 출판사
+            labelBook3Publisher.setBounds(525, 440, 120, 35);
+            //labelBook3Publisher.setHorizontalAlignment(JLabel.CENTER);
+            labelBook3Publisher.setFont(mainFont20);
+            add(labelBook3Publisher);
 
-        labelBook3Author = new JLabel(Author3);   //도서3 저자
-        labelBook3Author.setBounds(400, 440, 120, 35);
-        //labelBook3Author.setHorizontalAlignment(JLabel.CENTER);
-        labelBook3Author.setFont(mainFont20);
-        add(labelBook3Author);
+            labelBook3PublicationDate = new JLabel(year[2]);   //도서3 출판년도
+            labelBook3PublicationDate.setBounds(650, 440, 120, 35);
+            //labelBook3PublicationDate.setHorizontalAlignment(JLabel.CENTER);
+            labelBook3PublicationDate.setFont(mainFont20);
+            add(labelBook3PublicationDate);
 
-        labelBook3Publisher = new JLabel(Publisher3);   //도서3 출판사
-        labelBook3Publisher.setBounds(525, 440, 120, 35);
-        //labelBook3Publisher.setHorizontalAlignment(JLabel.CENTER);
-        labelBook3Publisher.setFont(mainFont20);
-        add(labelBook3Publisher);
-
-        labelBook3PublicationDate = new JLabel(Year3);   //도서3 출판년도
-        labelBook3PublicationDate.setBounds(650, 440, 120, 35);
-        //labelBook3PublicationDate.setHorizontalAlignment(JLabel.CENTER);
-        labelBook3PublicationDate.setFont(mainFont20);
-        add(labelBook3PublicationDate);
-
-        labelBook3ID = new JLabel(ID3);   //도서3 관리번호
-        labelBook3ID.setBounds(775, 440, 120, 35);
-        //labelBook3ID.setHorizontalAlignment(JLabel.CENTER);
-        labelBook3ID.setFont(mainFont20);
-        add(labelBook3ID);
+            labelBook3ID = new JLabel(id[2]);   //도서3 관리번호
+            labelBook3ID.setBounds(775, 440, 120, 35);
+            //labelBook3ID.setHorizontalAlignment(JLabel.CENTER);
+            labelBook3ID.setFont(mainFont20);
+            add(labelBook3ID);
+        }
 
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼

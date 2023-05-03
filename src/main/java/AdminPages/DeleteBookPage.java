@@ -24,6 +24,8 @@ public class DeleteBookPage extends JFrame implements ActionListener{
     JButton ButtonBackPage;
 
     JPanel panelMainBlue;
+    JPanel panelCreateBlue;
+    JPanel panelCreateWhite;
 
     JLabel labelCreateBook;
     JLabel labelMain;
@@ -70,7 +72,7 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         panelMainBlue.add(labelMain);
 
         labelCreateBook = new JLabel("도서 삭제");   //"도서관 시스템" 메인 라벨
-        labelCreateBook.setBounds(440, 150, 400, 50);
+        labelCreateBook.setBounds(440, 140, 400, 50);
         labelCreateBook.setHorizontalAlignment(JLabel.CENTER);
         labelCreateBook.setFont(mainFont40);
         add(labelCreateBook);
@@ -90,7 +92,6 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         add(labelBookID);
 
 
-
         ButtonCreateBook = new RoundedButton("도서 삭제");   //도서 수정
         ButtonCreateBook.setBounds(565,450,150,50);
         ButtonCreateBook.setFont(mainFont30);
@@ -99,7 +100,6 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         ButtonCreateBook.setActionCommand("DeleteBook");  //
         ButtonCreateBook.addActionListener(this);
         add(ButtonCreateBook);
-
 
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
@@ -111,6 +111,18 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         ButtonBackPage.setActionCommand("BackPage");
         ButtonBackPage.addActionListener(this);
         add(ButtonBackPage);
+
+        panelCreateWhite = new JPanel();
+        panelCreateWhite.setBounds(443, 114, 394, 492);
+        panelCreateWhite.setBackground(Color.white);
+        add(panelCreateWhite);
+        panelCreateWhite.setLayout(null);
+
+        panelCreateBlue = new JPanel();
+        panelCreateBlue.setBounds(440, 110, 400, 500);
+        panelCreateBlue.setBackground(mainBlue);
+        add(panelCreateBlue);
+        panelCreateBlue.setLayout(null);
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 

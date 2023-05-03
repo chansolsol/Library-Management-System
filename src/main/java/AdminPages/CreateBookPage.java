@@ -24,7 +24,8 @@ public class CreateBookPage extends JFrame implements ActionListener{
     JButton ButtonBackPage;
 
     JPanel panelMainBlue;
-
+    JPanel panelCreateBlue;
+    JPanel panelCreateWhite;
     JLabel labelCreateBook;
     JLabel labelMain;
     JLabel labelBookTitle;
@@ -70,7 +71,7 @@ public class CreateBookPage extends JFrame implements ActionListener{
         panelMainBlue.add(labelMain);
 
         labelCreateBook = new JLabel("도서 생성");   //"도서관 시스템" 메인 라벨
-        labelCreateBook.setBounds(440, 150, 400, 50);
+        labelCreateBook.setBounds(440, 140, 400, 50);
         labelCreateBook.setHorizontalAlignment(JLabel.CENTER);
         labelCreateBook.setFont(mainFont40);
         add(labelCreateBook);
@@ -151,11 +152,6 @@ public class CreateBookPage extends JFrame implements ActionListener{
         ButtonCreateBook.addActionListener(this);
         add(ButtonCreateBook);
 
-
-
-
-
-
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
         ButtonBackPage.setBounds(580,510,120,40);
         ButtonBackPage.setFont(mainFont20);
@@ -165,6 +161,19 @@ public class CreateBookPage extends JFrame implements ActionListener{
         ButtonBackPage.setActionCommand("BackPage");
         ButtonBackPage.addActionListener(this);
         add(ButtonBackPage);
+
+
+        panelCreateWhite = new JPanel();
+        panelCreateWhite.setBounds(443, 114, 394, 492);
+        panelCreateWhite.setBackground(Color.white);
+        add(panelCreateWhite);
+        panelCreateWhite.setLayout(null);
+
+        panelCreateBlue = new JPanel();
+        panelCreateBlue.setBounds(440, 110, 400, 500);
+        panelCreateBlue.setBackground(mainBlue);
+        add(panelCreateBlue);
+        panelCreateBlue.setLayout(null);
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 

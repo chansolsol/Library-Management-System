@@ -8,11 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
 public class CreateBookPage extends JFrame implements ActionListener{
 
     private static final String DB_FILE_NAME = "books.json";
-
+    BookDatabase database = new BookDatabase(DB_FILE_NAME);
+    BookController controller = new BookController();
+    List<Book> books;
 
     JTextField textBookTitle;
     JTextField textBookAuthor;
@@ -37,7 +40,14 @@ public class CreateBookPage extends JFrame implements ActionListener{
 
 
 
-    public CreateBookPage(){
+    public CreateBookPage() {
+
+        try {
+            books = database.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        controller.addAll(books);
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -188,13 +198,9 @@ public class CreateBookPage extends JFrame implements ActionListener{
         String year = textBookPublicationDate.getText();
         String id = textBookID.getText();
 
-        BookDatabase database = new BookDatabase(DB_FILE_NAME);
-
-        BookController controller = new BookController();
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (event.equals("CreateBook")) {
-
             Book newBook = new BookBuilder().setTitle(title).setAuthor(author).setPublisher(publisher).setYear(year).setId(id).build();
             controller.addBook(newBook);
             try {

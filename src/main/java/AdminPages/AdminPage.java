@@ -1,11 +1,15 @@
 package AdminPages;
 
 import Pages.TextSearchResultPage;
+import book.Book;
+import book.BookDatabase;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.List;
 
 public class AdminPage extends JFrame implements ActionListener{
 
@@ -21,10 +25,19 @@ public class AdminPage extends JFrame implements ActionListener{
     JPanel panelMainBlue;
     JLabel labelMain;
     JPanel panelSearch;
+    private static final String DB_FILE_NAME = "books.json";
+    BookDatabase database = new BookDatabase(DB_FILE_NAME);
 
 
 
-    public AdminPage(){
+
+    public AdminPage() {
+
+        try {
+            List<Book> books = database.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치

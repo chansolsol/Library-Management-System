@@ -5,18 +5,30 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
 import AdminPages.AdminPage;
 import Res.*;
+import book.Book;
+import book.BookDatabase;
 
 
 public class LoginPage extends JFrame implements ActionListener {
 
     GsonMethod gson = new GsonMethod();
+    private static final String DB_FILE_NAME = "books.json";
+    BookDatabase database = new BookDatabase(DB_FILE_NAME);
     private JTextField textID;
     private JPasswordField textPassword;
 
     public LoginPage() {
+
+        gson.signInit();    //프로그램 실행 시 로그인 json 정보 불러옴
+        try {
+            List<Book> books = database.load(); //프로그램 실행 시 도서 json 정보 불러옴
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -33,10 +45,6 @@ public class LoginPage extends JFrame implements ActionListener {
         java.awt.Font inputBoxFont = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD,20);
 
         Color mainBlue = new Color(1, 108, 205);    //메인 색상 설정
-
-        GsonMethod gson = new GsonMethod();
-        gson.signInit();    //signInit 메소드 실행
-
 
         JPanel panelMainBlue = new JPanel();    //"도서관 시스템" 라벨이 위치할 메인 패널
         panelMainBlue.setBounds(0, 0, 1280, 80);

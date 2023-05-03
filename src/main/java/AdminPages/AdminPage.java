@@ -28,9 +28,6 @@ public class AdminPage extends JFrame implements ActionListener{
     private static final String DB_FILE_NAME = "books.json";
     BookDatabase database = new BookDatabase(DB_FILE_NAME);
 
-
-
-
     public AdminPage() {
 
         try {

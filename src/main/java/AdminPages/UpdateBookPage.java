@@ -20,14 +20,14 @@ public class UpdateBookPage extends JFrame implements ActionListener{
     JTextField textBookPublicationDate;
     JTextField textBookID;
 
-    RoundedButton ButtonCreateBook;
+    RoundedButton ButtonUpdateBook;
     JButton ButtonBackPage;
 
     JPanel panelMainBlue;
-    JPanel panelCreateBlue;
-    JPanel panelCreateWhite;
+    JPanel panelUpdateBlue;
+    JPanel panelUpdateWhite;
 
-    JLabel labelCreateBook;
+    JLabel labelUpdateBook;
     JLabel labelMain;
     JLabel labelBookTitle;
     JLabel labelBookAuthor;
@@ -71,11 +71,11 @@ public class UpdateBookPage extends JFrame implements ActionListener{
         labelMain.setForeground(Color.white);
         panelMainBlue.add(labelMain);
 
-        labelCreateBook = new JLabel("도서 수정");   //"도서관 시스템" 메인 라벨
-        labelCreateBook.setBounds(440, 140, 400, 50);
-        labelCreateBook.setHorizontalAlignment(JLabel.CENTER);
-        labelCreateBook.setFont(mainFont40);
-        add(labelCreateBook);
+        labelUpdateBook = new JLabel("도서 수정");   //"도서관 시스템" 메인 라벨
+        labelUpdateBook.setBounds(440, 140, 400, 50);
+        labelUpdateBook.setHorizontalAlignment(JLabel.CENTER);
+        labelUpdateBook.setFont(mainFont40);
+        add(labelUpdateBook);
 
 
         textBookID = new JTextField(); //책 관리번호가 입력될 JTextField
@@ -145,14 +145,14 @@ public class UpdateBookPage extends JFrame implements ActionListener{
         add(labelBookPublicationDate);
 
 
-        ButtonCreateBook = new RoundedButton("도서 수정");   //도서 수정
-        ButtonCreateBook.setBounds(565,450,150,50);
-        ButtonCreateBook.setFont(mainFont30);
-        ButtonCreateBook.setBackground(mainBlue);
-        ButtonCreateBook.setForeground(Color.white);
-        ButtonCreateBook.setActionCommand("UpdateBook");  //
-        ButtonCreateBook.addActionListener(this);
-        add(ButtonCreateBook);
+        ButtonUpdateBook = new RoundedButton("도서 수정");   //도서 수정
+        ButtonUpdateBook.setBounds(565,450,150,50);
+        ButtonUpdateBook.setFont(mainFont30);
+        ButtonUpdateBook.setBackground(mainBlue);
+        ButtonUpdateBook.setForeground(Color.white);
+        ButtonUpdateBook.setActionCommand("UpdateBook");  //
+        ButtonUpdateBook.addActionListener(this);
+        add(ButtonUpdateBook);
 
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
@@ -165,17 +165,17 @@ public class UpdateBookPage extends JFrame implements ActionListener{
         ButtonBackPage.addActionListener(this);
         add(ButtonBackPage);
 
-        panelCreateWhite = new JPanel();
-        panelCreateWhite.setBounds(443, 114, 394, 492);
-        panelCreateWhite.setBackground(Color.white);
-        add(panelCreateWhite);
-        panelCreateWhite.setLayout(null);
+        panelUpdateWhite = new JPanel();
+        panelUpdateWhite.setBounds(443, 114, 394, 492);
+        panelUpdateWhite.setBackground(Color.white);
+        add(panelUpdateWhite);
+        panelUpdateWhite.setLayout(null);
 
-        panelCreateBlue = new JPanel();
-        panelCreateBlue.setBounds(440, 110, 400, 500);
-        panelCreateBlue.setBackground(mainBlue);
-        add(panelCreateBlue);
-        panelCreateBlue.setLayout(null);
+        panelUpdateBlue = new JPanel();
+        panelUpdateBlue.setBounds(440, 110, 400, 500);
+        panelUpdateBlue.setBackground(mainBlue);
+        add(panelUpdateBlue);
+        panelUpdateBlue.setLayout(null);
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 

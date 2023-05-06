@@ -1,7 +1,9 @@
-package AdminPages;
+package Pages;
 
-import Pages.TextSearchResultPage;
+import Pages.MainPage;
+import Res.RoundedButton;
 import book.Book;
+import book.BookController;
 import book.BookDatabase;
 
 import javax.swing.*;
@@ -11,37 +13,62 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
-public class AdminPage extends JFrame implements ActionListener{
+public class BookDetailPage extends JFrame implements ActionListener{
 
     JTextField textSearch;
-
     JButton ButtonSearch;
-    JButton ButtonCreateBook;
-    JButton ButtonUpdateBook;
-    JButton ButtonDeleteBook;
-    JButton ButtonReturnBook;
-
+    JButton ButtonBackPage;
     JPanel panelMainBlue;
     JLabel labelMain;
     JPanel panelSearch;
+
     private static final String DB_FILE_NAME = "books.json";
-    BookDatabase database = new BookDatabase(DB_FILE_NAME);
 
-    public AdminPage() {
+    public BookDetailPage(String keyword){
 
+        BookDatabase database = new BookDatabase(DB_FILE_NAME);
+        BookController controller = new BookController();
+        List<Book> books = null;
         try {
-            List<Book> books = database.load();
+            books = database.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        controller.addAll(books);
+        List<Book> searchedBooks = controller.searchBooks(keyword);
+        int resultBookSize = searchedBooks.size();
+
+        Book[] ResultBooks = new Book[resultBookSize];
+
+        //ResultBooks 배열에 searchedBooks 리스트의 Book 객체를 저장함
+        for (int i = 0; i < resultBookSize; i++) {
+            ResultBooks[i] = searchedBooks.get(i);
         }
 
-        setSize(1280, 720); //JFrame 크기 설정
-        setLayout(null);    //컴포넌트를 자유롭게 배치
-        setLocationRelativeTo(null);    //JFrame 생성시 화면 중앙에 배치
-        setVisible(true);   //JFrame 시각화
+        //문자열 배열을 각각 검색 결과 수와 동일한 크기로 생성
+        String[] title = new String[resultBookSize];
+        String[] author = new String[resultBookSize];
+        String[] publisher = new String[resultBookSize];
+        String[] year = new String[resultBookSize];
+        String[] id = new String[resultBookSize];
+
+        //ResultBooks 배열에 각 Book 객체에 해당하는 속성 문자열로 채움
+        for (int i = 0; i < resultBookSize; i++) {
+            Book book = ResultBooks[i];
+            title[i] = book.getTitle();
+            author[i] = book.getAuthor();
+            publisher[i] = book.getPublisher();
+            year[i] = book.getYear();
+            id[i] = book.getId();
+        }
+
+        setSize(1280, 720);
+        setLayout(null);
+        setLocationRelativeTo(null);
+        setVisible(true);
         setTitle("Library Management System : AdminPage");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //창을 닫을시 JFrame 메모리 자원 회수
-        setResizable(false);     //JFrame 사이즈 조절 제한
+        setResizable(false);
 
         java.awt.Font mainFont50 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 50);   //폰트 설정
         java.awt.Font mainFont40 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 40);
@@ -59,7 +86,7 @@ public class AdminPage extends JFrame implements ActionListener{
         add(panelMainBlue);
         panelMainBlue.setLayout(null);
 
-        labelMain = new JLabel("도서관 관리 시스템");   //"도서관 시스템" 메인 라벨
+        labelMain = new JLabel("도서관 시스템");   //"도서관 시스템" 메인 라벨
         labelMain.setBounds(382, 0, 500, 80);
         labelMain.setHorizontalAlignment(JLabel.CENTER);
         labelMain.setFont(mainFont50);
@@ -94,44 +121,28 @@ public class AdminPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
+        JLabel labelSearchKey = new JLabel("상세정보 : " + keyword);   //도서 검색 키
+        labelSearchKey.setBounds(490, 150, 300, 30);
+        labelSearchKey.setHorizontalAlignment(JLabel.CENTER);
+        labelSearchKey.setFont(mainFont20);
+        add(labelSearchKey);
 
-        ButtonCreateBook = new JButton("도서 생성");   //도서 추가
-        ButtonCreateBook.setBounds(540,200,200,40);
-        ButtonCreateBook.setFont(mainFont20);
-        ButtonCreateBook.setContentAreaFilled(false);
-        ButtonCreateBook.setFocusPainted(false);
-        ButtonCreateBook.setActionCommand("CreateBook");  //
-        ButtonCreateBook.addActionListener(this);
-        add(ButtonCreateBook);
-
-        ButtonUpdateBook = new JButton("도서 수정");   //도서 업데이트
-        ButtonUpdateBook.setBounds(540,270,200,40);
-        ButtonUpdateBook.setFont(mainFont20);
-        ButtonUpdateBook.setContentAreaFilled(false);
-        ButtonUpdateBook.setFocusPainted(false);
-        ButtonUpdateBook.setActionCommand("UpdateBook");  //
-        ButtonUpdateBook.addActionListener(this);
-        add(ButtonUpdateBook);
-
-        ButtonDeleteBook = new JButton("도서 삭제");   //도서 삭제
-        ButtonDeleteBook.setBounds(540,340,200,40);
-        ButtonDeleteBook.setFont(mainFont20);
-        ButtonDeleteBook.setContentAreaFilled(false);
-        ButtonDeleteBook.setFocusPainted(false);
-        ButtonDeleteBook.setActionCommand("DeleteBook");
-        ButtonDeleteBook.addActionListener(this);
-        add(ButtonDeleteBook);
-
-        ButtonReturnBook = new JButton("도서 반납");   //도서 삭제
-        ButtonReturnBook.setBounds(540,410,200,40);
-        ButtonReturnBook.setFont(mainFont20);
-        ButtonReturnBook.setContentAreaFilled(false);
-        ButtonReturnBook.setFocusPainted(false);
-        ButtonReturnBook.setActionCommand("ReturnBook");
-        ButtonReturnBook.addActionListener(this);
-        add(ButtonReturnBook);
+        JPanel panelSearchKey = new JPanel();  //도서 검색 키 구분선
+        panelSearchKey.setBounds(415, 190, 450, 2);
+        panelSearchKey.setBackground(mainBlue);
+        add(panelSearchKey);
 
 
+
+        ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
+        ButtonBackPage.setBounds(580,600,120,40);
+        ButtonBackPage.setFont(mainFont20);
+        //ButtonBackPage.setBorderPainted(false);
+        ButtonBackPage.setContentAreaFilled(false);
+        ButtonBackPage.setFocusPainted(false);
+        ButtonBackPage.setActionCommand("BackPage");
+        ButtonBackPage.addActionListener(this);
+        add(ButtonBackPage);
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 
@@ -142,28 +153,15 @@ public class AdminPage extends JFrame implements ActionListener{
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
-            TextSearchResultAdminPage SR = new TextSearchResultAdminPage(keyword);
+            TextSearchResultPage SR = new TextSearchResultPage(keyword);
             setVisible(false);
             dispose();
 
-        } else if (event.equals("CreateBook")) {
-            CreateBookPage CB = new CreateBookPage();
+        } else if (event.equals("BackPage")) {
+            MainPage MP = new MainPage();
             setVisible(false);
             dispose();
 
-        } else if (event.equals("UpdateBook")){
-            UpdateBookPage UB = new UpdateBookPage();
-            setVisible(false);
-            dispose();
-        } else if (event.equals("DeleteBook")){
-            DeleteBookPage DB = new DeleteBookPage();
-            setVisible(false);
-            dispose();
-        } else if (event.equals("ReturnBook")){
-            ReturnBookPage RP = new ReturnBookPage();
-            setVisible(false);
-            dispose();
         }
-
     }
 }

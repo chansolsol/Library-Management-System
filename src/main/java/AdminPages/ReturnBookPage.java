@@ -9,29 +9,28 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-public class DeleteBookPage extends JFrame implements ActionListener{
+public class ReturnBookPage extends JFrame implements ActionListener{
 
     private static final String DB_FILE_NAME = "books.json";
 
-
-    JTextField textBookTitle;
     JTextField textBookID;
 
-    RoundedButton ButtonDeleteBook;
+    RoundedButton ButtonReturnBook;
     JButton ButtonBackPage;
 
     JPanel panelMainBlue;
-    JPanel panelDeleteBlue;
-    JPanel panelDeleteWhite;
+    JPanel panelCreateBlue;
+    JPanel panelCreateWhite;
 
-    JLabel labelDeleteBook;
+    JLabel labelCreateBook;
     JLabel labelMain;
+    JLabel labelBookTitle;
 
     JLabel labelBookID;
 
 
 
-    public DeleteBookPage(){
+    public ReturnBookPage(){
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -64,11 +63,11 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         labelMain.setForeground(Color.white);
         panelMainBlue.add(labelMain);
 
-        labelDeleteBook = new JLabel("도서 삭제");   //"도서관 시스템" 메인 라벨
-        labelDeleteBook.setBounds(440, 140, 400, 50);
-        labelDeleteBook.setHorizontalAlignment(JLabel.CENTER);
-        labelDeleteBook.setFont(mainFont40);
-        add(labelDeleteBook);
+        labelCreateBook = new JLabel("도서 반납");   //"도서관 시스템" 메인 라벨
+        labelCreateBook.setBounds(440, 140, 400, 50);
+        labelCreateBook.setHorizontalAlignment(JLabel.CENTER);
+        labelCreateBook.setFont(mainFont40);
+        add(labelCreateBook);
 
 
         textBookID = new JTextField(); //책 관리번호가 입력될 JTextField
@@ -85,14 +84,16 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         add(labelBookID);
 
 
-        ButtonDeleteBook = new RoundedButton("도서 삭제");   //도서 수정
-        ButtonDeleteBook.setBounds(565,450,150,50);
-        ButtonDeleteBook.setFont(mainFont30);
-        ButtonDeleteBook.setBackground(mainBlue);
-        ButtonDeleteBook.setForeground(Color.white);
-        ButtonDeleteBook.setActionCommand("DeleteBook");  //
-        ButtonDeleteBook.addActionListener(this);
-        add(ButtonDeleteBook);
+
+
+        ButtonReturnBook = new RoundedButton("도서 반납");   //도서 수정
+        ButtonReturnBook.setBounds(565,450,150,50);
+        ButtonReturnBook.setFont(mainFont30);
+        ButtonReturnBook.setBackground(mainBlue);
+        ButtonReturnBook.setForeground(Color.white);
+        ButtonReturnBook.setActionCommand("ReturnBook");  //
+        ButtonReturnBook.addActionListener(this);
+        add(ButtonReturnBook);
 
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
@@ -105,17 +106,17 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         ButtonBackPage.addActionListener(this);
         add(ButtonBackPage);
 
-        panelDeleteWhite = new JPanel();
-        panelDeleteWhite.setBounds(443, 114, 394, 492);
-        panelDeleteWhite.setBackground(Color.white);
-        add(panelDeleteWhite);
-        panelDeleteWhite.setLayout(null);
+        panelCreateWhite = new JPanel();
+        panelCreateWhite.setBounds(443, 114, 394, 492);
+        panelCreateWhite.setBackground(Color.white);
+        add(panelCreateWhite);
+        panelCreateWhite.setLayout(null);
 
-        panelDeleteBlue = new JPanel();
-        panelDeleteBlue.setBounds(440, 110, 400, 500);
-        panelDeleteBlue.setBackground(mainBlue);
-        add(panelDeleteBlue);
-        panelDeleteBlue.setLayout(null);
+        panelCreateBlue = new JPanel();
+        panelCreateBlue.setBounds(440, 110, 400, 500);
+        panelCreateBlue.setBackground(mainBlue);
+        add(panelCreateBlue);
+        panelCreateBlue.setLayout(null);
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 
@@ -124,26 +125,17 @@ public class DeleteBookPage extends JFrame implements ActionListener{
 
         String event = e.getActionCommand();
 
-        String DeleteId = textBookID.getText();
 
-        BookDatabase database = new BookDatabase(DB_FILE_NAME);
-        BookController controller = new BookController();
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
-        if (event.equals("DeleteBook")) {
+        if (event.equals("ReturnBook")) {
 
-            controller.removeBook(DeleteId);
-            try {
-                database.save(controller.getAllBooks());
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            alert.showMessageDialog(null, "책 삭제 완료", "알림", JOptionPane.INFORMATION_MESSAGE);
+
+            alert.showMessageDialog(null, "도서 반납 완료", "알림", JOptionPane.INFORMATION_MESSAGE);
 
             AdminPage AP = new AdminPage();
             setVisible(false);
             dispose();
-
 
         } else if (event.equals("BackPage")) {
             AdminPage AP = new AdminPage();

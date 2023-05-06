@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class MainPage extends JFrame implements ActionListener{
 
-    JComboBox<String> selectOption;
     JTextField textSearch;
     JPanel panelSearch;
     JButton ButtonSearch;
@@ -48,27 +47,26 @@ public class MainPage extends JFrame implements ActionListener{
         labelMain.setForeground(Color.white);
         panelMainBlue.add(labelMain);
 
-        String Options[] = {"제목","저자","출판사"};   //도서 검색 옵션 종류
-        selectOption = new JComboBox<String>(Options);  //도서 검색 옵션용 JComboBox
-        selectOption.setBounds(390,110,70,20);
-        selectOption.addActionListener(this);
-        selectOption.setActionCommand("Option");
-        add(selectOption);
+        JLabel labelSearchMain = new JLabel("검색어 :");   //"도서관 시스템" 메인 라벨
+        labelSearchMain.setBounds(400, 100, 90, 35);
+        //labelSearchMain.setHorizontalAlignment(JLabel.CENTER);
+        labelSearchMain.setFont(mainFont20);
+        add(labelSearchMain);
 
         textSearch = new JTextField();   //도서 검색 텍스트 입력 JTextField
-        textSearch.setBounds(465,100,370,35);
+        textSearch.setBounds(500,100,300,35);
         textSearch.setFont(inputBoxFont);
         textSearch.setBorder(null);
         textSearch.setLayout(null);
         add(textSearch);
 
         panelSearch = new JPanel();  //도서 검색 텍스트 입력 구분선
-        panelSearch.setBounds(390, 140, 450, 2);
+        panelSearch.setBounds(390, 140, 500, 2);
         panelSearch.setBackground(mainBlue);
         add(panelSearch);
 
         ButtonSearch = new JButton("\uE71E");   //도서 검색 버튼
-        ButtonSearch.setBounds(845,100,55,40);
+        ButtonSearch.setBounds(835,98,55,40);
         ButtonSearch.setFont(SearchIconFont);
         //ButtonSearch.setBorderPainted(false);
         ButtonSearch.setContentAreaFilled(false);
@@ -77,7 +75,7 @@ public class MainPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
-        ButtonMyPage = new JButton("마이페이지");   //회원 정보 페이지 버튼
+        ButtonMyPage = new JButton("<HTML><body><center>마이페이지</center></body></HTML>");   //회원 정보 페이지 버튼
         ButtonMyPage.setBounds(1100,100,120,40);
         ButtonMyPage.setFont(mainFont20);
         ButtonMyPage.setContentAreaFilled(false);

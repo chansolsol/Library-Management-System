@@ -8,11 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
 public class UpdateBookPage extends JFrame implements ActionListener{
 
     private static final String DB_FILE_NAME = "books.json";
-
+    BookDatabase database = new BookDatabase(DB_FILE_NAME);
+    BookController controller = new BookController();
+    List<Book> books;
 
     JTextField textBookTitle;
     JTextField textBookAuthor;
@@ -39,6 +42,15 @@ public class UpdateBookPage extends JFrame implements ActionListener{
 
 
     public UpdateBookPage(){
+
+//        try {
+//            books = database.load();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        controller.addAll(books);
+
+        System.out.println("test 업뎃페이지");
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -190,12 +202,16 @@ public class UpdateBookPage extends JFrame implements ActionListener{
         String newYear = textBookPublicationDate.getText();
         String updateId = textBookID.getText();
 
-        BookDatabase database = new BookDatabase(DB_FILE_NAME);
-
-        BookController controller = new BookController();
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (event.equals("UpdateBook")) {
+
+            try {
+                books = database.load();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            controller.addAll(books);
 
             controller.updateBook(updateId, newTitle, newAuthor, newPublisher, newYear);
             try {
@@ -203,6 +219,9 @@ public class UpdateBookPage extends JFrame implements ActionListener{
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+
+            System.out.println("test 도서 수정 버튼");
+
             alert.showMessageDialog(null, "책 업데이트 완료", "알림", JOptionPane.INFORMATION_MESSAGE);
 
             AdminPage AP = new AdminPage();

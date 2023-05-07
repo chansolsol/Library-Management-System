@@ -24,16 +24,10 @@ public class AdminPage extends JFrame implements ActionListener{
     JPanel panelMainBlue;
     JLabel labelMain;
     JPanel panelSearch;
-    private static final String DB_FILE_NAME = "books.json";
-    BookDatabase database = new BookDatabase(DB_FILE_NAME);
 
     public AdminPage() {
 
-        try {
-            List<Book> books = database.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("test 어드민페이지");
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치

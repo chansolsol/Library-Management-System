@@ -8,10 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
 public class DeleteBookPage extends JFrame implements ActionListener{
 
     private static final String DB_FILE_NAME = "books.json";
+    BookDatabase database = new BookDatabase(DB_FILE_NAME);
+    BookController controller = new BookController();
+    List<Book> books;
 
 
     JTextField textBookTitle;
@@ -131,6 +135,13 @@ public class DeleteBookPage extends JFrame implements ActionListener{
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (event.equals("DeleteBook")) {
+
+            try {
+                books = database.load();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            controller.addAll(books);
 
             controller.removeBook(DeleteId);
             try {

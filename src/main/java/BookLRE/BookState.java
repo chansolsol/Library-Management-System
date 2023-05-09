@@ -3,7 +3,7 @@ package BookLRE;
 public interface BookState {
 
     /** 대출하기 */
-    void borrow(Book book);
+    void loan(Book book);
 
     /** 반납하기 */
     void returnBook(Book book);

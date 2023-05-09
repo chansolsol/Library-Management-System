@@ -13,7 +13,7 @@ public class Book {
         this.state = state;
     }
 
-    public void borrow() {
+    public void loan() {
         state.borrow(this);
     }
 

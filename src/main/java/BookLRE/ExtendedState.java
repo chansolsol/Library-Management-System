@@ -2,7 +2,7 @@ package BookLRE;
 
 /** 연장한 상태 */
 public class ExtendedState implements BookState {
-    public void borrow(Book book) {
+    public void loan(Book book) {
         System.out.println("이 책은 이미 대출되었습니다.");
     }
     public void returnBook(Book book) {

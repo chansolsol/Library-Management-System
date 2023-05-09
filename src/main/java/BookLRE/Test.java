@@ -7,10 +7,8 @@ public class Test {
         Book book = new Book();
 
         System.out.println("책 ㅇㅇㅇ 대출하기");
-        book.borrow();
-
-        System.out.println("책 ㅇㅇㅇ 이미 대출했으므로 다시 대출 불가");
-        book.borrow();
+        book.loan();
+        book.loan();    //책 ㅇㅇㅇ 이미 대출했으므로 다시 대출 불가
 
         System.out.println("책 ㅇㅇㅇ 연장하기");
         book.extend();
@@ -18,7 +16,6 @@ public class Test {
         System.out.println("책 ㅇㅇㅇ 반납하기");
         book.returnBook();
 
-        System.out.println("책 ㅇㅇㅇ 반납한 상태이므로 연장 불가");
-        book.extend();
+        book.extend();  //책 ㅇㅇㅇ 반납한 상태이므로 연장 불가
     }
 }

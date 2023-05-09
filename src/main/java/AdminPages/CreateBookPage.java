@@ -1,7 +1,7 @@
 package AdminPages;
 
 import Res.RoundedButton;
-import book.*;
+import BookCRUD.*;
 
 import javax.swing.*;
 import java.awt.*;

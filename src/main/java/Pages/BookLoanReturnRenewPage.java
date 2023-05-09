@@ -1,12 +1,9 @@
 package Pages;
 
-import book.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class BookLoanReturnRenewPage extends JFrame implements ActionListener{
 

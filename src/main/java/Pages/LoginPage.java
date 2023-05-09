@@ -9,8 +9,8 @@ import java.util.List;
 
 import AdminPages.AdminPage;
 import Res.*;
-import book.Book;
-import book.BookDatabase;
+import BookCRUD.Book;
+import BookCRUD.BookDatabase;
 
 
 public class LoginPage extends JFrame implements ActionListener {

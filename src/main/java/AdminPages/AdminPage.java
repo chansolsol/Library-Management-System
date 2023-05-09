@@ -1,15 +1,9 @@
 package AdminPages;
 
-import Pages.TextSearchResultPage;
-import book.Book;
-import book.BookDatabase;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.List;
 
 public class AdminPage extends JFrame implements ActionListener{
 

@@ -14,6 +14,7 @@ public class Book {
     private String publisher; //책 출판사
     private String year; //책 출판연도
     private String id;  //책 고유 식별자
+    private String state = "available";   //책 상태
 
     // Book 클래스의 생성자
     public Book(String title, String author, String publisher, String year, String id) {
@@ -39,6 +40,7 @@ public class Book {
     public String getId() {
         return id;
     }
+
     // toString 메서드
     @Override
     public String toString() {
@@ -48,6 +50,7 @@ public class Book {
                 ", publisher='" + publisher + '\'' +
                 ", year='" + year + '\'' +
                 ", id='" + id + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
     // Setter 메서드들

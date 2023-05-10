@@ -1,9 +1,9 @@
-package BookLRE;
+package BookBRE;
 
 public interface BookState {
 
     /** 대출하기 */
-    void loan(Book book);
+    void borrow(Book book);
 
     /** 반납하기 */
     void returnBook(Book book);

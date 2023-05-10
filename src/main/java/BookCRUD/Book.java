@@ -14,6 +14,7 @@ public class Book {
     private String publisher; //책 출판사
     private String year; //책 출판연도
     private String id;  //책 고유 식별자
+
     // Book 클래스의 생성자
     public Book(String title, String author, String publisher, String year, String id) {
         this.title = title;

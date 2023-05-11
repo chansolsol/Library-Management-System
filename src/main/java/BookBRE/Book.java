@@ -84,4 +84,7 @@ public class Book {
         return title;
     }
 
+    public String getId() {
+        return id;
+    }
 }

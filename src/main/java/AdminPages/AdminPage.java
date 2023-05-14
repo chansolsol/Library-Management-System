@@ -1,5 +1,6 @@
 package AdminPages;
 
+import Pages.TextSearchResultPage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -130,7 +131,7 @@ public class AdminPage extends JFrame implements ActionListener{
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
-            TextSearchResultAdminPage SR = new TextSearchResultAdminPage(keyword);
+            TextSearchResultPage TP = new TextSearchResultPage(keyword);
             setVisible(false);
             dispose();
 

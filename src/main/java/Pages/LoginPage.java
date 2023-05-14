@@ -157,13 +157,14 @@ public class LoginPage extends JFrame implements ActionListener {
 
                 if (gson.login(ID ,password)) {     //로그인 정보 일치 시 메인페이지 출력
                     if (ID.equals("admin")) {   //admin 로그인
+                        UserInfo.getInstance().setUserID(ID);
+                        UserInfo.getInstance().setUserPassword(password);
                         AdminPage adminPage = new AdminPage();
-                        adminPage.setVisible(true);
                         dispose();
-                        return;
                     } else {
+                        UserInfo.getInstance().setUserID(ID);
+                        UserInfo.getInstance().setUserPassword(password);
                         MainPage mainPage = new MainPage();
-                        mainPage.setVisible(true);
                         dispose();
                     }
                 } else {    //로그인 정보 불일치 시 에러 메시지박스 출력
@@ -172,11 +173,9 @@ public class LoginPage extends JFrame implements ActionListener {
 
         } else if (event.equals("signUp")) {
             SignUpPage SP = new SignUpPage();   //회원가입 페이지 생성, (JFrame SignUpPage 생성)
-            setVisible(false);
             dispose();  //로그인 페이지 자원 회수
         } else if (event.equals("guest")){
-            MainGuestPage MP = new MainGuestPage();   //비회원 로그인 페이지 생성, (JFrame SignUpPage 생성)
-            setVisible(false);
+            MainPage mainPage = new MainPage();   //비회원 로그인 페이지 생성
             dispose();
         }
 

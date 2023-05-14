@@ -1,5 +1,7 @@
 package Pages;
 
+import Res.UserInfo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -15,6 +17,8 @@ public class MainPage extends JFrame implements ActionListener{
     JButton ButtonLoanBook;
 
     public MainPage(){
+
+
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -75,24 +79,26 @@ public class MainPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
-        ButtonMyPage = new JButton("<HTML><body><center>마이페이지</center></body></HTML>");   //회원 정보 페이지 버튼
-        ButtonMyPage.setBounds(1100,100,120,40);
-        ButtonMyPage.setFont(mainFont20);
-        ButtonMyPage.setContentAreaFilled(false);
-        ButtonMyPage.setFocusPainted(false);
-        ButtonMyPage.setActionCommand("MyPage");  //
-        ButtonMyPage.addActionListener(this);
-        add(ButtonMyPage);
+        if (UserInfo.getInstance().getUserID()!=null) {
 
-        ButtonLoanBook = new JButton("도서 대출/반납/연장");   //도서 추가
-        ButtonLoanBook.setBounds(520,200,240,40);
-        ButtonLoanBook.setFont(mainFont20);
-        ButtonLoanBook.setContentAreaFilled(false);
-        ButtonLoanBook.setFocusPainted(false);
-        ButtonLoanBook.setActionCommand("LoanReturnRenewBook");  //
-        ButtonLoanBook.addActionListener(this);
-        add(ButtonLoanBook);
+            ButtonMyPage = new JButton("<HTML><body><center>마이페이지</center></body></HTML>");   //회원 정보 페이지 버튼
+            ButtonMyPage.setBounds(1100,100,120,40);
+            ButtonMyPage.setFont(mainFont20);
+            ButtonMyPage.setContentAreaFilled(false);
+            ButtonMyPage.setFocusPainted(false);
+            ButtonMyPage.setActionCommand("MyPage");
+            ButtonMyPage.addActionListener(this);
+            add(ButtonMyPage);
 
+            ButtonLoanBook = new JButton("도서 대출/반납/연장");   //도서 추가
+            ButtonLoanBook.setBounds(520, 200, 240, 40);
+            ButtonLoanBook.setFont(mainFont20);
+            ButtonLoanBook.setContentAreaFilled(false);
+            ButtonLoanBook.setFocusPainted(false);
+            ButtonLoanBook.setActionCommand("LoanReturnRenewBook");
+            ButtonLoanBook.addActionListener(this);
+            add(ButtonLoanBook);
+        }
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 
@@ -104,7 +110,6 @@ public class MainPage extends JFrame implements ActionListener{
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
             TextSearchResultPage SR = new TextSearchResultPage(keyword);
-            setVisible(false);
             dispose();
 
         } else if (event.equals("MyPage")) {
@@ -112,7 +117,6 @@ public class MainPage extends JFrame implements ActionListener{
             //dispose();
         } else if (event.equals("LoanReturnRenewBook")){
             BookLoanReturnRenewPage BP = new BookLoanReturnRenewPage();
-            setVisible(false);
             dispose();
         }
 

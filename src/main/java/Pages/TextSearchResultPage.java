@@ -1,8 +1,10 @@
 package Pages;
 
+import AdminPages.AdminPage;
 import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
+import Res.UserInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,9 +52,12 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
     JLabel labelBook5Publisher ;
     JLabel labelBook5ID;
 
+    String SK;
     private static final String DB_FILE_NAME = "books.json";
 
-    public TextSearchResultPage(String keyword){
+    public TextSearchResultPage(String SearchKeyword){
+
+        SK = SearchKeyword;
 
         BookDatabase database = new BookDatabase(DB_FILE_NAME);
         BookController controller = new BookController();
@@ -63,7 +68,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             throw new RuntimeException(e);
         }
         controller.addAll(books);
-        List<Book> searchedBooks = controller.searchBooks(keyword);
+        List<Book> searchedBooks = controller.searchBooks(SearchKeyword);
         int resultBookSize = searchedBooks.size();
 
         Book[] ResultBooks = new Book[resultBookSize];
@@ -150,7 +155,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
-        JLabel labelSearchKey = new JLabel("검색어 : " + keyword);   //도서 검색 키
+        JLabel labelSearchKey = new JLabel("검색어 : " + SearchKeyword);   //도서 검색 키
         labelSearchKey.setBounds(490, 150, 300, 30);
         labelSearchKey.setHorizontalAlignment(JLabel.CENTER);
         labelSearchKey.setFont(mainFont20);
@@ -175,6 +180,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             //labelBook1Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Title.setFont(mainFont18);
             add(labelBook1Title);
+
 
             labelBook1ID = new JLabel(id[0]);   //도서1 관리번호
             labelBook1ID.setBounds(690, 200, 150, 25);
@@ -206,8 +212,8 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             add(panelBook1);
 
             JButton ButtonBook1 = new JButton();   //도서1 상세정보 버튼
-            ButtonBook1.setText("<HTML><body><center>대출</center></body></HTML>");
-            ButtonBook1.setBounds(820,200,45,60);
+            ButtonBook1.setText("<HTML><body><center>상세<br>정보</center></body></HTML>");
+            ButtonBook1.setBounds(820, 200, 45, 60);
             ButtonBook1.setFont(mainFont18);
             //ButtonBook1.setBorderPainted(false);
             ButtonBook1.setContentAreaFilled(false);
@@ -260,7 +266,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             add(panelBook2);
 
             JButton ButtonBook2 = new JButton();   //도서1 상세정보 버튼
-            ButtonBook2.setText("<HTML><body><center>대출</center></body></HTML>");
+            ButtonBook2.setText("<HTML><body><center>상세<br>정보</center></body></HTML>");
             ButtonBook2.setBounds(820,275,45,60);
             ButtonBook2.setFont(mainFont18);
             //ButtonBook2.setBorderPainted(false);
@@ -314,7 +320,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             add(panelBook3);
 
             JButton ButtonBook3 = new JButton();   //도서3 상세정보 버튼
-            ButtonBook3.setText("<HTML><body><center>대출</center></body></HTML>");
+            ButtonBook3.setText("<HTML><body><center>상세<br>정보</center></body></HTML>");
             ButtonBook3.setBounds(820,350,45,60);
             ButtonBook3.setFont(mainFont18);
             //ButtonBook3.setBorderPainted(false);
@@ -450,35 +456,41 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         String event = e.getActionCommand();
+        String DetailKeyword;
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
             TextSearchResultPage SR = new TextSearchResultPage(keyword);
-            setVisible(false);
             dispose();
 
         } else if (event.equals("BackPage")) {
-            MainPage MP = new MainPage();
-            setVisible(false);
+            if (UserInfo.getInstance().getUserID().equals("admin")) {
+                AdminPage AP = new AdminPage();
+                dispose();
+            } else {
+                MainPage MP = new MainPage();
+                dispose();
+            }
+        } else if (event.equals("Book1")) {
+            DetailKeyword = labelBook1ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
             dispose();
-
-        } else if (event.equals("book1")) {
-
-            //setVisible(false);
-            //dispose();
-
-        } else if (event.equals("book2")){
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("book3")){
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("book4")){
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("book5")){
-            //setVisible(false);
-            //dispose();
+        } else if (event.equals("Book2")){
+            DetailKeyword = labelBook2ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book3")){
+            DetailKeyword = labelBook3ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book4")){
+            DetailKeyword = labelBook4ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book5")){
+            DetailKeyword = labelBook5ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
         }
     }
 

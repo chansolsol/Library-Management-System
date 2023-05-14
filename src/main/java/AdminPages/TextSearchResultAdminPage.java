@@ -3,6 +3,7 @@ package AdminPages;
 import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
+import Pages.BookDetailPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,9 +51,13 @@ public class TextSearchResultAdminPage extends JFrame implements ActionListener{
     JLabel labelBook5Publisher ;
     JLabel labelBook5ID;
 
+    String SK;
+
     private static final String DB_FILE_NAME = "books.json";
 
     public TextSearchResultAdminPage(String keyword){
+
+        SK = keyword;
 
         BookDatabase database = new BookDatabase(DB_FILE_NAME);
         BookController controller = new BookController();
@@ -450,6 +455,7 @@ public class TextSearchResultAdminPage extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         String event = e.getActionCommand();
+        String DetailKeyword;
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
@@ -462,23 +468,26 @@ public class TextSearchResultAdminPage extends JFrame implements ActionListener{
             setVisible(false);
             dispose();
 
-        } else if (event.equals("book1")) {
-
-            //setVisible(false);
-            //dispose();
-
-        } else if (event.equals("book2")){
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("book3")){
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("book4")){
-            //setVisible(false);
-            //dispose();
-        } else if (event.equals("book5")){
-            //setVisible(false);
-            //dispose();
+        } else if (event.equals("Book1")) {
+            DetailKeyword = labelBook1ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book2")){
+            DetailKeyword = labelBook2ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book3")){
+            DetailKeyword = labelBook3ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book4")){
+            DetailKeyword = labelBook4ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("Book5")){
+            DetailKeyword = labelBook5ID.getText();
+            BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
         }
     }
 

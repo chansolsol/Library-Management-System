@@ -3,6 +3,7 @@ package Pages;
 import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
+import Res.UserInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +20,13 @@ public class BookDetailPage extends JFrame implements ActionListener{
     JPanel panelMainBlue;
     JLabel labelMain;
     JPanel panelSearch;
+    String SK;
 
     private static final String DB_FILE_NAME = "books.json";
 
-    public BookDetailPage(String keyword){
+    public BookDetailPage(String keyword, String SearchKeyword){
+
+        SK = SearchKeyword;
 
         BookDatabase database = new BookDatabase(DB_FILE_NAME);
         BookController controller = new BookController();
@@ -33,7 +37,7 @@ public class BookDetailPage extends JFrame implements ActionListener{
             throw new RuntimeException(e);
         }
         controller.addAll(books);
-        List<Book> searchedBooks = controller.searchBooks(keyword);
+        List<Book> searchedBooks = controller.detailBooks(keyword);
         int resultBookSize = searchedBooks.size();
 
         Book[] ResultBooks = new Book[resultBookSize];
@@ -70,7 +74,7 @@ public class BookDetailPage extends JFrame implements ActionListener{
 
         java.awt.Font mainFont50 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 50);   //폰트 설정
         java.awt.Font mainFont40 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 40);
-        java.awt.Font mainFont30 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 30);
+        java.awt.Font mainFont25 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 25);
         java.awt.Font mainFont20 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 20);
         java.awt.Font inputBoxFont = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD,20);
         java.awt.Font SearchIconFont = new java.awt.Font("Segoe MDL2 Assets", Font.BOLD,20);
@@ -119,21 +123,125 @@ public class BookDetailPage extends JFrame implements ActionListener{
         ButtonSearch.addActionListener(this);
         add(ButtonSearch);
 
-        JLabel labelSearchKey = new JLabel("상세정보 : " + keyword);   //도서 검색 키
-        labelSearchKey.setBounds(490, 150, 300, 30);
+        JLabel labelSearchKey = new JLabel(title[0]);   //도서 검색 키
+        labelSearchKey.setBounds(490, 150, 300, 40);
         labelSearchKey.setHorizontalAlignment(JLabel.CENTER);
-        labelSearchKey.setFont(mainFont20);
+        labelSearchKey.setFont(mainFont25);
         add(labelSearchKey);
 
-        JPanel panelSearchKey = new JPanel();  //도서 검색 키 구분선
+        /*JPanel panelSearchKey = new JPanel();  //도서 검색 키 구분선
         panelSearchKey.setBounds(415, 190, 450, 2);
         panelSearchKey.setBackground(mainBlue);
-        add(panelSearchKey);
+        add(panelSearchKey);*/
 
 
+        JPanel panelBook1Image = new JPanel();  //도서1 이미지
+        panelBook1Image.setBounds(375, 200, 100, 100);
+        panelBook1Image.setBackground(Color.gray);
+        add(panelBook1Image);
+
+        JLabel labelTitle = new JLabel("제목 :");   //도서1 제목
+        labelTitle.setBounds(525, 200, 150, 30);
+        //labelTitle.setHorizontalAlignment(JLabel.CENTER);
+        labelTitle.setFont(mainFont20);
+        add(labelTitle);
+
+        JLabel labelBook1Title = new JLabel(title[0]);   //도서1 제목
+        labelBook1Title.setBounds(705, 200, 200, 30);
+        //labelBook1Title.setHorizontalAlignment(JLabel.CENTER);
+        labelBook1Title.setFont(mainFont20);
+        add(labelBook1Title);
+
+
+        JLabel labelAuthor = new JLabel("저자 :");   //도서1 저자
+        labelAuthor.setBounds(525, 240, 200, 30);
+        //labelAuthor.setHorizontalAlignment(JLabel.CENTER);
+        labelAuthor.setFont(mainFont20);
+        add(labelAuthor);
+
+        JLabel labelBook1Author = new JLabel(author[0]);   //도서1 저자
+        labelBook1Author.setBounds(705, 240, 200, 30);
+        //labelBook1Author.setHorizontalAlignment(JLabel.CENTER);
+        labelBook1Author.setFont(mainFont20);
+        add(labelBook1Author);
+
+
+        JLabel labelPublisher = new JLabel("출판사 :");   //도서1 출판사
+        labelPublisher.setBounds(525, 280, 200, 30);
+        //labelPublisher.setHorizontalAlignment(JLabel.CENTER);
+        labelPublisher.setFont(mainFont20);
+        add(labelPublisher);
+
+        JLabel labelBook1Publisher = new JLabel(publisher[0]);   //도서1 출판사
+        labelBook1Publisher.setBounds(705, 280, 200, 30);
+        //labelBook1Publisher.setHorizontalAlignment(JLabel.CENTER);
+        labelBook1Publisher.setFont(mainFont20);
+        add(labelBook1Publisher);
+
+
+        JLabel labelPublicationDate = new JLabel("출판년도 :");   //도서1 출판년도
+        labelPublicationDate.setBounds(525, 320, 200, 30);
+        //labelPublicationDate.setHorizontalAlignment(JLabel.CENTER);
+        labelPublicationDate.setFont(mainFont20);
+        add(labelPublicationDate);
+
+        JLabel labelBook1PublicationDate = new JLabel(year[0]);   //도서1 출판년도
+        labelBook1PublicationDate.setBounds(705, 320, 200, 30);
+        //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
+        labelBook1PublicationDate.setFont(mainFont20);
+        add(labelBook1PublicationDate);
+
+
+        JLabel labelID = new JLabel("관리번호 :");   //도서1 관리번호
+        labelID.setBounds(525, 360, 200, 30);
+        //labelID.setHorizontalAlignment(JLabel.CENTER);
+        labelID.setFont(mainFont20);
+        add(labelID);
+
+        JLabel labelBook1ID = new JLabel(id[0]);   //도서1 관리번호
+        labelBook1ID.setBounds(705, 360, 200, 30);
+        //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
+        labelBook1ID.setFont(mainFont20);
+        add(labelBook1ID);
+
+
+        if (UserInfo.getInstance().getUserID()!=null) {
+            JButton ButtonLoan = new JButton("도서 대출");   //도서대출 버튼
+            ButtonLoan.setBounds(565, 410, 150, 40);
+            ButtonLoan.setFont(mainFont20);
+            //ButtonLoan.setBorderPainted(false);
+            ButtonLoan.setContentAreaFilled(false);
+            ButtonLoan.setFocusPainted(false);
+            ButtonLoan.setActionCommand("Loan");
+            ButtonLoan.addActionListener(this);
+            add(ButtonLoan);
+
+            JButton ButtonReserve = new JButton("도서 예약");   //도서예약 버튼
+            ButtonReserve.setBounds(565, 460, 150, 40);
+            ButtonReserve.setFont(mainFont20);
+            //ButtonReserve.setBorderPainted(false);
+            ButtonReserve.setContentAreaFilled(false);
+            ButtonReserve.setFocusPainted(false);
+            ButtonReserve.setActionCommand("Reserve");
+            ButtonReserve.addActionListener(this);
+            add(ButtonReserve);
+        }
+
+
+        /*JPanel panelCreateWhite = new JPanel();
+        panelCreateWhite.setBounds(443, 114, 492, 492);
+        panelCreateWhite.setBackground(Color.white);
+        add(panelCreateWhite);
+        panelCreateWhite.setLayout(null);
+
+        JPanel panelCreateBlue = new JPanel();
+        panelCreateBlue.setBounds(440, 110, 500, 500);
+        panelCreateBlue.setBackground(mainBlue);
+        add(panelCreateBlue);
+        panelCreateBlue.setLayout(null);*/
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
-        ButtonBackPage.setBounds(580,600,120,40);
+        ButtonBackPage.setBounds(580,550,120,40);
         ButtonBackPage.setFont(mainFont20);
         //ButtonBackPage.setBorderPainted(false);
         ButtonBackPage.setContentAreaFilled(false);
@@ -152,12 +260,10 @@ public class BookDetailPage extends JFrame implements ActionListener{
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
             TextSearchResultPage SR = new TextSearchResultPage(keyword);
-            setVisible(false);
             dispose();
 
         } else if (event.equals("BackPage")) {
-            MainPage MP = new MainPage();
-            setVisible(false);
+            TextSearchResultPage SR = new TextSearchResultPage(SK);
             dispose();
 
         }

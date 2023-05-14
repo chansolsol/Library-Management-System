@@ -30,29 +30,35 @@ public class Book {
         this.dueDate = dueDate;
     }
 
-    public void borrow() {
+    public boolean borrow() {
         if ("available".equals(state)) {
             state = "borrowed";
             dueDate = LocalDate.now().plusDays(7);
+            return true;
         } else {
             System.out.println("이미 대출하였습니다.");
+            return false;
         }
     }
 
-    public void returnBook() {
+    public boolean returnBook() {
         if ("borrowed".equals(state)) {
             state = "available";
             dueDate = null;
+            return true;
         } else {
             System.out.println("대출하지 않은 책은 반납할 수 없습니다.");
+            return false;
         }
     }
 
-    public void extend() {
+    public boolean extend() {
         if ("borrowed".equals(state)) {
             dueDate = dueDate.plusDays(7);
+            return true;
         } else {
             System.out.println("대출하지 않은 책은 연장할 수 없습니다.");
+            return false;
         }
     }
 

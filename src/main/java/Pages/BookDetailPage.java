@@ -3,14 +3,23 @@ package Pages;
 import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
+import Res.LocalDateAdapter;
 import Res.UserInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
 
 public class BookDetailPage extends JFrame implements ActionListener{
 
@@ -21,6 +30,8 @@ public class BookDetailPage extends JFrame implements ActionListener{
     JLabel labelMain;
     JPanel panelSearch;
     String SK;
+
+    JLabel labelBook1ID;
 
     private static final String DB_FILE_NAME = "books.json";
 
@@ -198,34 +209,34 @@ public class BookDetailPage extends JFrame implements ActionListener{
         labelID.setFont(mainFont20);
         add(labelID);
 
-        JLabel labelBook1ID = new JLabel(id[0]);   //도서1 관리번호
+        labelBook1ID = new JLabel(id[0]);   //도서1 관리번호
         labelBook1ID.setBounds(705, 360, 200, 30);
         //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
         labelBook1ID.setFont(mainFont20);
         add(labelBook1ID);
 
 
-        if (UserInfo.getInstance().getUserID()!=null) {
-            JButton ButtonLoan = new JButton("도서 대출");   //도서대출 버튼
-            ButtonLoan.setBounds(565, 410, 150, 40);
-            ButtonLoan.setFont(mainFont20);
-            //ButtonLoan.setBorderPainted(false);
-            ButtonLoan.setContentAreaFilled(false);
-            ButtonLoan.setFocusPainted(false);
-            ButtonLoan.setActionCommand("Loan");
-            ButtonLoan.addActionListener(this);
-            add(ButtonLoan);
 
-            JButton ButtonReserve = new JButton("도서 예약");   //도서예약 버튼
-            ButtonReserve.setBounds(565, 460, 150, 40);
-            ButtonReserve.setFont(mainFont20);
-            //ButtonReserve.setBorderPainted(false);
-            ButtonReserve.setContentAreaFilled(false);
-            ButtonReserve.setFocusPainted(false);
-            ButtonReserve.setActionCommand("Reserve");
-            ButtonReserve.addActionListener(this);
-            add(ButtonReserve);
-        }
+        JButton ButtonLoan = new JButton("도서 대출");   //도서대출 버튼
+        ButtonLoan.setBounds(565, 410, 150, 40);
+        ButtonLoan.setFont(mainFont20);
+        //ButtonLoan.setBorderPainted(false);
+        ButtonLoan.setContentAreaFilled(false);
+        ButtonLoan.setFocusPainted(false);
+        ButtonLoan.setActionCommand("Loan");
+        ButtonLoan.addActionListener(this);
+        add(ButtonLoan);
+
+        JButton ButtonReserve = new JButton("도서 예약");   //도서예약 버튼
+        ButtonReserve.setBounds(565, 460, 150, 40);
+        ButtonReserve.setFont(mainFont20);
+        //ButtonReserve.setBorderPainted(false);
+        ButtonReserve.setContentAreaFilled(false);
+        ButtonReserve.setFocusPainted(false);
+        ButtonReserve.setActionCommand("Reserve");
+        ButtonReserve.addActionListener(this);
+        add(ButtonReserve);
+
 
 
         /*JPanel panelCreateWhite = new JPanel();
@@ -256,16 +267,66 @@ public class BookDetailPage extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         String event = e.getActionCommand();
+        JFrame alert = new JFrame();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
+        Gson gson = gsonBuilder.create();
+
+        // books.json 을 불러옴
+        Path path = Paths.get(DB_FILE_NAME);
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(path));
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        List<BookBRE.Book> books = gson.fromJson(json, new TypeToken<List<BookBRE.Book>>(){}.getType());
+
+        String id = labelBook1ID.getText();
+
+        BookBRE.Book book = books.stream()
+                .filter(b -> b.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
             TextSearchResultPage SR = new TextSearchResultPage(keyword);
             dispose();
-
         } else if (event.equals("BackPage")) {
-            TextSearchResultPage SR = new TextSearchResultPage(SK);
+            String keyword = textSearch.getText();
+            TextSearchResultPage SR = new TextSearchResultPage(SK);;
             dispose();
-
+        } else if(event.equals("Loan")){
+            if (UserInfo.getInstance().getUserID()!=null) {
+                int result = JOptionPane.showConfirmDialog(alert, "대출 기간 : "+LocalDate.now()+" ~ "+LocalDate.now().plusDays(7));
+                if(result==0){
+                    if(book.borrow()) {
+                        json = gson.toJson(books);
+                        try {
+                            Files.write(path, json.getBytes());
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        JOptionPane.showMessageDialog(alert, "대출 완료");
+                    } else {
+                        JOptionPane.showMessageDialog(alert, "대출 가능한 도서가 없습니다.");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(alert, "로그인이 필요한 서비스입니다.");
+            }
+        } else if(event.equals("Reserve")){
+            if (UserInfo.getInstance().getUserID()!=null) {
+                int result = JOptionPane.showConfirmDialog(alert, "대출 기간 : 2023-05-14");
+                if(result==0){
+                    JOptionPane.showMessageDialog(alert, "예약 완료");
+                }
+            } else {
+                JOptionPane.showMessageDialog(alert, "로그인이 필요한 서비스입니다.");
+            }
         }
     }
 }

@@ -1,11 +1,24 @@
 package AdminPages;
 
+import BookBRE.Book;
+import BookCRUD.BookController;
+import BookCRUD.BookDatabase;
+import Res.LocalDateAdapter;
 import Res.RoundedButton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.List;
 
 public class ReturnBookPage extends JFrame implements ActionListener{
 
@@ -122,18 +135,44 @@ public class ReturnBookPage extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         String event = e.getActionCommand();
+        JFrame alert = new JFrame();  //알림 패널 생성
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
+        Gson gson = gsonBuilder.create();
 
-        JOptionPane alert = new JOptionPane();  //알림 패널 생성
+        // books.json 을 불러옴
+        Path path = Paths.get(DB_FILE_NAME);
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(path));
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        java.util.List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+
 
         if (event.equals("ReturnBook")) {
+            String id = textBookID.getText();
+            BookBRE.Book book = books.stream()
+                    .filter(b -> b.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
 
-
-            alert.showMessageDialog(null, "도서 반납 완료", "알림", JOptionPane.INFORMATION_MESSAGE);
-
-            AdminPage AP = new AdminPage();
-            setVisible(false);
-            dispose();
+            int result = JOptionPane.showConfirmDialog(alert, "도서를 반납하시겠습니까?");
+            if(result==0){
+                if(book.returnBook()) {
+                    json = gson.toJson(books);
+                    try {
+                        Files.write(path, json.getBytes());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(alert, "반납 완료");
+                } else {
+                    JOptionPane.showMessageDialog(alert, "반납 가능한 도서가 없습니다.");
+                }
+            }
 
         } else if (event.equals("BackPage")) {
             AdminPage AP = new AdminPage();

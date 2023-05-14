@@ -146,7 +146,7 @@ public class CreateBookPage extends JFrame implements ActionListener{
         textBookID.setLayout(null);
         add(textBookID);
 
-        labelBookID = new JLabel("관리번호");   //
+        labelBookID = new JLabel("관리번호");
         labelBookID.setBounds(480, 400, 120, 35);
         labelBookID.setHorizontalAlignment(JLabel.CENTER);
         labelBookID.setFont(mainFont20);
@@ -158,7 +158,7 @@ public class CreateBookPage extends JFrame implements ActionListener{
         ButtonCreateBook.setFont(mainFont30);
         ButtonCreateBook.setBackground(mainBlue);
         ButtonCreateBook.setForeground(Color.white);
-        ButtonCreateBook.setActionCommand("CreateBook");  //
+        ButtonCreateBook.setActionCommand("CreateBook");
         ButtonCreateBook.addActionListener(this);
         add(ButtonCreateBook);
 
@@ -220,9 +220,6 @@ public class CreateBookPage extends JFrame implements ActionListener{
             setVisible(false);
             dispose();
 
-        } else if (event.equals("")){
-            //setVisible(false);
-            //dispose();
         }
     }
 

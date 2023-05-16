@@ -16,6 +16,8 @@ public class Book {
     private String id;  //책 고유 식별자
     private String state = "available";   //책 상태
 
+    private boolean reserved; // 책 대여 여부
+
     // Book 클래스의 생성자
     public Book(String title, String author, String publisher, String year, String id) {
         this.title = title;
@@ -23,6 +25,7 @@ public class Book {
         this.publisher = publisher;
         this.year = year;
         this.id = id;
+        this.reserved = false;
     }
     //Getter 메서드들
     public String getTitle() {
@@ -41,6 +44,12 @@ public class Book {
         return id;
     }
 
+    public boolean isReserved() {return reserved;}
+
+    public void reserve() {reserved = true;}
+
+    public void unreserve() {reserved = false;}
+
     // toString 메서드
     @Override
     public String toString() {
@@ -51,6 +60,7 @@ public class Book {
                 ", year='" + year + '\'' +
                 ", id='" + id + '\'' +
                 ", state='" + state + '\'' +
+                ", reserved=" + reserved +
                 '}';
     }
     // Setter 메서드들

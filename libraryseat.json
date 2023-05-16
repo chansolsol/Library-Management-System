@@ -1,0 +1,82 @@
+[
+  {
+    "seatNumber": 1,
+    "reserved": true
+  },
+  {
+    "seatNumber": 2,
+    "reserved": true
+  },
+  {
+    "seatNumber": 3,
+    "reserved": true
+  },
+  {
+    "seatNumber": 4,
+    "reserved": true
+  },
+  {
+    "seatNumber": 5,
+    "reserved": false
+  },
+  {
+    "seatNumber": 6,
+    "reserved": false
+  },
+  {
+    "seatNumber": 7,
+    "reserved": false
+  },
+  {
+    "seatNumber": 8,
+    "reserved": false
+  },
+  {
+    "seatNumber": 9,
+    "reserved": false
+  },
+  {
+    "seatNumber": 10,
+    "reserved": false
+  },
+  {
+    "seatNumber": 11,
+    "reserved": false
+  },
+  {
+    "seatNumber": 12,
+    "reserved": false
+  },
+  {
+    "seatNumber": 13,
+    "reserved": false
+  },
+  {
+    "seatNumber": 14,
+    "reserved": false
+  },
+  {
+    "seatNumber": 15,
+    "reserved": false
+  },
+  {
+    "seatNumber": 16,
+    "reserved": false
+  },
+  {
+    "seatNumber": 17,
+    "reserved": false
+  },
+  {
+    "seatNumber": 18,
+    "reserved": false
+  },
+  {
+    "seatNumber": 19,
+    "reserved": false
+  },
+  {
+    "seatNumber": 20,
+    "reserved": false
+  }
+]

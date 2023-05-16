@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class MainPage extends JFrame implements ActionListener{
 
@@ -116,7 +115,7 @@ public class MainPage extends JFrame implements ActionListener{
             //setVisible(false);
             //dispose();
         } else if (event.equals("LoanReturnRenewBook")){
-            BookLoanReturnRenewPage BP = new BookLoanReturnRenewPage();
+            MyBookPage BP = new MyBookPage();
             dispose();
         }
 

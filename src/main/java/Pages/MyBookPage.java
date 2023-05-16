@@ -1,16 +1,29 @@
 package Pages;
 
+import BookBRE.Book;
+import Res.LocalDateAdapter;
+import Res.UserInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.List;
 
-public class BookLoanReturnRenewPage extends JFrame implements ActionListener{
+public class MyBookPage extends JFrame implements ActionListener{
 
     JPanel panelMainBlue;
     JLabel labelMain;
-
-    public BookLoanReturnRenewPage(){
+    private static final String DB_FILE_NAME = "books.json";
+    public MyBookPage(){
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -124,7 +137,7 @@ public class BookLoanReturnRenewPage extends JFrame implements ActionListener{
         add(labelTitleBook);
 
         JLabel labelLoanDateBook = new JLabel("대출일");    //"대출일" 메인 라벨, 양식 : 2000-00-00
-        labelLoanDateBook.setBounds(600, 370, 200, 35);
+        labelLoanDateBook.setBounds(620, 370, 200, 35);
         //labelLoanDateBook.setHorizontalAlignment(JLabel.CENTER);
         labelLoanDateBook.setFont(mainFont20);
         add(labelLoanDateBook);
@@ -141,42 +154,98 @@ public class BookLoanReturnRenewPage extends JFrame implements ActionListener{
         labelRenewBook.setFont(mainFont20);
         add(labelRenewBook);
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
+        Gson gson = gsonBuilder.create();
+
+        // books.json 을 불러옴
+        Path path = Paths.get(DB_FILE_NAME);
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(path));
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        java.util.List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+
+        String UserID = (UserInfo.getInstance().getUserID());
+
+        BookBRE.Book book = books.stream()
+                .filter(b -> b.getMemberID().equals(UserID))
+                .findFirst()
+                .orElse(null);
+
         int loanBookSize = 1; //대출한 도서 크기
-        if(loanBookSize >0){
-            JLabel labelBook1ID = new JLabel("도서1관리번호");    //"도서1관리번호" 메인 라벨
+        if(book != null){
+            JLabel labelBook1ID = new JLabel(book.getId());    //"도서1관리번호" 메인 라벨
             labelBook1ID.setBounds(300, 410, 200, 35);
             //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook1ID.setFont(mainFont20);
             add(labelBook1ID);
 
-            JLabel labelBook1Title = new JLabel("도서1제목");    //"도서1제목" 메인 라벨
+            JLabel labelBook1Title = new JLabel(book.getTitle());    //"도서1제목" 메인 라벨
             labelBook1Title.setBounds(450, 410, 200, 35);
-            //labelBook1Title.setHorizontalAlignment(JLabel.CENTER);
+            //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Title.setFont(mainFont20);
             add(labelBook1Title);
 
-            JLabel labelBook1LoanDate = new JLabel("2000-00-00");    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
-            labelBook1LoanDate.setBounds(600, 410, 200, 35);
-            //labelBook1LoanDate.setHorizontalAlignment(JLabel.CENTER);
+            JLabel labelBook1LoanDate = new JLabel(String.valueOf(book.getBorrowedDate()));    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
+            labelBook1LoanDate.setBounds(620, 410, 200, 35);
+            //labelBook2LoanDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1LoanDate.setFont(mainFont20);
             add(labelBook1LoanDate);
 
-            JLabel labelBook1ReturnDate = new JLabel("2000-00-00");    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
+            JLabel labelBook1ReturnDate = new JLabel(String.valueOf(book.getDueDate()));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
             labelBook1ReturnDate.setBounds(750, 410, 200, 35);
-            //labelBook1ReturnDate.setHorizontalAlignment(JLabel.CENTER);
+            //labelBook2ReturnDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1ReturnDate.setFont(mainFont20);
             add(labelBook1ReturnDate);
 
             JButton ButtonBook1RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
             ButtonBook1RenewBook.setBounds(895, 410, 50, 35);
             ButtonBook1RenewBook.setFont(mainFont20);
-            //ButtonBook1RenewBook.setBorderPainted(false);
+            //ButtonBook2RenewBook.setBorderPainted(false);
             ButtonBook1RenewBook.setContentAreaFilled(false);
             ButtonBook1RenewBook.setFocusPainted(false);
-            ButtonBook1RenewBook.setActionCommand("");
+            ButtonBook1RenewBook.setActionCommand("Renew");
             ButtonBook1RenewBook.addActionListener(this);
             add(ButtonBook1RenewBook);
         }
+        /*
+        JLabel labelBook2ID = new JLabel(book.getId());    //"도서1관리번호" 메인 라벨
+        labelBook2ID.setBounds(300, 450, 200, 35);
+        //labelBook2ID.setHorizontalAlignment(JLabel.CENTER);
+        labelBook2ID.setFont(mainFont20);
+        add(labelBook2ID);
+
+        JLabel labelBook2Title = new JLabel(book.getTitle());    //"도서1제목" 메인 라벨
+        labelBook2Title.setBounds(450, 450, 200, 35);
+        //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
+        labelBook2Title.setFont(mainFont20);
+        add(labelBook2Title);
+
+        JLabel labelBook2LoanDate = new JLabel(String.valueOf(book.getBorrowedDate()));    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
+        labelBook2LoanDate.setBounds(620, 450, 200, 35);
+        //labelBook2LoanDate.setHorizontalAlignment(JLabel.CENTER);
+        labelBook2LoanDate.setFont(mainFont20);
+        add(labelBook2LoanDate);
+
+        JLabel labelBook2ReturnDate = new JLabel(String.valueOf(book.getDueDate()));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
+        labelBook2ReturnDate.setBounds(750, 450, 200, 35);
+        //labelBook2ReturnDate.setHorizontalAlignment(JLabel.CENTER);
+        labelBook2ReturnDate.setFont(mainFont20);
+        add(labelBook2ReturnDate);
+
+        JButton ButtonBook2RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
+        ButtonBook2RenewBook.setBounds(895, 450, 50, 35);
+        ButtonBook2RenewBook.setFont(mainFont20);
+        //ButtonBook2RenewBook.setBorderPainted(false);
+        ButtonBook2RenewBook.setContentAreaFilled(false);
+        ButtonBook2RenewBook.setFocusPainted(false);
+        ButtonBook2RenewBook.setActionCommand("");
+        ButtonBook2RenewBook.addActionListener(this);
+        add(ButtonBook2RenewBook);
+        */
 
         JButton ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
         ButtonBackPage.setBounds(580,520,120,40);
@@ -195,8 +264,37 @@ public class BookLoanReturnRenewPage extends JFrame implements ActionListener{
 
         String event = e.getActionCommand();
 
-        if (event.equals("")) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
+        Gson gson = gsonBuilder.create();
 
+        // books.json 을 불러옴
+        Path path = Paths.get(DB_FILE_NAME);
+        String json = null;
+        try {
+            json = new String(Files.readAllBytes(path));
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        java.util.List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+
+
+
+        String UserID = (UserInfo.getInstance().getUserID());
+
+        BookBRE.Book book = books.stream()
+                .filter(b -> b.getMemberID().equals(UserID))
+                .findFirst()
+                .orElse(null);
+
+        if (event.equals("Renew")) {
+            book.extend();
+            json = gson.toJson(books);
+            try {
+                Files.write(path, json.getBytes());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
 
         } else if (event.equals("BackPage")) {
             MainPage MP = new MainPage();

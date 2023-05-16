@@ -11,6 +11,7 @@ public class BorrowedState implements BookState {
     public void returnBook(Book book) {
         book.setBorrowedDate(null);
         book.setDueDate(null);  // 마감일 삭제
+        book.setMemberID(null);
         book.setState(new AvailableState().toString());    // 대출 가능한 상태로 변경
     }
     public void extend(Book book) {

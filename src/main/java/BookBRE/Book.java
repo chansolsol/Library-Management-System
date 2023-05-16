@@ -1,5 +1,7 @@
 package BookBRE;
 
+import Res.UserInfo;
+
 import java.time.LocalDate;
 
 /** 현재 상태를 유지하고 변경하는 클래스 */
@@ -13,13 +15,14 @@ public class Book {
     private String state;    // 책 상태
     private LocalDate borrowedDate; // 빌린 날짜
     private LocalDate dueDate;  // 만기 날짜
+    private String memberID;
 
     public Book() {
         this.state = new AvailableState().toString(); // 디폴트 상태, JSON 역직렬화에 필요함
     }
 
     public Book(String title, String author, String publisher, String year, String id,
-                String state, LocalDate borrowedDate, LocalDate dueDate) {
+                String state, LocalDate borrowedDate, LocalDate dueDate, String memberID) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -28,12 +31,15 @@ public class Book {
         this.state = state;
         this.borrowedDate = borrowedDate;
         this.dueDate = dueDate;
+        this.memberID = memberID;
     }
 
     public boolean borrow() {
         if ("available".equals(state)) {
             state = "borrowed";
+            borrowedDate = LocalDate.now();
             dueDate = LocalDate.now().plusDays(7);
+            memberID = UserInfo.getInstance().getUserID(); //유저 로그인 정보 싱글턴 반환
             return true;
         } else {
             System.out.println("이미 대출하였습니다.");
@@ -93,4 +99,6 @@ public class Book {
     public String getId() {
         return id;
     }
+    public void setMemberID(String memberID){this.memberID = memberID;}
+    public String getMemberID(){return memberID;}
 }

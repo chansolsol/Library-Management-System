@@ -94,9 +94,18 @@ public class MainPage extends JFrame implements ActionListener{
             ButtonLoanBook.setFont(mainFont20);
             ButtonLoanBook.setContentAreaFilled(false);
             ButtonLoanBook.setFocusPainted(false);
-            ButtonLoanBook.setActionCommand("LoanReturnRenewBook");
+            ButtonLoanBook.setActionCommand("MyBook");
             ButtonLoanBook.addActionListener(this);
             add(ButtonLoanBook);
+
+            JButton ButtonReserveSeat = new JButton("열람실 자리 예약");   //도서 추가
+            ButtonReserveSeat.setBounds(520, 250, 240, 40);
+            ButtonReserveSeat.setFont(mainFont20);
+            ButtonReserveSeat.setContentAreaFilled(false);
+            ButtonReserveSeat.setFocusPainted(false);
+            ButtonReserveSeat.setActionCommand("ReserveSeat");
+            ButtonReserveSeat.addActionListener(this);
+            add(ButtonReserveSeat);
         }
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
@@ -114,8 +123,11 @@ public class MainPage extends JFrame implements ActionListener{
         } else if (event.equals("MyPage")) {
             //setVisible(false);
             //dispose();
-        } else if (event.equals("LoanReturnRenewBook")){
+        } else if (event.equals("MyBook")){
             MyBookPage BP = new MyBookPage();
+            dispose();
+        } else if (event.equals("ReserveSeat")){
+            ReservationPage RP = new ReservationPage();
             dispose();
         }
 

@@ -4,6 +4,8 @@
  */
 package BookCRUD;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author cyc53
@@ -15,7 +17,9 @@ public class Book {
     private String year; //책 출판연도
     private String id;  //책 고유 식별자
     private String state = "available";   //책 상태
-
+    private LocalDate borrowedDate; // 빌린 날짜
+    private LocalDate dueDate;  // 만기 날짜
+    private String memberID = "";    // 사용자 ID
     private boolean reserved; // 책 대여 여부
 
     // Book 클래스의 생성자
@@ -27,6 +31,7 @@ public class Book {
         this.id = id;
         this.reserved = false;
     }
+
     //Getter 메서드들
     public String getTitle() {
         return title;
@@ -52,7 +57,7 @@ public class Book {
 
     // toString 메서드
     @Override
-    public String toString() {
+    public String toString() {  // Q.이거 어디 쓰는거야? 지워도 영향 없던데
         return "Book{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
@@ -60,6 +65,9 @@ public class Book {
                 ", year='" + year + '\'' +
                 ", id='" + id + '\'' +
                 ", state='" + state + '\'' +
+                ", borrowedDate='" + borrowedDate + '\'' +
+                ", dueDate='" + dueDate + '\'' +
+                ", memberID='" + memberID + '\'' +
                 ", reserved=" + reserved +
                 '}';
     }

@@ -15,7 +15,8 @@ public class Book {
     private String state;    // 책 상태
     private LocalDate borrowedDate; // 빌린 날짜
     private LocalDate dueDate;  // 만기 날짜
-    private String memberID;
+    private String memberID;    // 사용자 ID
+    private boolean reserved; // 책 대여 여부
 
     public Book() {
         this.state = new AvailableState().toString(); // 디폴트 상태, JSON 역직렬화에 필요함
@@ -32,6 +33,7 @@ public class Book {
         this.borrowedDate = borrowedDate;
         this.dueDate = dueDate;
         this.memberID = memberID;
+        this.reserved = false;
     }
 
     public boolean borrow() {

@@ -264,6 +264,7 @@ public class MyBookPage extends JFrame implements ActionListener{
 
         String event = e.getActionCommand();
 
+        // LocalDate 어댑터를 사용해 Gson 인스턴스 생성
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
         Gson gson = gsonBuilder.create();

@@ -9,7 +9,7 @@ public class Test {
         GuestBookRequest guestBookRequest = new GuestBookRequest();
 
         /**
-         * 일반 사용자: 희망 도서 신청 및 취소
+         * 일반 사용자: 희망 도서 신청
          * 관리자: 희망 도서 목록 확인 및 삭제
          * 게스트: 로그인 필요 알림창 출력
          **/

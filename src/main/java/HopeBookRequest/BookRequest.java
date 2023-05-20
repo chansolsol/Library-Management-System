@@ -46,11 +46,7 @@ public abstract class BookRequest {
             e.printStackTrace();
         }
 
-        // 희망 도서 목록 출력
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println((i + 1) + ": " + books.get(i).getTitle() + " " + books.get(i).getAuthor() +
-                    " " + books.get(i).getPublisher() + " " + books.get(i).getYear());
-        }
+        System.out.println("희망 도서 json 불러오기");
 
     }
 

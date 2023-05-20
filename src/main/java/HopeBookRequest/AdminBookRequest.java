@@ -25,7 +25,7 @@ public class AdminBookRequest extends BookRequest {
         }
 
         if ("확인".equalsIgnoreCase(input)) {
-            // GUI 에서는 각각 희망 도서 옆에 있는 "삭제" 버튼 누를시 해당 희망 도서 삭제하는 방식으로 할 예정
+            // GUI 에서는 희망 도서 목록에서 각각의 희망 도서 옆에 있는 "삭제" 버튼 누를시 해당 희망 도서 삭제하는 방식으로 할 예정
             System.out.println("삭제할 도서 제목 입력 : ");
             String title = scanner.nextLine();
 

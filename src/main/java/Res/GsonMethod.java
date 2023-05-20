@@ -62,6 +62,8 @@ public class GsonMethod {
         for(User user : users) {
             if (Objects.equals(user.id, userId))
                 return user;
+            if (Objects.equals(user.username, userId))
+                return user;
         }
         return null;
     }
@@ -111,6 +113,12 @@ public class GsonMethod {
             alert.showMessageDialog(null, "이미 존재하는 아이디입니다.", "알림", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+
+        if (getUserById(username) != null) {
+            alert.showMessageDialog(null, "이미 존재하는 이름입니다.", "알림", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         addUser(new User(id, password, username));
         signSave();
         alert.showMessageDialog(null, "회원가입 성공!", "알림", JOptionPane.INFORMATION_MESSAGE);

@@ -3,22 +3,18 @@ package HopeBookRequest;
 import java.util.Iterator;
 import java.util.Scanner;
 
-/** 도서 관리자 */
-public class AdminBookRequest extends BookRequest {
+/** 희망 도서 신청 삭제 */
+public class DeleteBookRequest extends BookRequest {
+
+    /**
+     실제 적용 시 콘솔 명령어 빼고 적용
+     * */
     @Override
-    public void writeApplication() {
+    public void applicationCUD() {
 
-        // 확인한 희망 도서 삭제하기
         Scanner scanner = new Scanner(System.in);
-        System.out.println("확인이 끝난 희망 도서를 삭제합니다.");
-        System.out.println("확인 또는 취소 입력: ");
-        String input = scanner.nextLine();
+        System.out.println("희망 도서를 삭제합니다.");
 
-        if ("취소".equalsIgnoreCase(input)) {
-            System.out.println("작업 취소됨");
-        }
-
-        if ("확인".equalsIgnoreCase(input)) {
             // GUI 에서는 "삭제" 버튼 누를시 해당 희망 도서 삭제하는 방식으로 할 예정
             System.out.println("삭제할 도서 제목 입력 : ");
             String title = scanner.nextLine();
@@ -33,7 +29,6 @@ public class AdminBookRequest extends BookRequest {
                     System.out.println("해당 도서를 찾을 수 없습니다.");
                 }
             }
-        }
     }
 }
 

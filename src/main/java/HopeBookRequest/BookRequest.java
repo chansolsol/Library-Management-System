@@ -20,11 +20,11 @@ public abstract class BookRequest {
     /** 템플릿 메소드 */
     public final void requestBook() {
         checkBookInfo();
-        writeApplication();
+        applicationCUD();
         saveBookInfo();
     }
 
-    /** 희망 도서 정보 체크 */
+    /** 희망 도서 목록 조회 */
     public void checkBookInfo() {
 
         try {
@@ -55,10 +55,9 @@ public abstract class BookRequest {
     }
 
     /**
-     * 신청서 작성, 서브클래스에서 구현
-     * 게스트, 일반 사용자, 관리자에 맞게 오버라이딩
+     * 희망 도서 신청서 작성, 수정 및 삭제, 서브클래스에서 구현
      */
-    public abstract void writeApplication();
+    public abstract void applicationCUD();
 
 
     /** 희망 도서 정보 저장 */

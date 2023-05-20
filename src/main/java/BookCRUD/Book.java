@@ -57,7 +57,7 @@ public class Book {
 
     // toString 메서드
     @Override
-    public String toString() {  // Q.이거 어디 쓰는거야? 지워도 영향 없던데
+    public String toString() {
         return "Book{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +

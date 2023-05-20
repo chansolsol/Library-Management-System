@@ -1,6 +1,6 @@
 package Pages;
 
-import BookBRE.Book;
+import BookBRE.BookBRE;
 import Res.LocalDateAdapter;
 import Res.UserInfo;
 import com.google.gson.Gson;
@@ -166,11 +166,11 @@ public class MyBookPage extends JFrame implements ActionListener{
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        java.util.List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+        java.util.List<BookBRE> books = gson.fromJson(json, new TypeToken<List<BookBRE>>(){}.getType());
 
         String UserID = (UserInfo.getInstance().getUserID());
 
-        BookBRE.Book book = books.stream()
+        BookBRE book = books.stream()
                 .filter(b -> b.getMemberID().equals(UserID))
                 .findFirst()
                 .orElse(null);
@@ -277,13 +277,13 @@ public class MyBookPage extends JFrame implements ActionListener{
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        java.util.List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+        java.util.List<BookBRE> books = gson.fromJson(json, new TypeToken<List<BookBRE>>(){}.getType());
 
 
 
         String UserID = (UserInfo.getInstance().getUserID());
 
-        BookBRE.Book book = books.stream()
+        BookBRE book = books.stream()
                 .filter(b -> b.getMemberID().equals(UserID))
                 .findFirst()
                 .orElse(null);

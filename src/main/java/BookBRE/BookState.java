@@ -3,11 +3,11 @@ package BookBRE;
 public interface BookState {
 
     /** 대출하기 */
-    void borrow(Book book);
+    void borrow(BookBRE book);
 
     /** 반납하기 */
-    void returnBook(Book book);
+    void returnBook(BookBRE book);
 
     /** 연장하기 */
-    void extend(Book book);
+    void extend(BookBRE book);
 }

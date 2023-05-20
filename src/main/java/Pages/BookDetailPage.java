@@ -1,5 +1,6 @@
 package Pages;
 
+import BookBRE.BookBRE;
 import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
@@ -19,7 +20,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 public class BookDetailPage extends JFrame implements ActionListener{
 
@@ -281,11 +281,11 @@ public class BookDetailPage extends JFrame implements ActionListener{
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        List<BookBRE.Book> books = gson.fromJson(json, new TypeToken<List<BookBRE.Book>>(){}.getType());
+        List<BookBRE> books = gson.fromJson(json, new TypeToken<List<BookBRE>>(){}.getType());
 
         String id = labelBook1ID.getText();
 
-        BookBRE.Book book = books.stream()
+        BookBRE book = books.stream()
                 .filter(b -> b.getId().equals(id))
                 .findFirst()
                 .orElse(null);

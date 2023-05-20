@@ -5,7 +5,7 @@ import Res.UserInfo;
 import java.time.LocalDate;
 
 /** 현재 상태를 유지하고 변경하는 클래스 */
-public class Book {
+public class BookBRE {
 
     private String title;   // 책 제목
     private String author;  // 책 저자
@@ -18,12 +18,12 @@ public class Book {
     private String memberID;    // 사용자 ID
     private boolean reserved; // 책 대여 여부
 
-    public Book() {
+    public BookBRE() {
         this.state = new AvailableState().toString(); // 디폴트 상태, JSON 역직렬화에 필요함
     }
 
-    public Book(String title, String author, String publisher, String year, String id,
-                String state, LocalDate borrowedDate, LocalDate dueDate, String memberID) {
+    public BookBRE(String title, String author, String publisher, String year, String id,
+                   String state, LocalDate borrowedDate, LocalDate dueDate, String memberID) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;

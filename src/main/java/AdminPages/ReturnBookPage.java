@@ -1,8 +1,6 @@
 package AdminPages;
 
-import BookBRE.Book;
-import BookCRUD.BookController;
-import BookCRUD.BookDatabase;
+import BookBRE.BookBRE;
 import Res.LocalDateAdapter;
 import Res.RoundedButton;
 import com.google.gson.Gson;
@@ -149,12 +147,12 @@ public class ReturnBookPage extends JFrame implements ActionListener{
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        java.util.List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+        java.util.List<BookBRE> books = gson.fromJson(json, new TypeToken<List<BookBRE>>(){}.getType());
 
 
         if (event.equals("ReturnBook")) {
             String id = textBookID.getText();
-            BookBRE.Book book = books.stream()
+            BookBRE book = books.stream()
                     .filter(b -> b.getId().equals(id))
                     .findFirst()
                     .orElse(null);

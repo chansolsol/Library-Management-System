@@ -25,14 +25,14 @@ public class Test {
         // books.json을 불러옴
         Path path = Paths.get(DB_FILE_NAME);
         String json = new String(Files.readAllBytes(path));
-        List<Book> books = gson.fromJson(json, new TypeToken<List<Book>>(){}.getType());
+        List<BookBRE> books = gson.fromJson(json, new TypeToken<List<BookBRE>>(){}.getType());
 
         // 도서 검색
         Scanner scanner = new Scanner(System.in);
         System.out.println("도서 ID 검색: ");
         String id = scanner.nextLine();
 
-        Book book = books.stream()
+        BookBRE book = books.stream()
                 .filter(b -> b.getId().equals(id))
                 .findFirst()
                 .orElse(null);

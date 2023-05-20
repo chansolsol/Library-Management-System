@@ -8,12 +8,6 @@ public class AdminBookRequest extends BookRequest {
     @Override
     public void writeApplication() {
 
-        // 희망 도서 목록 출력
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println((i + 1) + ": " + books.get(i).getTitle() + " " + books.get(i).getAuthor() +
-                    " " + books.get(i).getPublisher() + " " + books.get(i).getYear());
-        }
-
         // 확인한 희망 도서 삭제하기
         Scanner scanner = new Scanner(System.in);
         System.out.println("확인이 끝난 희망 도서를 삭제합니다.");
@@ -25,7 +19,7 @@ public class AdminBookRequest extends BookRequest {
         }
 
         if ("확인".equalsIgnoreCase(input)) {
-            // GUI 에서는 희망 도서 목록에서 각각의 희망 도서 옆에 있는 "삭제" 버튼 누를시 해당 희망 도서 삭제하는 방식으로 할 예정
+            // GUI 에서는 "삭제" 버튼 누를시 해당 희망 도서 삭제하는 방식으로 할 예정
             System.out.println("삭제할 도서 제목 입력 : ");
             String title = scanner.nextLine();
 

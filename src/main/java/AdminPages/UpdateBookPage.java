@@ -199,7 +199,7 @@ public class UpdateBookPage extends JFrame implements ActionListener{
         String newTitle = textBookTitle.getText();
         String newAuthor = textBookAuthor.getText();
         String newPublisher = textBookPublisher.getText();
-        String newYear = textBookPublicationDate.getText();
+        int newYear = Integer.parseInt(textBookPublicationDate.getText());
         String updateId = textBookID.getText();
 
         JOptionPane alert = new JOptionPane();  //알림 패널 생성

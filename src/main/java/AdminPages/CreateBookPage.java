@@ -195,7 +195,7 @@ public class CreateBookPage extends JFrame implements ActionListener{
         String title = textBookTitle.getText();
         String author = textBookAuthor.getText();
         String publisher = textBookPublisher.getText();
-        String year = textBookPublicationDate.getText();
+        int year = Integer.parseInt(textBookPublicationDate.getText());
         String id = textBookID.getText();
 
         JOptionPane alert = new JOptionPane();  //알림 패널 생성

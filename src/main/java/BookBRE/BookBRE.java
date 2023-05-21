@@ -10,7 +10,7 @@ public class BookBRE {
     private String title;   // 책 제목
     private String author;  // 책 저자
     private String publisher; // 책 출판사
-    private String year; // 책 출판연도
+    private int year; // 책 출판연도
     private String id;  // 책 고유 식별자
     private String state;    // 책 상태
     private LocalDate borrowedDate; // 빌린 날짜
@@ -22,7 +22,7 @@ public class BookBRE {
         this.state = new AvailableState().toString(); // 디폴트 상태, JSON 역직렬화에 필요함
     }
 
-    public BookBRE(String title, String author, String publisher, String year, String id,
+    public BookBRE(String title, String author, String publisher, int year, String id,
                    String state, LocalDate borrowedDate, LocalDate dueDate, String memberID) {
         this.title = title;
         this.author = author;

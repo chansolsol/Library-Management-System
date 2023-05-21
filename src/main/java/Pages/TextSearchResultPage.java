@@ -82,7 +82,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         String[] title = new String[resultBookSize];
         String[] author = new String[resultBookSize];
         String[] publisher = new String[resultBookSize];
-        String[] year = new String[resultBookSize];
+        int[] year = new int[resultBookSize];
         String[] id = new String[resultBookSize];
 
         //ResultBooks 배열에 각 Book 객체에 해당하는 속성 문자열로 채움
@@ -200,7 +200,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             labelBook1Publisher.setFont(mainFont18);
             add(labelBook1Publisher);
 
-            labelBook1PublicationDate = new JLabel(year[0]);   //도서1 출판년도
+            labelBook1PublicationDate = new JLabel(String.valueOf(year[0]));   //도서1 출판년도
             labelBook1PublicationDate.setBounds(690, 230, 100, 25);
             //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1PublicationDate.setFont(mainFont18);
@@ -254,7 +254,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             labelBook2Publisher.setFont(mainFont18);
             add(labelBook2Publisher);
 
-            labelBook2PublicationDate = new JLabel(year[1]);   //도서1 출판년도
+            labelBook2PublicationDate = new JLabel(String.valueOf(year[1]));   //도서1 출판년도
             labelBook2PublicationDate.setBounds(690, 305, 100, 30);
             //labelBook2PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook2PublicationDate.setFont(mainFont18);
@@ -308,7 +308,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             labelBook3Publisher.setFont(mainFont18);
             add(labelBook3Publisher);
 
-            labelBook3PublicationDate = new JLabel(year[2]);   //도서3 출판년도
+            labelBook3PublicationDate = new JLabel(String.valueOf(year[2]));   //도서3 출판년도
             labelBook3PublicationDate.setBounds(690, 380, 120, 25);
             //labelBook3PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook3PublicationDate.setFont(mainFont18);
@@ -362,7 +362,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             labelBook4Publisher.setFont(mainFont18);
             add(labelBook4Publisher);
 
-            labelBook4PublicationDate = new JLabel(year[3]);   //도서4 출판년도
+            labelBook4PublicationDate = new JLabel(String.valueOf(year[3]));   //도서4 출판년도
             labelBook4PublicationDate.setBounds(690, 455, 120, 25);
             //labelBook4PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook4PublicationDate.setFont(mainFont18);
@@ -416,7 +416,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             labelBook5Publisher.setFont(mainFont18);
             add(labelBook5Publisher);
 
-            labelBook5PublicationDate = new JLabel(year[2]);   //도서5 출판년도
+            labelBook5PublicationDate = new JLabel(String.valueOf(year[2]));   //도서5 출판년도
             labelBook5PublicationDate.setBounds(690, 555, 120, 25);
             //labelBook5PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook5PublicationDate.setFont(mainFont18);

@@ -53,6 +53,11 @@ public class BookController {
         //주어진 키워드를 포함하는 Book 객체를 검색하여 목록으로 반환합니다.
     }
 
+    public List<Book> UserBooks(String keyword) {
+        return this.books.stream().filter(b -> b.getMemberID().contains(keyword) || b.getAuthor().contains(keyword)).collect(Collectors.toList());
+        //주어진 키워드를 포함하는 Book 객체를 검색하여 목록으로 반환합니다.
+    }
+
     public void addAll(List<Book> books) {
         this.books.addAll(books);
         //addAll(List<Book> books): 목록에 주어진 Book 객체 목록을 추가합니다.

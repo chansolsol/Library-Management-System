@@ -16,6 +16,7 @@ public class GsonMethod {
     private static final Gson gson = new Gson(); // JSON 파싱을 위한 Gson 객체 생성
     private static final ArrayList<User> users = new ArrayList<>(); // users 리스트 객체 생성
 
+
     /** 회원 정보를 저장하는 클래스 */
     private static class User {
         String id;
@@ -26,6 +27,19 @@ public class GsonMethod {
             this.password = password;
             this.username = username;
         }
+        public String getUsername() {return username;}
+    }
+    public static String getUsername(String id) {
+        User user = users.stream()
+                .filter(u -> u.id.equals(id))
+                .findFirst()
+                .orElse(null);
+
+        if (user != null) {
+            return user.getUsername();
+        }
+
+        return null;
     }
 
     /** 프로그램을 시작할때 json 파일 내용을 불러옴 */
@@ -124,4 +138,5 @@ public class GsonMethod {
         alert.showMessageDialog(null, "회원가입 성공!", "알림", JOptionPane.INFORMATION_MESSAGE);
         return true;
     }
+
 }

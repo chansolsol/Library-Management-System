@@ -117,7 +117,7 @@ public class ReservationPage extends JFrame implements ActionListener{
         */
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
-        ButtonBackPage.setBounds(580,510,120,40);
+        ButtonBackPage.setBounds(580,550,120,40);
         ButtonBackPage.setFont(mainFont20);
         //ButtonBackPage.setBorderPainted(false);
         ButtonBackPage.setContentAreaFilled(false);
@@ -163,10 +163,6 @@ public class ReservationPage extends JFrame implements ActionListener{
         }
         //for (int i = 0; i < 9; i++) {// 9개의 버튼 이벤트 등록
         //    buttons[i].addActionListener(this);
-
-
-
-
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 

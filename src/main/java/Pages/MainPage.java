@@ -89,7 +89,7 @@ public class MainPage extends JFrame implements ActionListener{
             ButtonMyPage.addActionListener(this);
             add(ButtonMyPage);
 
-            ButtonLoanBook = new JButton("도서 대출/반납/연장");   //도서 추가
+            ButtonLoanBook = new JButton("대출 도서 정보");   //도서 추가
             ButtonLoanBook.setBounds(520, 200, 240, 40);
             ButtonLoanBook.setFont(mainFont20);
             ButtonLoanBook.setContentAreaFilled(false);
@@ -99,7 +99,7 @@ public class MainPage extends JFrame implements ActionListener{
             add(ButtonLoanBook);
 
             JButton ButtonReserveSeat = new JButton("열람실 자리 예약");   //도서 추가
-            ButtonReserveSeat.setBounds(520, 250, 240, 40);
+            ButtonReserveSeat.setBounds(520, 260, 240, 40);
             ButtonReserveSeat.setFont(mainFont20);
             ButtonReserveSeat.setContentAreaFilled(false);
             ButtonReserveSeat.setFocusPainted(false);
@@ -121,8 +121,8 @@ public class MainPage extends JFrame implements ActionListener{
             dispose();
 
         } else if (event.equals("MyPage")) {
-            //setVisible(false);
-            //dispose();
+            MyInfoPage IP = new MyInfoPage();
+            dispose();
         } else if (event.equals("MyBook")){
             MyBookPage BP = new MyBookPage();
             dispose();

@@ -20,7 +20,8 @@ public class Book {
     private LocalDate borrowedDate; // 빌린 날짜
     private LocalDate dueDate;  // 만기 날짜
     private String memberID = "";    // 사용자 ID
-    private boolean reserved; // 책 대여 여부
+    private boolean reserved; // 책 예약 여부
+
 
     // Book 클래스의 생성자
     public Book(String title, String author, String publisher, String year, String id) {
@@ -48,7 +49,10 @@ public class Book {
     public String getId() {
         return id;
     }
-
+    public String getMemberID(){return memberID;}
+    public String getState(){return state;}
+    public LocalDate getBorrowedDate(){return borrowedDate;}
+    public LocalDate getDueDate(){return dueDate;}
     public boolean isReserved() {return reserved;}
 
     public void reserve() {reserved = true;}

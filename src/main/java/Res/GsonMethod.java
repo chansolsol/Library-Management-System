@@ -1,6 +1,5 @@
 package Res;
 
-import Pages.MainPage;
 import com.google.gson.Gson;
 import javax.swing.*;
 import java.io.FileReader;
@@ -8,17 +7,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 public class GsonMethod {
     private static final String USER_FILE = "users.json"; // 로그인 정보를 저장하는 파일 경로
-    private static final Gson gson = new Gson(); // JSON 파싱을 위한 Gson 객체 생성
-    private static final ArrayList<User> users = new ArrayList<>(); // users 리스트 객체 생성
+    private  Gson gson = new Gson(); // JSON 파싱을 위한 Gson 객체 생성
+    private  ArrayList<User> users = new ArrayList<>(); // users 리스트 객체 생성
 
 
     /** 회원 정보를 저장하는 클래스 */
-    private static class User {
+    private class User {
         String id;
         String password;
         String username;
@@ -29,7 +27,8 @@ public class GsonMethod {
         }
         public String getUsername() {return username;}
     }
-    public static String getUsername(String id) {
+
+    public String getUsername(String id) {
         User user = users.stream()
                 .filter(u -> u.id.equals(id))
                 .findFirst()
@@ -56,23 +55,8 @@ public class GsonMethod {
         }
     }
 
-
-    /** 회원 정보를 저장하는 JSON 파일에서 모든 회원 정보를 가져옴 */
-    /*
-    private static List<User> getUsers() {
-        List<User> users = new ArrayList<>();
-        try (FileReader reader = new FileReader(USER_FILE)) {
-            User[] userArray = gson.fromJson(reader, User[].class);
-            users.addAll(Arrays.asList(userArray));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return users;
-    }
-     */
-
     /** 회원 정보를 저장하는 JSON 파일에서 특정 아이디의 회원 정보를 가져옴 */
-    private static User getUserById(String userId) {
+    public User getUserById(String userId) {
         for(User user : users) {
             if (Objects.equals(user.id, userId))
                 return user;
@@ -83,12 +67,12 @@ public class GsonMethod {
     }
 
     /** 회원 정보를 users 리스트에 추가함 */
-    private static void addUser(User user) {
+    public void addUser(User user) {
         users.add(user);
     }
 
     /** users 리스트에 저장된 객체들을 JSON 으로 변환해서 저장함 */
-    private static void signSave() {
+    public void signSave() {
         try (FileWriter writer = new FileWriter(USER_FILE, false)) { // true = 이어쓰기, false = 덮어쓰기
             String json = gson.toJson(users.toArray()); // users 리스트에 저장된 객체들을 JSON 문자열로 변환
             writer.write(json); // 변환된 JSON 문자열을 USER_FILE 에 쓰기
@@ -114,13 +98,13 @@ public class GsonMethod {
      */
 
     /** 로그인 기능 */
-    public static boolean login(String id, String password) {
+    public boolean login(String id, String password) {
         User user = getUserById(id);
         return user != null && user.password.equals(password);
     }
 
     /** 회원가입 기능 */
-    public static boolean signup(String id, String password, String username) {
+    public boolean signup(String id, String password, String username) {
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (getUserById(id) != null) {

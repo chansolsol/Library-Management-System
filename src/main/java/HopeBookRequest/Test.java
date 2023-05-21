@@ -8,8 +8,8 @@ public class Test {
         CreateBookRequest createBookRequest = new CreateBookRequest();
         UpdateBookRequest updateBookRequest = new UpdateBookRequest();
 
-        createBookRequest.requestBook();
-//        updateBookRequest.requestBook();
+//        createBookRequest.requestBook();
+        updateBookRequest.requestBook();
 //        deleteBookRequest.requestBook();
 
     }

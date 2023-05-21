@@ -121,6 +121,61 @@ public class MyBookPage extends JFrame implements ActionListener{
         labelMain.setForeground(Color.white);
         panelMainBlue.add(labelMain);
 
+
+        JPanel panelMenuWhite = new JPanel(); //마이페이지 메뉴 컴포넌트 패널이 위치할 패널
+        panelMenuWhite.setBounds(50, 150, 200, 400);
+        panelMenuWhite.setBackground(Color.white);
+        add(panelMenuWhite);
+        panelMenuWhite.setLayout(null);
+
+        JPanel panelMenuBlue = new JPanel();  //마이페이지 메뉴 컴포넌트가 위치할 패널
+        panelMenuBlue.setBounds(0, 0, 200, 100);
+        panelMenuBlue.setBackground(mainBlue);
+        panelMenuWhite.add(panelMenuBlue);
+        panelMenuBlue.setLayout(null);
+
+        JLabel labelMenu = new JLabel("마이페이지");
+        labelMenu.setBounds(0, 0, 200, 100);
+        labelMenu.setHorizontalAlignment(JLabel.CENTER);
+        labelMenu.setFont(mainFont30);
+        labelMenu.setForeground(Color.white);
+        panelMenuBlue.add(labelMenu);
+
+        JButton ButtonUserInfo = new JButton("회원정보");   //뒤로가기 버튼, (LoginPage 생성)
+        ButtonUserInfo.setBounds(0,100,200,51);
+        ButtonUserInfo.setFont(mainFont20);
+        ButtonUserInfo.setHorizontalAlignment(JButton.LEFT);
+        //ButtonUserInfo.setBorderPainted(false);
+        ButtonUserInfo.setContentAreaFilled(false);
+        ButtonUserInfo.setFocusPainted(false);
+        ButtonUserInfo.setActionCommand("MyInfoPage");
+        ButtonUserInfo.addActionListener(this);
+        panelMenuWhite.add(ButtonUserInfo);
+
+        JButton ButtonMyBook = new JButton("대출도서조회");   //뒤로가기 버튼, (LoginPage 생성)
+        ButtonMyBook.setBounds(0,150,200,51);
+        ButtonMyBook.setFont(mainFont20);
+        ButtonMyBook.setHorizontalAlignment(JButton.LEFT);
+        //ButtonMyBook.setBorderPainted(false);
+        ButtonMyBook.setContentAreaFilled(false);
+        ButtonMyBook.setFocusPainted(false);
+        ButtonMyBook.setActionCommand("MyBookPage");
+        ButtonMyBook.addActionListener(this);
+        panelMenuWhite.add(ButtonMyBook);
+
+        JButton ButtonRequestBook = new JButton("희망도서내역");   //뒤로가기 버튼, (LoginPage 생성)
+        ButtonRequestBook.setBounds(0,200,200,51);
+        ButtonRequestBook.setFont(mainFont20);
+        ButtonRequestBook.setHorizontalAlignment(JButton.LEFT);
+        //ButtonRequestBook.setBorderPainted(false);
+        ButtonRequestBook.setContentAreaFilled(false);
+        ButtonRequestBook.setFocusPainted(false);
+        ButtonRequestBook.setActionCommand("RequestedBookPage");
+        ButtonRequestBook.addActionListener(this);
+        panelMenuWhite.add(ButtonRequestBook);
+
+
+
         JLabel labelLoan = new JLabel("대출");    //"대출" 메인 라벨
         labelLoan.setBounds(280, 165, 220, 35);
         labelLoan.setHorizontalAlignment(JLabel.CENTER);
@@ -427,10 +482,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
                 }
             }
-        }else if (event.equals("BackPage")) {
+        } else if (event.equals("BackPage")) {
             MainPage MP = new MainPage();
-            setVisible(false);
             dispose();
+        } else if (event.equals("MyInfoPage")) {
+            MyInfoPage MF = new MyInfoPage();
+            dispose();
+        } else if (event.equals("MyBookPage")) {
+            MyBookPage MP = new MyBookPage();
+            dispose();
+        } else if(event.equals("RequestedBookPage")){
+
         }
 
     }

@@ -20,13 +20,13 @@ public class MyInfoPage extends JFrame implements ActionListener {
 
     public MyInfoPage() {
 
-        setSize(1280, 720); //JFrame 크기 설정
-        setLayout(null);    //컴포넌트를 자유롭게 배치
-        setLocationRelativeTo(null);    //JFrame 생성시 화면 중앙에 배치
-        setVisible(true);   //JFrame 시각화
+        setSize(1280, 720);
+        setLayout(null);
+        setLocationRelativeTo(null);
+        setVisible(true);
         setTitle("Library Management System : Login");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //창을 닫을시 JFrame 메모리 자원 회수
-        setResizable(false);    //JFrame 사이즈 조절 제한
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
 
         java.awt.Font mainFont50 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 50);   //폰트 설정
         java.awt.Font mainFont40 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 40);
@@ -70,7 +70,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         labelMenu.setForeground(Color.white);
         panelMenuBlue.add(labelMenu);
 
-        JButton ButtonMyInfo = new JButton("회원정보");   //뒤로가기 버튼, (LoginPage 생성)
+        JButton ButtonMyInfo = new JButton("회원정보");
         ButtonMyInfo.setBounds(0,100,200,51);
         ButtonMyInfo.setFont(mainFont20);
         ButtonMyInfo.setHorizontalAlignment(JButton.LEFT);
@@ -81,7 +81,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         ButtonMyInfo.addActionListener(this);
         panelMenuWhite.add(ButtonMyInfo);
 
-        JButton ButtonMyBook = new JButton("대출도서조회");   //뒤로가기 버튼, (LoginPage 생성)
+        JButton ButtonMyBook = new JButton("대출도서조회");
         ButtonMyBook.setBounds(0,150,200,51);
         ButtonMyBook.setFont(mainFont20);
         ButtonMyBook.setHorizontalAlignment(JButton.LEFT);
@@ -92,7 +92,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         ButtonMyBook.addActionListener(this);
         panelMenuWhite.add(ButtonMyBook);
 
-        JButton ButtonRequestBook = new JButton("희망도서내역");   //뒤로가기 버튼, (LoginPage 생성)
+        JButton ButtonRequestBook = new JButton("희망도서내역");
         ButtonRequestBook.setBounds(0,200,200,51);
         ButtonRequestBook.setFont(mainFont20);
         ButtonRequestBook.setHorizontalAlignment(JButton.LEFT);
@@ -103,7 +103,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         ButtonRequestBook.addActionListener(this);
         panelMenuWhite.add(ButtonRequestBook);
 
-        JPanel panelMainWhite = new JPanel(); //마이페이지 메뉴 컴포넌트가 위치할 패널
+        JPanel panelMainWhite = new JPanel(); //회원 정보 수정 페이지 컴포넌트가 위치할 패널
         panelMainWhite.setBounds(440, 150, 400, 500);
         panelMainWhite.setBackground(Color.white);
         add(panelMainWhite);
@@ -201,123 +201,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         ButtonLoanPage.addActionListener(this);
         panelMainWhite.add(ButtonLoanPage);
 
-        /*JPanel panelSignUpBlue = new JPanel();  //마이페이지 컴포넌트 패널이 위치할 패널
-        panelSignUpBlue.setBounds(355, 100, 570, 520);
-        panelSignUpBlue.setBackground(mainBlue);
-        add(panelSignUpBlue);
-        panelSignUpBlue.setLayout(null);
-
-        JPanel panelSignUpWhite = new JPanel(); //마이페이지 컴포넌트가 위치할 패널
-        panelSignUpWhite.setBounds(6, 8, 558, 504);
-        panelSignUpWhite.setBackground(Color.white);
-        panelSignUpBlue.add(panelSignUpWhite);
-        panelSignUpWhite.setLayout(null);
-
-        JLabel labelSignUp = new JLabel("마이페이지");   //"마이페이지" 메인 라벨
-        labelSignUp.setBounds(169, 15, 220, 50);
-        labelSignUp.setHorizontalAlignment(JLabel.CENTER);
-        labelSignUp.setFont(mainFont40);
-        panelSignUpWhite.add(labelSignUp);
-
-        JLabel labelID = new JLabel("아이디"); //"아이디" 로그인 라벨
-        labelID.setBounds(60, 75, 120, 35);
-        labelID.setHorizontalAlignment(JLabel.CENTER);
-        labelID.setFont(mainFont20);
-        panelSignUpWhite.add(labelID);
-
-        JLabel labelPW = new JLabel("비밀번호");    //"비밀번호" 로그인 라벨
-        labelPW.setBounds(60, 130, 120, 35);
-        labelPW.setHorizontalAlignment(JLabel.CENTER);
-        labelPW.setFont(mainFont20);
-        panelSignUpWhite.add(labelPW);
-
-        JLabel labelName = new JLabel("이름");    //"이름" 이름 라벨
-        labelName.setBounds(60, 185, 120, 35);
-        labelName.setHorizontalAlignment(JLabel.CENTER);
-        labelName.setFont(mainFont20);
-        panelSignUpWhite.add(labelName);
-
-        JLabel labelUserID = new JLabel(UserInfo.getInstance().getUserID());   //아이디가 입력될 JTextField
-        labelUserID.setBounds(185,75,200,35);
-        labelUserID.setFont(inputBoxFont);
-        labelUserID.setBorder(null);
-        labelUserID.setLayout(null);
-        panelSignUpWhite.add(labelUserID);
-
-        JPanel panelIDLine = new JPanel();  //아이디 구분선 라벨
-        panelIDLine.setBounds(180, 115, 210, 2);
-        panelIDLine.setBackground(Color.gray);
-        panelSignUpWhite.add(panelIDLine);
-
-        textPassword = new JPasswordField(UserInfo.getInstance().getUserPassword()); //비밀번호가 입력될 JPasswordField
-        textPassword.setBounds(185,130,200,35);
-        textPassword.setFont(inputBoxFont);
-        textPassword.setBorder(null);
-        textPassword.setLayout(null);
-        panelSignUpWhite.add(textPassword);
-
-        JPanel panelPasswordLine = new JPanel();    //비밀번호 입력 구분선 라벨
-        panelPasswordLine.setBounds(180, 170, 210, 2);
-        panelPasswordLine.setBackground(mainBlue);
-        panelSignUpWhite.add(panelPasswordLine);
-
-        textName = new JTextField(gson.getUsername(UserInfo.getInstance().getUserID())); //이름이 입력될 JTextField
-        textName.setBounds(185,185,200,35);
-        textName.setFont(inputBoxFont);
-        textName.setBorder(null);
-        textName.setLayout(null);
-        panelSignUpWhite.add(textName);
-
-        JPanel panelIDName = new JPanel();  //비밀번호 입력 구분선 라벨
-        panelIDName.setBounds(180, 225, 210, 2);
-        panelIDName.setBackground(mainBlue);
-        panelSignUpWhite.add(panelIDName);
-
-
-        RoundedButton ButtonSignUp = new RoundedButton("정보수정"); //회원가입 버튼, (계정정보 확인 후 계정 생성)
-        ButtonSignUp.setBounds(410,110,125,85);
-        ButtonSignUp.setFont(mainFont30);
-        ButtonSignUp.setBackground(mainBlue);
-        ButtonSignUp.setForeground(Color.white);
-        ButtonSignUp.setActionCommand("EditInfo");
-        ButtonSignUp.addActionListener(this);
-        panelSignUpWhite.add(ButtonSignUp);
-
-        JButton ButtonLoanPage = new JButton("<HTML><body><center>나의 도서</center></body></HTML>");   //뒤로가기 버튼, (LoginPage 생성)
-        ButtonLoanPage.setBounds(219,400,120,40);
-        ButtonLoanPage.setFont(mainFont20);
-        //ButtonLoanPage.setBorderPainted(false);
-        ButtonLoanPage.setContentAreaFilled(false);
-        ButtonLoanPage.setFocusPainted(false);
-        ButtonLoanPage.setActionCommand("MyBookPage");
-        ButtonLoanPage.addActionListener(this);
-        panelSignUpWhite.add(ButtonLoanPage);
-
-        JButton ButtonRequestedBook = new JButton("<HTML><body><center>희망 도서 신청 현황</center></body></HTML>");   //희망 도서 신청 현황
-        ButtonRequestedBook.setBounds(219,350,200,40);
-        ButtonRequestedBook.setFont(mainFont20);
-        //ButtonRequestedBook.setBorderPainted(false);
-        ButtonRequestedBook.setContentAreaFilled(false);
-        ButtonRequestedBook.setFocusPainted(false);
-        ButtonRequestedBook.setActionCommand("RequestedBookPage");
-        ButtonRequestedBook.addActionListener(this);
-        panelSignUpWhite.add(ButtonRequestedBook);
-
-        JButton ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼, (LoginPage 생성)
-        ButtonBackPage.setBounds(219,450,120,40);
-        ButtonBackPage.setFont(mainFont20);
-        //ButtonBackPage.setBorderPainted(false);
-        ButtonBackPage.setContentAreaFilled(false);
-        ButtonBackPage.setFocusPainted(false);
-        ButtonBackPage.setActionCommand("BackPage");
-        ButtonBackPage.addActionListener(this);
-        panelSignUpWhite.add(ButtonBackPage);*/
-
-
-
         getContentPane().setBackground(Color.white);
-
-
     }
 
     public void actionPerformed(ActionEvent e) {

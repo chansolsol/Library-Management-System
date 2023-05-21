@@ -12,7 +12,7 @@ public class BookBuilder {
     private String title;
     private String author;
     private String publisher;
-    private int year;
+    private String year;
     private String id;
 
     public BookBuilder setTitle(String title) {
@@ -28,7 +28,7 @@ public class BookBuilder {
         this.publisher = publisher;
         return this;
     }
-    public BookBuilder setYear(int year) {
+    public BookBuilder setYear(String year) {
         this.year = year;
         return this;
     }

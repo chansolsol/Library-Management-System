@@ -29,7 +29,7 @@ public class BookController {
         //  "books" 목록에서 해당하는 id 값을 가진 Book 객체를 제거합니다.
     }
 
-    public void updateBook(String id, String title, String author, String publisher, int year ) {
+    public void updateBook(String id, String title, String author, String publisher, String year ) {
         this.books.stream().filter(b -> b.getId().equals(id)).findFirst().ifPresent(b -> {
             b.setTitle(title);
             b.setAuthor(author);

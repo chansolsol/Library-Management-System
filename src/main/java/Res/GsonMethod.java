@@ -56,21 +56,6 @@ public class GsonMethod {
         }
     }
 
-
-    /** 회원 정보를 저장하는 JSON 파일에서 모든 회원 정보를 가져옴 */
-    /*
-    private static List<User> getUsers() {
-        List<User> users = new ArrayList<>();
-        try (FileReader reader = new FileReader(USER_FILE)) {
-            User[] userArray = gson.fromJson(reader, User[].class);
-            users.addAll(Arrays.asList(userArray));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return users;
-    }
-     */
-
     /** 회원 정보를 저장하는 JSON 파일에서 특정 아이디의 회원 정보를 가져옴 */
     private static User getUserById(String userId) {
         for(User user : users) {

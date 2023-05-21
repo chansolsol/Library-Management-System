@@ -82,7 +82,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         String[] title = new String[resultBookSize];
         String[] author = new String[resultBookSize];
         String[] publisher = new String[resultBookSize];
-        int[] year = new int[resultBookSize];
+        String[] year = new String[resultBookSize];
         String[] id = new String[resultBookSize];
 
         //ResultBooks 배열에 각 Book 객체에 해당하는 속성 문자열로 채움

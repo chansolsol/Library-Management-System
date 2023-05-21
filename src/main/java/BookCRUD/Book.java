@@ -14,7 +14,7 @@ public class Book {
     private String title;   //책 제목
     private String author;  //책 저자
     private String publisher; //책 출판사
-    private int year; //책 출판연도
+    private String year; //책 출판연도
     private String id;  //책 고유 식별자
     private String state = "available";   //책 상태
     private LocalDate borrowedDate; // 빌린 날짜
@@ -24,7 +24,7 @@ public class Book {
 
 
     // Book 클래스의 생성자
-    public Book(String title, String author, String publisher, int year, String id) {
+    public Book(String title, String author, String publisher, String year, String id) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -43,7 +43,7 @@ public class Book {
     public String getPublisher() {
         return publisher;
     }
-    public int getYear() {
+    public String getYear() {
         return year;
     }
     public String getId() {
@@ -85,7 +85,7 @@ public class Book {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

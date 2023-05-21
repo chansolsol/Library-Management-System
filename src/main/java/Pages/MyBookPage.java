@@ -65,7 +65,7 @@ public class MyBookPage extends JFrame implements ActionListener{
         String[] title = new String[resultBookSize];
         String[] author = new String[resultBookSize];
         String[] publisher = new String[resultBookSize];
-        int[] year = new int[resultBookSize];
+        String[] year = new String[resultBookSize];
         String[] ID = new String[resultBookSize];
         String[] member = new String[resultBookSize];
         //String[] State = new String[resultBookSize];

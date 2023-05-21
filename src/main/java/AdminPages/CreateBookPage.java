@@ -195,13 +195,23 @@ public class CreateBookPage extends JFrame implements ActionListener{
         String title = textBookTitle.getText();
         String author = textBookAuthor.getText();
         String publisher = textBookPublisher.getText();
-        int year = Integer.parseInt(textBookPublicationDate.getText());
+        String year = textBookPublicationDate.getText();
         String id = textBookID.getText();
 
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (event.equals("CreateBook")) {
+
+            // 출판년도 값 문자열이면 오류 메시지박스 출력
+            try {
+                int value = Integer.parseInt(year);
+            } catch (NumberFormatException ee) {
+                JOptionPane.showMessageDialog(null, "년도를 숫자로 입력해주세요.", "오류", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Book newBook = new BookBuilder().setTitle(title).setAuthor(author).setPublisher(publisher).setYear(year).setId(id).build();
+
             controller.addBook(newBook);
             try {
                 database.save(controller.getAllBooks());

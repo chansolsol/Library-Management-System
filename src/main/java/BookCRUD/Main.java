@@ -53,7 +53,7 @@ public class Main {
                     System.out.print("출판사(publisher)> ");
                     String publisher = scanner.nextLine();
                     System.out.print("출판연도(year)> ");
-                    int year = scanner.nextInt();
+                    String year = scanner.nextLine();
                     System.out.print("관리번호(id)> ");
                     String id = scanner.nextLine();
                     Book newBook = new BookBuilder().setTitle(title).setAuthor(author).setPublisher(publisher).setYear(year).setId(id).build();
@@ -78,7 +78,7 @@ public class Main {
                     System.out.print("출판사(publisher)> ");
                     String newPublisher = scanner.nextLine();
                     System.out.print("저자(year)> ");
-                    int newYear = scanner.nextInt();
+                    String newYear = scanner.nextLine();
                     controller.updateBook(updateId, newTitle, newAuthor, newPublisher, newYear);
                     database.save(controller.getAllBooks());
                     System.out.println("도서 수정 완료(end)");

@@ -65,7 +65,7 @@ public class BookDetailPage extends JFrame implements ActionListener{
         String[] title = new String[resultBookSize];
         String[] author = new String[resultBookSize];
         String[] publisher = new String[resultBookSize];
-        int[] year = new int[resultBookSize];
+        String[] year = new String[resultBookSize];
         String[] id = new String[resultBookSize];
 
         //ResultBooks 배열에 각 Book 객체에 해당하는 속성 문자열로 채움
@@ -199,7 +199,7 @@ public class BookDetailPage extends JFrame implements ActionListener{
         labelPublicationDate.setFont(mainFont20);
         add(labelPublicationDate);
 
-        JLabel labelBook1PublicationDate = new JLabel(String.valueOf(year[0]));   //도서1 출판년도
+        JLabel labelBook1PublicationDate = new JLabel(year[0]);   //도서1 출판년도
         labelBook1PublicationDate.setBounds(705, 320, 200, 30);
         //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
         labelBook1PublicationDate.setFont(mainFont20);

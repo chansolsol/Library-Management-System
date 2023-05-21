@@ -89,7 +89,7 @@ public class MainPage extends JFrame implements ActionListener{
             ButtonMyPage.addActionListener(this);
             add(ButtonMyPage);
 
-            ButtonLoanBook = new JButton("대출 도서 정보");   //도서 추가
+            ButtonLoanBook = new JButton("<HTML><body><center>대출 도서 조회</center></body></HTML>");   //도서 추가
             ButtonLoanBook.setBounds(520, 200, 240, 40);
             ButtonLoanBook.setFont(mainFont20);
             ButtonLoanBook.setContentAreaFilled(false);
@@ -98,14 +98,23 @@ public class MainPage extends JFrame implements ActionListener{
             ButtonLoanBook.addActionListener(this);
             add(ButtonLoanBook);
 
-            JButton ButtonReserveSeat = new JButton("열람실 자리 예약");   //도서 추가
-            ButtonReserveSeat.setBounds(520, 260, 240, 40);
+            JButton ButtonReserveSeat = new JButton("<HTML><body><center>열람실 자리 예약</center></body></HTML>");   //도서 추가
+            ButtonReserveSeat.setBounds(520, 320, 240, 40);
             ButtonReserveSeat.setFont(mainFont20);
             ButtonReserveSeat.setContentAreaFilled(false);
             ButtonReserveSeat.setFocusPainted(false);
             ButtonReserveSeat.setActionCommand("ReserveSeat");
             ButtonReserveSeat.addActionListener(this);
             add(ButtonReserveSeat);
+
+            JButton ButtonRequestBook = new JButton("희망 도서 신청");   //도서 추가
+            ButtonRequestBook.setBounds(520, 260, 240, 40);
+            ButtonRequestBook.setFont(mainFont20);
+            ButtonRequestBook.setContentAreaFilled(false);
+            ButtonRequestBook.setFocusPainted(false);
+            ButtonRequestBook.setActionCommand("RequestBook");
+            ButtonRequestBook.addActionListener(this);
+            add(ButtonRequestBook);
         }
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
@@ -126,7 +135,10 @@ public class MainPage extends JFrame implements ActionListener{
         } else if (event.equals("MyBook")){
             MyBookPage BP = new MyBookPage();
             dispose();
-        } else if (event.equals("ReserveSeat")){
+        } else if (event.equals("RequestBook")){
+            RequestBookPage RBP = new RequestBookPage();
+            dispose();
+        }else if (event.equals("ReserveSeat")){
             ReservationPage RP = new ReservationPage();
             dispose();
         }

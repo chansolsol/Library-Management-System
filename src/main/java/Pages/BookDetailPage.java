@@ -4,6 +4,9 @@ import BookBRE.BookBRE;
 import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
+import BookReservation.BookRepository;
+import BookReservation.Command;
+import BookReservation.CommandFactory;
 import Res.LocalDateAdapter;
 import Res.UserInfo;
 import com.google.gson.Gson;
@@ -290,7 +293,6 @@ public class BookDetailPage extends JFrame implements ActionListener{
                 .findFirst()
                 .orElse(null);
 
-
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
             TextSearchResultPage SR = new TextSearchResultPage(keyword);
@@ -320,8 +322,33 @@ public class BookDetailPage extends JFrame implements ActionListener{
             }
         } else if(event.equals("Reserve")){
             if (UserInfo.getInstance().getUserID()!=null) {
-                int result = JOptionPane.showConfirmDialog(alert, "대출 기간 : 2023-05-14");
+                int result = JOptionPane.showConfirmDialog(alert, "도서 예약");
                 if(result==0){
+                    String filePath = "books.json";  // 파일 경로
+                    BookRepository bookRepo = new BookRepository(filePath);
+
+                    try {
+                        bookRepo.load();  // 파일에서 책 목록 불러오기
+                    } catch (IOException ex) {
+                        System.out.println("책 목록을 불러오는 데 실패했습니다.");
+                        return;
+                    }
+
+                    Book bookToReserve = null;
+                    for (Book book1 : bookRepo.getBooks()) {
+                        if (book1.getId().equals(labelBook1ID.getText())) {
+                            bookToReserve = book1;
+                            break;
+                        }
+                    }
+                    // 책 예약
+                    Command reserveCommand = CommandFactory.createCommand("Reserve", bookToReserve);
+                    reserveCommand.execute();
+                    try {
+                        bookRepo.save();  // 변경 내용 저장
+                    } catch (IOException ex) {
+                        System.out.println("책 목록을 저장하는 데 실패했습니다.");
+                    }
                     JOptionPane.showMessageDialog(alert, "예약 완료");
                 }
             } else {

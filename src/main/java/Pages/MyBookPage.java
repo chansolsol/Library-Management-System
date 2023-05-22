@@ -28,6 +28,7 @@ public class MyBookPage extends JFrame implements ActionListener{
     JLabel labelBook1ID;
     JLabel labelBook2ID;
     JLabel labelBook3ID;
+    JLabel labelBook4ID;
     JLabel labelBook1LoanDate;
     JLabel labelBook1ReturnDate;
     JLabel labelBook2LoanDate;
@@ -35,9 +36,15 @@ public class MyBookPage extends JFrame implements ActionListener{
     JLabel labelBook3LoanDate;
     JLabel labelBook3ReturnDate;
 
+    JLabel labelBook4LoanDate;
+    JLabel labelBook4ReturnDate;
+
     LocalDate LoanDate1;
     LocalDate LoanDate2;
     LocalDate LoanDate3;
+    LocalDate LoanDate4;
+
+    JTextField textSearch;
 
     private static final String DB_FILE_NAME = "books.json";
     public MyBookPage(){
@@ -121,6 +128,34 @@ public class MyBookPage extends JFrame implements ActionListener{
         labelMain.setForeground(Color.white);
         panelMainBlue.add(labelMain);
 
+        JLabel labelSearchMain = new JLabel("검색어 :");   //"도서관 시스템" 메인 라벨
+        labelSearchMain.setBounds(400, 100, 90, 35);
+        //labelSearchMain.setHorizontalAlignment(JLabel.CENTER);
+        labelSearchMain.setFont(mainFont20);
+        add(labelSearchMain);
+
+        textSearch = new JTextField();   //도서 검색 텍스트 입력 JTextField
+        textSearch.setBounds(500,100,300,35);
+        textSearch.setFont(inputBoxFont);
+        textSearch.setBorder(null);
+        textSearch.setLayout(null);
+        add(textSearch);
+
+        JPanel panelSearch = new JPanel();  //도서 검색 텍스트 입력 구분선
+        panelSearch.setBounds(390, 140, 500, 2);
+        panelSearch.setBackground(mainBlue);
+        add(panelSearch);
+
+        JButton ButtonSearch = new JButton("\uE71E");   //도서 검색 버튼
+        ButtonSearch.setBounds(835,98,55,40);
+        ButtonSearch.setFont(SearchIconFont);
+        //ButtonSearch.setBorderPainted(false);
+        ButtonSearch.setContentAreaFilled(false);
+        ButtonSearch.setFocusPainted(false);
+        ButtonSearch.setActionCommand("TextSearch");
+        ButtonSearch.addActionListener(this);
+        add(ButtonSearch);
+
 
         JPanel panelMenuWhite = new JPanel(); //마이페이지 메뉴 컴포넌트 패널이 위치할 패널
         panelMenuWhite.setBounds(50, 150, 200, 400);
@@ -170,233 +205,279 @@ public class MyBookPage extends JFrame implements ActionListener{
         //ButtonRequestBook.setBorderPainted(false);
         ButtonRequestBook.setContentAreaFilled(false);
         ButtonRequestBook.setFocusPainted(false);
-        ButtonRequestBook.setActionCommand("RequestedBookPage");
+        ButtonRequestBook.setActionCommand("MyRequestedBookPage");
         ButtonRequestBook.addActionListener(this);
         panelMenuWhite.add(ButtonRequestBook);
 
 
+        JPanel panelMainWhite = new JPanel(); //회원 정보 수정 페이지 컴포넌트가 위치할 패널
+        panelMainWhite.setBounds(290, 150, 700, 500);
+        panelMainWhite.setBackground(Color.white);
+        add(panelMainWhite);
+        panelMainWhite.setLayout(null);
 
-        JLabel labelLoan = new JLabel("대출");    //"대출" 메인 라벨
-        labelLoan.setBounds(280, 165, 220, 35);
+
+        /*JLabel labelLoan = new JLabel("대출");    //"대출" 메인 라벨
+        labelLoan.setBounds(0, 15, 210, 35);
         labelLoan.setHorizontalAlignment(JLabel.CENTER);
         labelLoan.setFont(mainFont30);
-        add(labelLoan);
+        panelMainWhite.add(labelLoan);*/
 
-        JPanel panelLoanBlue = new JPanel();
-        panelLoanBlue.setBounds(280, 210, 220, 2);
+        /*JPanel panelLoanBlue = new JPanel();
+        panelLoanBlue.setBounds(0, 60, 210, 2);
         panelLoanBlue.setBackground(mainBlue);
         panelLoanBlue.setLayout(null);
-        add(panelLoanBlue);
+        panelMainWhite.add(panelLoanBlue);*/
+
+        JLabel labelMyRequest = new JLabel("대출 도서 조회");
+        labelMyRequest.setBounds(0, 10, 700, 40);
+        labelMyRequest.setHorizontalAlignment(JLabel.CENTER);
+        labelMyRequest.setFont(mainFont30);
+        panelMainWhite.add(labelMyRequest);
 
         JLabel labelLoanText = new JLabel("대출 가능 : "+ bookSearchSize +" / 10");    //"대출 가능" 라벨, 가능 권수를 나타냄
-        labelLoanText.setBounds(280, 220, 220, 35);
+        labelLoanText.setBounds(0, 70, 210, 35);
         labelLoanText.setHorizontalAlignment(JLabel.CENTER);
         labelLoanText.setFont(mainFont20);
-        add(labelLoanText);
+        panelMainWhite.add(labelLoanText);
 
-        JLabel labelRenew = new JLabel("연장");    //"연장" 메인 라벨
-        labelRenew.setBounds(530, 165, 220, 35);
+        /*JLabel labelRenew = new JLabel("연장");    //"연장" 메인 라벨
+        labelRenew.setBounds(245, 15, 210, 35);
         labelRenew.setHorizontalAlignment(JLabel.CENTER);
         labelRenew.setFont(mainFont30);
-        add(labelRenew);
+        panelMainWhite.add(labelRenew);*/
 
-        JPanel panelRenewBlue = new JPanel();
-        panelRenewBlue.setBounds(530, 210, 220, 2);
+        /*JPanel panelRenewBlue = new JPanel();
+        panelRenewBlue.setBounds(245, 60, 210, 2);
         panelRenewBlue.setBackground(mainBlue);
         panelRenewBlue.setLayout(null);
-        add(panelRenewBlue);
+        panelMainWhite.add(panelRenewBlue);*/
 
-        JLabel labelRenewText = new JLabel("연장 가능 : "+bookSearchSize+"/"+bookSearchSize);    //"연장 가능" 라벨, 대출한 책을 맥시멈으로 잡음
-        labelRenewText.setBounds(530, 220, 220, 35);
+        JLabel labelRenewText = new JLabel("연장 가능 : "+bookSearchSize+" / "+bookSearchSize);    //"연장 가능" 라벨, 대출한 책을 맥시멈으로 잡음
+        labelRenewText.setBounds(245, 70, 210, 35);
         labelRenewText.setHorizontalAlignment(JLabel.CENTER);
         labelRenewText.setFont(mainFont20);
-        add(labelRenewText);
+        panelMainWhite.add(labelRenewText);
 
-        JLabel labelReturn = new JLabel("반납");    //"반납" 메인 라벨
-        labelReturn.setBounds(780, 165, 220, 35);
+        /*JLabel labelReturn = new JLabel("반납");    //"반납" 메인 라벨
+        labelReturn.setBounds(490, 15, 210, 35);
         labelReturn.setHorizontalAlignment(JLabel.CENTER);
         labelReturn.setFont(mainFont30);
-        add(labelReturn);
+        panelMainWhite.add(labelReturn);*/
 
-        JPanel panelReturnBlue = new JPanel();
-        panelReturnBlue.setBounds(780, 210, 220, 2);
+        /*JPanel panelReturnBlue = new JPanel();
+        panelReturnBlue.setBounds(490, 60, 210, 2);
         panelReturnBlue.setBackground(mainBlue);
         panelReturnBlue.setLayout(null);
-        add(panelReturnBlue);
+        panelMainWhite.add(panelReturnBlue);*/
 
         JLabel labelReturnText = new JLabel("연채 도서 : 0");    //"연채 도서" 라벨
-        labelReturnText.setBounds(780, 220, 220, 35);
+        labelReturnText.setBounds(490, 70, 210, 35);
         labelReturnText.setHorizontalAlignment(JLabel.CENTER);
         labelReturnText.setFont(mainFont20);
-        add(labelReturnText);
+        panelMainWhite.add(labelReturnText);
 
 
         JLabel labelLoanBook = new JLabel("대출한 도서");    //"대출한 도서" 메인 라벨
-        labelLoanBook.setBounds(300, 320, 220, 35);
+        labelLoanBook.setBounds(20, 130, 220, 35);
         //labelLoanBook.setHorizontalAlignment(JLabel.CENTER);
         labelLoanBook.setFont(mainFont20);
-        add(labelLoanBook);
+        panelMainWhite.add(labelLoanBook);
 
         JPanel panelLoanBookBlue = new JPanel();
-        panelLoanBookBlue.setBounds(285, 360, 700, 2);
+        panelLoanBookBlue.setBounds(0, 170, 700, 2);
         panelLoanBookBlue.setBackground(mainBlue);
         panelLoanBookBlue.setLayout(null);
-        add(panelLoanBookBlue);
+        panelMainWhite.add(panelLoanBookBlue);
 
         JLabel labelIDBook = new JLabel("관리번호");    //"관리번호" 메인 라벨, 동의대학교 중앙도서관 관리번호를 기준으로 함
-        labelIDBook.setBounds(300, 370, 200, 35);
+        labelIDBook.setBounds(20, 180, 200, 35);
         //labelIDBook.setHorizontalAlignment(JLabel.CENTER);
         labelIDBook.setFont(mainFont20);
-        add(labelIDBook);
+        panelMainWhite.add(labelIDBook);
 
         JLabel labelTitleBook = new JLabel("제목");    //"제목" 메인 라벨
-        labelTitleBook.setBounds(450, 370, 200, 35);
+        labelTitleBook.setBounds(170, 180, 200, 35);
         //labelTitleBook.setHorizontalAlignment(JLabel.CENTER);
         labelTitleBook.setFont(mainFont20);
-        add(labelTitleBook);
+        panelMainWhite.add(labelTitleBook);
 
         JLabel labelLoanDateBook = new JLabel("대출일");    //"대출일" 메인 라벨, 양식 : 2000-00-00
-        labelLoanDateBook.setBounds(620, 370, 200, 35);
+        labelLoanDateBook.setBounds(340, 180, 200, 35);
         //labelLoanDateBook.setHorizontalAlignment(JLabel.CENTER);
         labelLoanDateBook.setFont(mainFont20);
-        add(labelLoanDateBook);
+        panelMainWhite.add(labelLoanDateBook);
 
         JLabel labelReturnDateBook = new JLabel("반납예정일");    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
-        labelReturnDateBook.setBounds(750, 370, 200, 35);
+        labelReturnDateBook.setBounds(470, 180, 200, 35);
         //labelReturnDateBook.setHorizontalAlignment(JLabel.CENTER);
         labelReturnDateBook.setFont(mainFont20);
-        add(labelReturnDateBook);
+        panelMainWhite.add(labelReturnDateBook);
 
         JLabel labelRenewBook = new JLabel("연장");    //"연장" 메인 라벨, 연장 버튼이 위치함
-        labelRenewBook.setBounds(900, 370, 100, 35);
+        labelRenewBook.setBounds(620, 180, 100, 35);
         //labelRenewBook.setHorizontalAlignment(JLabel.CENTER);
         labelRenewBook.setFont(mainFont20);
-        add(labelRenewBook);
+        panelMainWhite.add(labelRenewBook);
 
 
 
         if(bookSearchSize > 0){
             LoanDate1 = LoanDate[0];
             labelBook1ID = new JLabel(ID[0]);    //"도서1관리번호" 메인 라벨
-            labelBook1ID.setBounds(300, 410, 200, 35);
+            labelBook1ID.setBounds(20, 220, 200, 35);
             //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook1ID.setFont(mainFont20);
-            add(labelBook1ID);
+            panelMainWhite.add(labelBook1ID);
 
             JLabel labelBook1Title = new JLabel(title[0]);    //"도서1제목" 메인 라벨
-            labelBook1Title.setBounds(450, 410, 200, 35);
+            labelBook1Title.setBounds(170, 220, 200, 35);
             //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Title.setFont(mainFont20);
-            add(labelBook1Title);
+            panelMainWhite.add(labelBook1Title);
 
             labelBook1LoanDate = new JLabel(String.valueOf(LoanDate[0]));    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
-            labelBook1LoanDate.setBounds(620, 410, 200, 35);
+            labelBook1LoanDate.setBounds(340, 220, 200, 35);
             //labelBook2LoanDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1LoanDate.setFont(mainFont20);
-            add(labelBook1LoanDate);
+            panelMainWhite.add(labelBook1LoanDate);
 
             labelBook1ReturnDate = new JLabel(String.valueOf(DueDate[0]));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
-            labelBook1ReturnDate.setBounds(750, 410, 200, 35);
+            labelBook1ReturnDate.setBounds(470, 220, 200, 35);
             //labelBook2ReturnDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1ReturnDate.setFont(mainFont20);
-            add(labelBook1ReturnDate);
+            panelMainWhite.add(labelBook1ReturnDate);
 
             JButton ButtonBook1RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
-            ButtonBook1RenewBook.setBounds(895, 410, 50, 35);
+            ButtonBook1RenewBook.setBounds(615, 220, 50, 35);
             ButtonBook1RenewBook.setFont(mainFont20);
             //ButtonBook2RenewBook.setBorderPainted(false);
             ButtonBook1RenewBook.setContentAreaFilled(false);
             ButtonBook1RenewBook.setFocusPainted(false);
             ButtonBook1RenewBook.setActionCommand("Renew1");
             ButtonBook1RenewBook.addActionListener(this);
-            add(ButtonBook1RenewBook);
+            panelMainWhite.add(ButtonBook1RenewBook);
         }
         if(bookSearchSize > 1) {
             LoanDate2 = LoanDate[0];
             labelBook2ID = new JLabel(ID[1]);    //"도서1관리번호" 메인 라벨
-            labelBook2ID.setBounds(300, 450, 200, 35);
+            labelBook2ID.setBounds(20, 260, 200, 35);
             //labelBook2ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook2ID.setFont(mainFont20);
-            add(labelBook2ID);
+            panelMainWhite.add(labelBook2ID);
 
             JLabel labelBook2Title = new JLabel(title[1]);    //"도서1제목" 메인 라벨
-            labelBook2Title.setBounds(450, 450, 200, 35);
+            labelBook2Title.setBounds(170, 260, 200, 35);
             //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Title.setFont(mainFont20);
-            add(labelBook2Title);
+            panelMainWhite.add(labelBook2Title);
 
             labelBook2LoanDate = new JLabel(String.valueOf(LoanDate[1]));    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
-            labelBook2LoanDate.setBounds(620, 450, 200, 35);
+            labelBook2LoanDate.setBounds(340, 260, 200, 35);
             //labelBook2LoanDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook2LoanDate.setFont(mainFont20);
-            add(labelBook2LoanDate);
+            panelMainWhite.add(labelBook2LoanDate);
 
             labelBook2ReturnDate = new JLabel(String.valueOf(DueDate[1]));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
-            labelBook2ReturnDate.setBounds(750, 450, 200, 35);
+            labelBook2ReturnDate.setBounds(470, 260, 200, 35);
             //labelBook2ReturnDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook2ReturnDate.setFont(mainFont20);
-            add(labelBook2ReturnDate);
+            panelMainWhite.add(labelBook2ReturnDate);
 
             JButton ButtonBook2RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
-            ButtonBook2RenewBook.setBounds(895, 450, 50, 35);
+            ButtonBook2RenewBook.setBounds(615, 260, 50, 35);
             ButtonBook2RenewBook.setFont(mainFont20);
             //ButtonBook2RenewBook.setBorderPainted(false);
             ButtonBook2RenewBook.setContentAreaFilled(false);
             ButtonBook2RenewBook.setFocusPainted(false);
             ButtonBook2RenewBook.setActionCommand("Renew2");
             ButtonBook2RenewBook.addActionListener(this);
-            add(ButtonBook2RenewBook);
+            panelMainWhite.add(ButtonBook2RenewBook);
         }
         if(bookSearchSize > 2) {
             LoanDate3 = LoanDate[2];
             labelBook3ID = new JLabel(ID[2]);    //"도서1관리번호" 메인 라벨
-            labelBook3ID.setBounds(300, 490, 200, 35);
+            labelBook3ID.setBounds(20, 300, 200, 35);
             //labelBook3ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook3ID.setFont(mainFont20);
-            add(labelBook3ID);
+            panelMainWhite.add(labelBook3ID);
 
             JLabel labelBook3Title = new JLabel(title[2]);    //"도서1제목" 메인 라벨
-            labelBook3Title.setBounds(450, 490, 200, 35);
+            labelBook3Title.setBounds(170, 300, 200, 35);
             //labelBook3Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Title.setFont(mainFont20);
-            add(labelBook3Title);
+            panelMainWhite.add(labelBook3Title);
 
             labelBook3LoanDate = new JLabel(String.valueOf(LoanDate[2]));    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
-            labelBook3LoanDate.setBounds(620, 490, 200, 35);
+            labelBook3LoanDate.setBounds(340, 300, 200, 35);
             //labelBook3LoanDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook3LoanDate.setFont(mainFont20);
-            add(labelBook3LoanDate);
+            panelMainWhite.add(labelBook3LoanDate);
 
             labelBook3ReturnDate = new JLabel(String.valueOf(DueDate[2]));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
-            labelBook3ReturnDate.setBounds(750, 490, 200, 35);
+            labelBook3ReturnDate.setBounds(470, 300, 200, 35);
             //labelBook3ReturnDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook3ReturnDate.setFont(mainFont20);
-            add(labelBook3ReturnDate);
+            panelMainWhite.add(labelBook3ReturnDate);
 
             JButton ButtonBook3RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
-            ButtonBook3RenewBook.setBounds(895, 490, 50, 35);
+            ButtonBook3RenewBook.setBounds(615, 300, 50, 35);
             ButtonBook3RenewBook.setFont(mainFont20);
             //ButtonBook3RenewBook.setBorderPainted(false);
             ButtonBook3RenewBook.setContentAreaFilled(false);
             ButtonBook3RenewBook.setFocusPainted(false);
             ButtonBook3RenewBook.setActionCommand("Renew3");
             ButtonBook3RenewBook.addActionListener(this);
-            add(ButtonBook3RenewBook);
+            panelMainWhite.add(ButtonBook3RenewBook);
+        }
+        if(bookSearchSize>3){
+            LoanDate4 = LoanDate[3];
+            labelBook4ID = new JLabel(ID[3]);    //"도서1관리번호" 메인 라벨
+            labelBook4ID.setBounds(20, 340, 200, 35);
+            //labelBook4ID.setHorizontalAlignment(JLabel.CENTER);
+            labelBook4ID.setFont(mainFont20);
+            panelMainWhite.add(labelBook4ID);
+
+            JLabel labelBook4Title = new JLabel(title[3]);    //"도서1제목" 메인 라벨
+            labelBook4Title.setBounds(170, 340, 200, 35);
+            //labelBook4Title.setHorizontalAlignment(JLabel.CENTER);
+            labelBook4Title.setFont(mainFont20);
+            panelMainWhite.add(labelBook4Title);
+
+            labelBook4LoanDate = new JLabel(String.valueOf(LoanDate[3]));    //"도서1대출일" 메인 라벨, 양식 : 2000-00-00
+            labelBook4LoanDate.setBounds(340, 340, 200, 35);
+            //labelBook4LoanDate.setHorizontalAlignment(JLabel.CENTER);
+            labelBook4LoanDate.setFont(mainFont20);
+            panelMainWhite.add(labelBook4LoanDate);
+
+            labelBook4ReturnDate = new JLabel(String.valueOf(DueDate[3]));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
+            labelBook3ReturnDate.setBounds(470, 340, 200, 35);
+            //labelBook3ReturnDate.setHorizontalAlignment(JLabel.CENTER);
+            labelBook3ReturnDate.setFont(mainFont20);
+            panelMainWhite.add(labelBook3ReturnDate);
+
+            JButton ButtonBook4RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
+            ButtonBook4RenewBook.setBounds(615, 340, 50, 35);
+            ButtonBook4RenewBook.setFont(mainFont20);
+            //ButtonBook4RenewBook.setBorderPainted(false);
+            ButtonBook4RenewBook.setContentAreaFilled(false);
+            ButtonBook4RenewBook.setFocusPainted(false);
+            ButtonBook4RenewBook.setActionCommand("Renew4");
+            ButtonBook4RenewBook.addActionListener(this);
+            panelMainWhite.add(ButtonBook4RenewBook);
         }
 
-
         JButton ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
-        ButtonBackPage.setBounds(580,550,120,40);
+        ButtonBackPage.setBounds(300,400,120,40);
         ButtonBackPage.setFont(mainFont20);
         //ButtonBackPage.setBorderPainted(false);
         ButtonBackPage.setContentAreaFilled(false);
         ButtonBackPage.setFocusPainted(false);
         ButtonBackPage.setActionCommand("BackPage");
         ButtonBackPage.addActionListener(this);
-        add(ButtonBackPage);
+        panelMainWhite.add(ButtonBackPage);
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
-
     }
     public void actionPerformed(ActionEvent e) {
 
@@ -424,7 +505,11 @@ public class MyBookPage extends JFrame implements ActionListener{
                 .filter(b -> b.getMemberID().equals(UserID))
                 .findFirst()
                 .orElse(null);*/
-
+        if (event.equals("TextSearch")) {
+            String keyword = textSearch.getText();
+            TextSearchResultPage SR = new TextSearchResultPage(keyword);
+            dispose();
+        }
         if (event.equals("Renew1")) {
             BookBRE book1 = books.stream()
                     .filter(b -> b.getId().equals(labelBook1ID.getText()))
@@ -482,17 +567,38 @@ public class MyBookPage extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
                 }
             }
-        } else if (event.equals("BackPage")) {
+        } else if (event.equals("Renew4")) {
+            BookBRE book4 = books.stream()
+                    .filter(b -> b.getId().equals(labelBook4ID.getText()))
+                    .findFirst()
+                    .orElse(null);
+            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate4+" ~ "+LoanDate4.plusDays(7));
+            if(result==0){
+                if(book4.extend()) {
+                    json = gson.toJson(books);
+                    try {
+                        Files.write(path, json.getBytes());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(alert, "연장 완료");
+                } else {
+                    JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
+                }
+            }
+        }
+        if (event.equals("BackPage")) {
             MainPage MP = new MainPage();
             dispose();
         } else if (event.equals("MyInfoPage")) {
-            MyInfoPage MF = new MyInfoPage();
+            MyInfoPage MI = new MyInfoPage();
             dispose();
         } else if (event.equals("MyBookPage")) {
-            MyBookPage MP = new MyBookPage();
+            MyBookPage MB = new MyBookPage();
             dispose();
-        } else if(event.equals("RequestedBookPage")){
-
+        } else if(event.equals("MyRequestedBookPage")){
+            MyRequestedBookPage MRB = new MyRequestedBookPage();
+            dispose();
         }
 
     }

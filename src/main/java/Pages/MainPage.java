@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 public class MainPage extends JFrame implements ActionListener{
 
     JTextField textSearch;
-    JPanel panelSearch;
-    JButton ButtonSearch;
     JButton ButtonMyPage;
     JButton ButtonLoanBook;
 
@@ -63,12 +61,12 @@ public class MainPage extends JFrame implements ActionListener{
         textSearch.setLayout(null);
         add(textSearch);
 
-        panelSearch = new JPanel();  //도서 검색 텍스트 입력 구분선
+        JPanel panelSearch = new JPanel();  //도서 검색 텍스트 입력 구분선
         panelSearch.setBounds(390, 140, 500, 2);
         panelSearch.setBackground(mainBlue);
         add(panelSearch);
 
-        ButtonSearch = new JButton("\uE71E");   //도서 검색 버튼
+        JButton ButtonSearch = new JButton("\uE71E");   //도서 검색 버튼
         ButtonSearch.setBounds(835,98,55,40);
         ButtonSearch.setFont(SearchIconFont);
         //ButtonSearch.setBorderPainted(false);

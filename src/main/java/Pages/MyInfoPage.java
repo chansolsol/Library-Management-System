@@ -99,7 +99,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         //ButtonRequestBook.setBorderPainted(false);
         ButtonRequestBook.setContentAreaFilled(false);
         ButtonRequestBook.setFocusPainted(false);
-        ButtonRequestBook.setActionCommand("RequestedBookPage");
+        ButtonRequestBook.setActionCommand("MyRequestedBookPage");
         ButtonRequestBook.addActionListener(this);
         panelMenuWhite.add(ButtonRequestBook);
 
@@ -110,50 +110,50 @@ public class MyInfoPage extends JFrame implements ActionListener {
         panelMainWhite.setLayout(null);
 
         JLabel labelMyInfo = new JLabel("회원 정보 수정");
-        labelMyInfo.setBounds(0, 0, 400, 50);
+        labelMyInfo.setBounds(0, 0, 400, 40);
         labelMyInfo.setHorizontalAlignment(JLabel.CENTER);
         labelMyInfo.setFont(mainFont30);
         panelMainWhite.add(labelMyInfo);
 
         JLabel labelUserID = new JLabel("아이디 :");
-        labelUserID.setBounds(0, 80, 180, 40);
+        labelUserID.setBounds(0, 60, 180, 40);
         labelUserID.setHorizontalAlignment(JLabel.RIGHT);
         labelUserID.setFont(mainFont20);
         panelMainWhite.add(labelUserID);
 
         JLabel labelUserName = new JLabel("이름 :");
-        labelUserName.setBounds(0, 130, 180, 40);
+        labelUserName.setBounds(0, 110, 180, 40);
         labelUserName.setHorizontalAlignment(JLabel.RIGHT);
         labelUserName.setFont(mainFont20);
         panelMainWhite.add(labelUserName);
 
         JLabel labelPassWord = new JLabel("현재 비밀번호 :");
-        labelPassWord.setBounds(0, 180, 180, 40);
+        labelPassWord.setBounds(0, 160, 180, 40);
         labelPassWord.setHorizontalAlignment(JLabel.RIGHT);
         labelPassWord.setFont(mainFont20);
         panelMainWhite.add(labelPassWord);
 
         JLabel labelNewPassWord = new JLabel("새 비밀번호 :");
-        labelNewPassWord.setBounds(0, 230, 180, 40);
+        labelNewPassWord.setBounds(0, 210, 180, 40);
         labelNewPassWord.setHorizontalAlignment(JLabel.RIGHT);
         labelNewPassWord.setFont(mainFont20);
         panelMainWhite.add(labelNewPassWord);
 
         JLabel labelCheckNewPassWord = new JLabel("새 비밀번호 확인:");
-        labelCheckNewPassWord.setBounds(0, 280, 180, 40);
+        labelCheckNewPassWord.setBounds(0, 260, 180, 40);
         labelCheckNewPassWord.setHorizontalAlignment(JLabel.RIGHT);
         labelCheckNewPassWord.setFont(mainFont20);
         panelMainWhite.add(labelCheckNewPassWord);
 
 
         JLabel labelUserID0 = new JLabel(UserInfo.getInstance().getUserID());
-        labelUserID0.setBounds(200, 80, 180, 40);
+        labelUserID0.setBounds(200, 60, 180, 40);
         labelUserID0.setHorizontalAlignment(JLabel.LEFT);
         labelUserID0.setFont(mainFont20);
         panelMainWhite.add(labelUserID0);
 
         textUserName = new JTextField(gson.getUsername(UserInfo.getInstance().getUserID()));
-        textUserName.setBounds(200,130,180,40);
+        textUserName.setBounds(200,110,180,40);
         textUserName.setFont(inputBoxFont);
         //textUserName.setBorder(null);
         textUserName.setLayout(null);
@@ -161,14 +161,14 @@ public class MyInfoPage extends JFrame implements ActionListener {
 
 
         textPassword = new JPasswordField();
-        textPassword.setBounds(200,180,180,40);
+        textPassword.setBounds(200,160,180,40);
         textPassword.setFont(inputBoxFont);
         //textPassword.setBorder(null);
         textPassword.setLayout(null);
         panelMainWhite.add(textPassword);
 
         textNewPassword = new JPasswordField();
-        textNewPassword.setBounds(200,230,180,40);
+        textNewPassword.setBounds(200,210,180,40);
         textNewPassword.setFont(inputBoxFont);
         //textNewPassword.setBorder(null);
         textNewPassword.setLayout(null);
@@ -176,14 +176,14 @@ public class MyInfoPage extends JFrame implements ActionListener {
 
 
         textCheckNewPassword = new JPasswordField();
-        textCheckNewPassword.setBounds(200,280,180,40);
+        textCheckNewPassword.setBounds(200,260,180,40);
         textCheckNewPassword.setFont(inputBoxFont);
         //textCheckNewPassword.setBorder(null);
         textCheckNewPassword.setLayout(null);
         panelMainWhite.add(textCheckNewPassword);
 
         RoundedButton ButtonSignUp = new RoundedButton("정보수정"); //정보수정 버튼
-        ButtonSignUp.setBounds(135,340,130,50);
+        ButtonSignUp.setBounds(135,330,130,50);
         ButtonSignUp.setFont(mainFont30);
         ButtonSignUp.setBackground(mainBlue);
         ButtonSignUp.setForeground(Color.white);
@@ -192,7 +192,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         panelMainWhite.add(ButtonSignUp);
 
         JButton ButtonLoanPage = new JButton("<HTML><body><center>뒤로가기</center></body></HTML>");   //뒤로가기 버튼, (LoginPage 생성)
-        ButtonLoanPage.setBounds(140,400,120,40);
+        ButtonLoanPage.setBounds(140,390,120,40);
         ButtonLoanPage.setFont(mainFont20);
         //ButtonLoanPage.setBorderPainted(false);
         ButtonLoanPage.setContentAreaFilled(false);
@@ -207,6 +207,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String event = e.getActionCommand();
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
+
 
         if (event.equals("EditInfo")) {
             if (textPassword.getText().equals("")) { //아이디나 비밀번호, 이름 미입력시 에러 메시지박스
@@ -223,13 +224,14 @@ public class MyInfoPage extends JFrame implements ActionListener {
             MainPage MP = new MainPage();
             dispose();
         } else if (event.equals("MyInfoPage")) {
-            MyInfoPage MF = new MyInfoPage();
+            MyInfoPage MI = new MyInfoPage();
             dispose();
         } else if (event.equals("MyBookPage")) {
-            MyBookPage MP = new MyBookPage();
+            MyBookPage MB = new MyBookPage();
             dispose();
-        } else if(event.equals("RequestedBookPage")){
-
+        } else if(event.equals("MyRequestedBookPage")){
+            MyRequestedBookPage MRB = new MyRequestedBookPage();
+            dispose();
         }
 
     }

@@ -530,6 +530,9 @@ public class MyBookPage extends JFrame implements ActionListener{
                         throw new RuntimeException(ex);
                     }
                     JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
+
                 } else {
                     JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
                 }
@@ -549,6 +552,8 @@ public class MyBookPage extends JFrame implements ActionListener{
                         throw new RuntimeException(ex);
                     }
                     JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
                 }
@@ -568,6 +573,8 @@ public class MyBookPage extends JFrame implements ActionListener{
                         throw new RuntimeException(ex);
                     }
                     JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
                 }
@@ -587,6 +594,8 @@ public class MyBookPage extends JFrame implements ActionListener{
                         throw new RuntimeException(ex);
                     }
                     JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
                 }

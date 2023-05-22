@@ -20,6 +20,7 @@ public class SignUpPage extends JFrame implements ActionListener {
     JTextField textName;
 
     public SignUpPage() {
+        gson.signInit();
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치

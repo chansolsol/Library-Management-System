@@ -29,8 +29,11 @@ public class MyInfoPage extends JFrame implements ActionListener {
     JPasswordField textPassword;
     JPasswordField textNewPassword;
     JPasswordField textCheckNewPassword;
+    JLabel labelShowUserName;
 
     public MyInfoPage(User user, String filePath, User[] users) {
+
+        gson.signInit();
 
         this.user = user;
         this.filePath = filePath;
@@ -170,7 +173,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         labelUserID0.setFont(mainFont20);
         panelMainWhite.add(labelUserID0);
 
-        JLabel labelShowUserName = new JLabel(gson.getUsername(UserInfo.getInstance().getUserID()));
+        labelShowUserName = new JLabel(gson.getUsername(UserInfo.getInstance().getUserID()));
         labelShowUserName.setBounds(200,110,80,40);
         labelShowUserName.setHorizontalAlignment(JLabel.LEFT);
         labelShowUserName.setFont(mainFont20);
@@ -241,6 +244,11 @@ public class MyInfoPage extends JFrame implements ActionListener {
                 String newName = JOptionPane.showInputDialog(this, "새로운 이름을 입력하세요:");
                 findUserById(id, nameChangeStrategy, newName);
                 saveUserJSON(filePath);
+
+                gson.signInit();
+                MyInfoPage infoPage = new MyInfoPage(users[0], "users.json", users);
+                dispose();
+
             } else {
                 JOptionPane.showMessageDialog(this, "유효하지 않은 사용자 ID입니다.", "오류", JOptionPane.ERROR_MESSAGE);
             }

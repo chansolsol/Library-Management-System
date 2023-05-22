@@ -1,5 +1,6 @@
 package Pages;
 
+import HopeBookRequest.BookRequest;
 import HopeBookRequest.CreateBookRequest;
 import HopeBookRequest.HopeBook;
 import Res.RoundedButton;
@@ -11,11 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class RequestBookPage extends JFrame implements ActionListener{
 
     private static final String HOPE_BOOKS = "hopebooks.json";
-    List<Book> books;
+
+    private List<HopeBook> books;
 
     JTextField textBookTitle;
     JTextField textBookAuthor;
@@ -172,21 +175,22 @@ public class RequestBookPage extends JFrame implements ActionListener{
 
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
-
         if (event.equals("CreateBook")) {
-            /*CreateBookRequest CBR = new CreateBookRequest();
+            /*String title = textBookTitle.getText();
+            String author = textBookAuthor.getText();
+            String publisher = textBookPublisher.getText();
+            int year = Integer.parseInt(textBookPublicationDate.getText());*/
+            CreateBookRequest createBookRequest = new CreateBookRequest();
             createBookRequest.applicationCUD();
 
             HopeBook hopeBook = new HopeBook(textBookTitle.getText(), textBookAuthor.getText(), textBookPublisher.getText(), Integer.parseInt(textBookPublicationDate.getText()));
-            // 리스트에 새 책 추가
-            books.add(hopeBook);*/
-
+            books.add(hopeBook);
+            
         } else if (event.equals("BackPage")) {
             MainPage MP = new MainPage();
             dispose();
 
         }
     }
-
 
 }

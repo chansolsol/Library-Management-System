@@ -1,11 +1,16 @@
 package Pages;
 
 import Res.UserInfo;
+import UserUpdate.MyInfoPage;
+import UserUpdate.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import static UserUpdate.UserInfo.readUserJSON;
+import static UserUpdate.UserInfo.saveUserJSON;
 
 public class MainPage extends JFrame implements ActionListener{
 
@@ -128,7 +133,9 @@ public class MainPage extends JFrame implements ActionListener{
             dispose();
 
         } else if (event.equals("MyPage")) {
-            MyInfoPage IP = new MyInfoPage();
+            User[] users = readUserJSON("users.json");
+            MyInfoPage infoPage = new MyInfoPage(users[0], "users.json", users);
+            saveUserJSON("users.json", users);
             dispose();
         } else if (event.equals("MyBook")){
             MyBookPage BP = new MyBookPage();

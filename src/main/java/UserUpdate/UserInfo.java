@@ -7,9 +7,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,7 +28,7 @@ public class UserInfo {
         }
     }
 
-    private static User[] readUserJSON(String filePath) {
+    public static User[] readUserJSON(String filePath) {
         Gson gson = new Gson();
 
         try (FileReader reader = new FileReader(filePath)) {
@@ -52,7 +49,7 @@ public class UserInfo {
         return new User[0];
     }
 
-    private static void saveUserJSON(String filePath, User[] users) {
+    public static void saveUserJSON(String filePath, User[] users) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonArray = new JsonArray();
 

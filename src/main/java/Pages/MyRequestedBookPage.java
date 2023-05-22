@@ -1,25 +1,15 @@
 package Pages;
 
-import BookBRE.BookBRE;
-import BookCRUD.Book;
-import BookCRUD.BookController;
-import BookCRUD.BookDatabase;
-import Res.LocalDateAdapter;
-import Res.UserInfo;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import UserUpdate.MyInfoPage;
+import UserUpdate.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.List;
+
+import static UserUpdate.UserInfo.readUserJSON;
+import static UserUpdate.UserInfo.saveUserJSON;
 
 public class MyRequestedBookPage extends JFrame implements ActionListener {
 
@@ -378,7 +368,9 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             MainPage MP = new MainPage();
             dispose();
         } else if (event.equals("MyInfoPage")) {
-            MyInfoPage MI = new MyInfoPage();
+            User[] users = readUserJSON("users.json");
+            MyInfoPage infoPage = new MyInfoPage(users[0], "users.json", users);
+            saveUserJSON("users.json", users);
             dispose();
         } else if (event.equals("MyBookPage")) {
             MyBookPage MB = new MyBookPage();

@@ -159,17 +159,17 @@ public class ReturnBookPage extends JFrame implements ActionListener{
 
             int result = JOptionPane.showConfirmDialog(alert, "도서를 반납하시겠습니까?");
             if(result==0){
-                if(book.returnBook()) {
-                    json = gson.toJson(books);
-                    try {
-                        Files.write(path, json.getBytes());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    JOptionPane.showMessageDialog(alert, "반납 완료");
-                } else {
-                    JOptionPane.showMessageDialog(alert, "반납 가능한 도서가 없습니다.");
-                }
+//                if(book.returnBook()) {
+//                    json = gson.toJson(books);
+//                    try {
+//                        Files.write(path, json.getBytes());
+//                    } catch (IOException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                    JOptionPane.showMessageDialog(alert, "반납 완료");
+//                } else {
+//                    JOptionPane.showMessageDialog(alert, "반납 가능한 도서가 없습니다.");
+//                }
             }
 
         } else if (event.equals("BackPage")) {

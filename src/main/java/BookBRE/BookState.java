@@ -10,4 +10,7 @@ public interface BookState {
 
     /** 연장하기 */
     void extend(BookBRE book);
+
+    String toString();
+
 }

@@ -17,8 +17,6 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
 
-        BookState bookState = null;
-
         // LocalDate 어댑터를 사용해 Gson 인스턴스 생성
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
@@ -50,15 +48,15 @@ public class Test {
 
         switch (action) {
             case "borrow":
-                bookState.borrow(book);
+                book.getState().borrow(book);
                 System.out.println("대출 : " + book.getId());
                 break;
             case "extend":
-                bookState.extend(book);
+                book.getState().extend(book);
                 System.out.println("연장 : " + book.getId());
                 break;
             case "return":
-                bookState.returnBook(book);
+                book.getState().returnBook(book);
                 System.out.println("반납 : " + book.getId());
                 break;
             default:

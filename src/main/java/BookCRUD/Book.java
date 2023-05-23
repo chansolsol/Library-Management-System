@@ -16,7 +16,7 @@ public class Book {
     private String publisher; //책 출판사
     private String year; //책 출판연도
     private String id;  //책 고유 식별자
-    private String state = "available";   //책 상태
+    private String state = "AvailableState";   //책 상태
     private LocalDate borrowedDate; // 빌린 날짜
     private LocalDate dueDate;  // 만기 날짜
     private String memberID = "";    // 사용자 ID

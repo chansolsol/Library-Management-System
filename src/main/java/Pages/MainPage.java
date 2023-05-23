@@ -153,7 +153,7 @@ public class MainPage extends JFrame implements ActionListener{
             RequestBookPage RBP = new RequestBookPage();
             dispose();
         }else if (event.equals("ReserveSeat")){
-            ReservationPage RP = new ReservationPage();
+            ReserveSeatPage RP = new ReserveSeatPage();
             dispose();
         } else if (event.equals("ReservedBook")){
             MyReservedBookPage MRP = new MyReservedBookPage();

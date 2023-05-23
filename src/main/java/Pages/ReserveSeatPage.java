@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
-public class ReservationPage extends JFrame implements ActionListener{
+public class ReserveSeatPage extends JFrame implements ActionListener{
 
     private static final String DB_FILE_NAME = "books.json";
     BookDatabase database = new BookDatabase(DB_FILE_NAME);
@@ -51,7 +51,7 @@ public class ReservationPage extends JFrame implements ActionListener{
 
     }// MyButton class
 
-    public ReservationPage(){
+    public ReserveSeatPage(){
 
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
@@ -153,7 +153,7 @@ public class ReservationPage extends JFrame implements ActionListener{
 
         buttons = new MyButton[21];// 배열크기가 9 버튼 배열생성
         for (int i = 0; i < 20; i++) {
-            buttons[i] = new MyButton(" " + (i + 1));// 1부터 8까지 출력되는 버튼 캡션문자열 설정
+            buttons[i] = new MyButton((("" + (i + 1)).trim()));
             //buttons[i].setFont(mainFont20);
             buttons[i].setContentAreaFilled(false);
             buttons[i].setFocusPainted(false);
@@ -161,9 +161,9 @@ public class ReservationPage extends JFrame implements ActionListener{
         for (int i = 0; i < 20; i++) {// 9개의 버튼을 패널에 추가
             panelSeatWhite.add(buttons[i]);
         }
-        //for (int i = 0; i < 9; i++) {// 9개의 버튼 이벤트 등록
-        //    buttons[i].addActionListener(this);
-
+        for (int i = 0; i < 20; i++) {// 9개의 버튼 이벤트 등록
+            buttons[i].addActionListener(this);
+        }
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 
     }
@@ -171,10 +171,10 @@ public class ReservationPage extends JFrame implements ActionListener{
 
         String event = e.getActionCommand();
 
-
-
-        if (event.equals("ReserveSeat")) {
-
+        if (event.equals("BackPage")) {
+            MainPage MP = new MainPage();
+            dispose();
+        } else {
             SeatRepository repository = new SeatRepository(FILE_PATH);
             CommandFactory commandFactory = new CommandFactory();
 
@@ -184,7 +184,7 @@ public class ReservationPage extends JFrame implements ActionListener{
                 throw new RuntimeException(ex);
             }
 
-            int seatNumber = Integer.parseInt(textBookID.getText());
+            int seatNumber = Integer.parseInt(event);
             LibrarySeat seat = findSeat(repository.getSeats(), seatNumber);
 
             if (seat == null) {
@@ -197,15 +197,6 @@ public class ReservationPage extends JFrame implements ActionListener{
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-
-        } else if (event.equals("BackPage")) {
-            MainPage MP = new MainPage();
-            setVisible(false);
-            dispose();
-
-        } else if (event.equals("")){
-            //setVisible(false);
-            //dispose();
         }
     }
     private static LibrarySeat findSeat(List<LibrarySeat> seats, int seatNumber) {

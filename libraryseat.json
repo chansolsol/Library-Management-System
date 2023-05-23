@@ -17,23 +17,23 @@
   },
   {
     "seatNumber": 5,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 6,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 7,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 8,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 9,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 10,
@@ -65,18 +65,18 @@
   },
   {
     "seatNumber": 17,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 18,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 19,
-    "reserved": false
+    "reserved": true
   },
   {
     "seatNumber": 20,
-    "reserved": false
+    "reserved": true
   }
 ]

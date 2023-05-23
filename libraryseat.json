@@ -5,7 +5,7 @@
   },
   {
     "seatNumber": 2,
-    "reserved": true
+    "reserved": false
   },
   {
     "seatNumber": 3,

@@ -20,7 +20,7 @@ public class Main {
         }
 
         while (true) {
-            System.out.println("명령을 입력하세요 (reserve, unreserve, exit): ");
+            System.out.println("명령을 입력하세요 (reserve, unreserved, exit): ");
             String action = scanner.next();
             if ("exit".equals(action)) {
                 break;

@@ -5,7 +5,7 @@ public class CommandFactory {
         switch (action) {
             case "reserve":
                 return new ReserveCommand(seat);
-            case "unreserve":
+            case "unreserved":
                 return new UnreserveCommand(seat);
             default:
                 throw new IllegalArgumentException("올바른 명령어가 아닙니다.");

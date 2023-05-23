@@ -36,12 +36,13 @@ public class SeatRepository {
         return seats;
     }
 
-    public void save() throws IOException {
+    public boolean save() throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(seats);
             writer.write(json);
         }
+        return true;
     }
 }
 //SeatRepository 클래스는 파일로부터 좌석 정보를 읽어오거나 파일에 좌석 정보를 저장합니다.

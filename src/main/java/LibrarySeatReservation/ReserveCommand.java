@@ -1,5 +1,7 @@
 package LibrarySeatReservation;
 
+import javax.swing.*;
+
 public class ReserveCommand implements Command {
     private LibrarySeat seat;
 
@@ -13,10 +15,12 @@ public class ReserveCommand implements Command {
     @Override
     public void execute() {
         if (seat.isReserved()) {
-            System.out.println("이미 예약된 자리입니다.");
+            JFrame alert = new JFrame();
+            JOptionPane.showMessageDialog(alert, "이미 예약된 자리입니다.");
         } else {
             seat.reserve();
-            System.out.println(seat.getSeatNumber() + "번 자리가 예약되었습니다.");
+            JFrame alert = new JFrame();
+            JOptionPane.showMessageDialog(alert, "좌석 : "+seat.getSeatNumber()+"번 예약 완료");
         }
     }
 }

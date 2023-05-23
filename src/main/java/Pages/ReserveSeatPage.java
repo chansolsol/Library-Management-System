@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ReserveSeatPage extends JFrame implements ActionListener{
@@ -146,58 +148,98 @@ public class ReserveSeatPage extends JFrame implements ActionListener{
 
 
 
-        MyButton[] buttons;// 버튼배열 선언
+        MyButton[] buttons;     // 버튼배열 선언
         MyButton reset;
 
-        panelSeatWhite.setLayout(new GridLayout(5, 4, 30, 30)); // 행은 가변적, 열개수는 3. 2, 2는 격자사이 간격
+        panelSeatWhite.setLayout(new GridLayout(5, 4, 30, 30));
 
-        buttons = new MyButton[21];// 배열크기가 9 버튼 배열생성
+        buttons = new MyButton[21];     // 배열크기가 20 버튼 배열생성
         for (int i = 0; i < 20; i++) {
             buttons[i] = new MyButton((("" + (i + 1)).trim()));
             //buttons[i].setFont(mainFont20);
             buttons[i].setContentAreaFilled(false);
             buttons[i].setFocusPainted(false);
         }
-        for (int i = 0; i < 20; i++) {// 9개의 버튼을 패널에 추가
+        for (int i = 0; i < 20; i++) {      // 20개의 버튼을 패널에 추가
             panelSeatWhite.add(buttons[i]);
         }
-        for (int i = 0; i < 20; i++) {// 9개의 버튼 이벤트 등록
+        for (int i = 0; i < 20; i++) {      // 20개의 버튼 이벤트 등록
             buttons[i].addActionListener(this);
         }
+        
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
 
     }
     public void actionPerformed(ActionEvent e) {
 
         String event = e.getActionCommand();
+        JFrame alert = new JFrame();
+
+        String[] options = { "  예 약  ", "  퇴 실  ", "  취 소  " };
+
+        SeatRepository repository = new SeatRepository(FILE_PATH);
+        CommandFactory commandFactory = new CommandFactory();
+
+        try {
+            repository.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
 
         if (event.equals("BackPage")) {
             MainPage MP = new MainPage();
             dispose();
         } else {
-            SeatRepository repository = new SeatRepository(FILE_PATH);
-            CommandFactory commandFactory = new CommandFactory();
+            int result = JOptionPane.showOptionDialog(
+                    null,
+                    "도서관 좌석 기능 선택",
+                    "기능 선택",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            if (result == 0) {
+                // "배정"
+                {
+                    int resultR = JOptionPane.showConfirmDialog(alert, "좌석 : "+ event + "번을 예약하시겠습니까?");
+                    if(resultR==0){
 
-            try {
-                repository.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+                        int seatNumber = Integer.parseInt(event);
+                        LibrarySeat seat = findSeat(repository.getSeats(), seatNumber);
 
-            int seatNumber = Integer.parseInt(event);
-            LibrarySeat seat = findSeat(repository.getSeats(), seatNumber);
+                        Command command = commandFactory.createCommand("reserve", seat);
+                        command.execute();
+                        try {
+                            repository.save();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                }
+            } else if (result == 1) {
+                // "퇴실"
+                int resultE = JOptionPane.showConfirmDialog(alert, "좌석 : "+ event + "번을 퇴실하시겠습니까?");
+                if(resultE==0){
 
-            if (seat == null) {
-                System.out.println("존재하지 않는 자리입니다.");
-            }
-            Command command = commandFactory.createCommand("reserve", seat);
-            command.execute();
-            try {
-                repository.save();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                    int seatNumber = Integer.parseInt(event);
+                    LibrarySeat seat = findSeat(repository.getSeats(), seatNumber);
+
+                    Command command = commandFactory.createCommand("unreserved", seat);
+                    command.execute();
+                    try {
+                        repository.save();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            } else if (result == 2) {
+                // "취소"
+
             }
         }
+
     }
     private static LibrarySeat findSeat(List<LibrarySeat> seats, int seatNumber) {
         for (LibrarySeat seat : seats) {

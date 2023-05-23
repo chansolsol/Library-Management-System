@@ -10,6 +10,7 @@ import java.util.Arrays;
 import Pages.MainPage;
 import Pages.MyBookPage;
 import Pages.MyRequestedBookPage;
+import Pages.MyReservedBookPage;
 import Res.*;
 import Res.UserInfo;
 import com.google.gson.Gson;
@@ -114,7 +115,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
         panelMenuWhite.add(ButtonMyBook);
 
         JButton ButtonRequestBook = new JButton("희망도서내역");
-        ButtonRequestBook.setBounds(0,200,200,51);
+        ButtonRequestBook.setBounds(0,250,200,51);
         ButtonRequestBook.setFont(mainFont20);
         ButtonRequestBook.setHorizontalAlignment(JButton.LEFT);
         //ButtonRequestBook.setBorderPainted(false);
@@ -123,6 +124,17 @@ public class MyInfoPage extends JFrame implements ActionListener {
         ButtonRequestBook.setActionCommand("MyRequestedBookPage");
         ButtonRequestBook.addActionListener(this);
         panelMenuWhite.add(ButtonRequestBook);
+
+        JButton ButtonReservedBook = new JButton("예약도서조회");   //뒤로가기 버튼, (LoginPage 생성)
+        ButtonReservedBook.setBounds(0,200,200,51);
+        ButtonReservedBook.setFont(mainFont20);
+        ButtonReservedBook.setHorizontalAlignment(JButton.LEFT);
+        //ButtonReservedBook.setBorderPainted(false);
+        ButtonReservedBook.setContentAreaFilled(false);
+        ButtonReservedBook.setFocusPainted(false);
+        ButtonReservedBook.setActionCommand("MyReservedBookPage");
+        ButtonReservedBook.addActionListener(this);
+        panelMenuWhite.add(ButtonReservedBook);
 
         JPanel panelMainWhite = new JPanel(); //회원 정보 수정 페이지 컴포넌트가 위치할 패널
         panelMainWhite.setBounds(440, 150, 400, 500);
@@ -282,8 +294,10 @@ public class MyInfoPage extends JFrame implements ActionListener {
         } else if(event.equals("MyRequestedBookPage")){
             MyRequestedBookPage MRB = new MyRequestedBookPage();
             dispose();
+        } else if(event.equals("MyReservedBookPage")) {
+            MyReservedBookPage MRB = new MyReservedBookPage();
+            dispose();
         }
-
     }
     private void findUserById(String id, InfoChangeStrategy strategy, String... args) {
         User foundUser = null;

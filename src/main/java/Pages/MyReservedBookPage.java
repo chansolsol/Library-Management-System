@@ -11,13 +11,13 @@ import java.awt.event.ActionListener;
 import static UserUpdate.UserInfo.readUserJSON;
 import static UserUpdate.UserInfo.saveUserJSON;
 
-public class MyRequestedBookPage extends JFrame implements ActionListener {
+public class MyReservedBookPage extends JFrame implements ActionListener {
 
     JPanel panelMainBlue;
     JLabel labelMain;
     JTextField textSearch;
 
-    public MyRequestedBookPage(){
+    public MyReservedBookPage(){
 
         setSize(1280, 720);
         setLayout(null);
@@ -148,14 +148,14 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
         add(panelMainWhite);
         panelMainWhite.setLayout(null);
 
-        JLabel labelMyRequest = new JLabel("희망 도서 내역");
+        JLabel labelMyRequest = new JLabel("예약 도서 조회");
         labelMyRequest.setBounds(0, 10, 700, 40);
         labelMyRequest.setHorizontalAlignment(JLabel.CENTER);
         labelMyRequest.setFont(mainFont30);
         panelMainWhite.add(labelMyRequest);
 
 
-        JLabel labelLoanBook = new JLabel("희망 도서 신청 목록");    //"대출한 도서" 메인 라벨
+        JLabel labelLoanBook = new JLabel("예약 도서 목록");    //"대출한 도서" 메인 라벨
         labelLoanBook.setBounds(20, 60, 220, 35);
         //labelLoanBook.setHorizontalAlignment(JLabel.CENTER);
         labelLoanBook.setFont(mainFont20);

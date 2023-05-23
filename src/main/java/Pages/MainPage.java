@@ -118,6 +118,15 @@ public class MainPage extends JFrame implements ActionListener{
             ButtonRequestBook.setActionCommand("RequestBook");
             ButtonRequestBook.addActionListener(this);
             add(ButtonRequestBook);
+
+            JButton ButtonReservedBook = new JButton("예약 도서 조회");   //도서 추가
+            ButtonReservedBook.setBounds(520, 380, 240, 40);
+            ButtonReservedBook.setFont(mainFont20);
+            ButtonReservedBook.setContentAreaFilled(false);
+            ButtonReservedBook.setFocusPainted(false);
+            ButtonReservedBook.setActionCommand("ReservedBook");
+            ButtonReservedBook.addActionListener(this);
+            add(ButtonReservedBook);
         }
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
@@ -145,6 +154,9 @@ public class MainPage extends JFrame implements ActionListener{
             dispose();
         }else if (event.equals("ReserveSeat")){
             ReservationPage RP = new ReservationPage();
+            dispose();
+        } else if (event.equals("ReservedBook")){
+            MyReservedBookPage MRP = new MyReservedBookPage();
             dispose();
         }
 

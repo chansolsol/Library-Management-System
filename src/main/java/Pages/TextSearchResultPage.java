@@ -55,7 +55,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
     String SK;
     private static final String DB_FILE_NAME = "books.json";
 
-    public TextSearchResultPage(String SearchKeyword){
+    public TextSearchResultPage(String SearchKeyword, int searchKey){
 
         SK = SearchKeyword;
 
@@ -108,6 +108,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         java.awt.Font mainFont30 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 30);
         java.awt.Font mainFont20 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 20);
         java.awt.Font mainFont18 = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 18);
+        java.awt.Font mainFont11 = new java.awt.Font("맑은 고딕", Font.PLAIN, 7);
         java.awt.Font inputBoxFont = new java.awt.Font("맑은 고딕", java.awt.Font.BOLD,20);
         java.awt.Font SearchIconFont = new java.awt.Font("Segoe MDL2 Assets", Font.BOLD,20);
 
@@ -166,7 +167,21 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         panelSearchKey.setBackground(mainBlue);
         add(panelSearchKey);
 
-        int bookSearchSize = (resultBookSize % 6); //검색 결과 크기
+        int bookSearchSize = 0;
+        resultBookSize = resultBookSize - searchKey*5;
+
+        if (resultBookSize <= 5) {
+            bookSearchSize = resultBookSize;
+        } else {
+            bookSearchSize = 5;
+        }
+
+        int book1 = searchKey*5;
+        int book2 = searchKey*5 + 1;
+        int book3 = searchKey*5 + 2;
+        int book4 = searchKey*5 + 3;
+        int book5 = searchKey*5 + 4;
+
 
         if (bookSearchSize > 0){
 
@@ -175,32 +190,32 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             panelBook1Image.setBackground(Color.gray);
             add(panelBook1Image);
 
-            labelBook1Title = new JLabel(title[0]);   //도서1 제목
+            labelBook1Title = new JLabel(title[book1]);   //도서1 제목
             labelBook1Title.setBounds(500, 200, 200, 25);
             //labelBook1Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Title.setFont(mainFont18);
             add(labelBook1Title);
 
 
-            labelBook1ID = new JLabel(id[0]);   //도서1 관리번호
+            labelBook1ID = new JLabel(id[book1]);   //도서1 관리번호
             labelBook1ID.setBounds(690, 200, 150, 25);
             //labelBook1ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook1ID.setFont(mainFont18);
             add(labelBook1ID);
 
-            labelBook1Author = new JLabel(author[0]);   //도서1 저자
+            labelBook1Author = new JLabel(author[book1]);   //도서1 저자
             labelBook1Author.setBounds(500, 230, 70, 25);
             //labelBook1Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Author.setFont(mainFont18);
             add(labelBook1Author);
 
-            labelBook1Publisher = new JLabel(publisher[0]);   //도서1 출판사
+            labelBook1Publisher = new JLabel(publisher[book1]);   //도서1 출판사
             labelBook1Publisher.setBounds(570, 230, 120, 25);
             //labelBook1Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Publisher.setFont(mainFont18);
             add(labelBook1Publisher);
 
-            labelBook1PublicationDate = new JLabel(String.valueOf(year[0]));   //도서1 출판년도
+            labelBook1PublicationDate = new JLabel(String.valueOf(year[book1]));   //도서1 출판년도
             labelBook1PublicationDate.setBounds(690, 230, 100, 25);
             //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1PublicationDate.setFont(mainFont18);
@@ -230,31 +245,31 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             panelBook2Image.setBackground(Color.gray);
             add(panelBook2Image);
 
-            labelBook2Title = new JLabel(title[1]);   //도서1 제목
+            labelBook2Title = new JLabel(title[book2]);   //도서1 제목
             labelBook2Title.setBounds(500, 275, 200, 30);
             //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Title.setFont(mainFont18);
             add(labelBook2Title);
 
-            labelBook2ID = new JLabel(id[1]);   //도서1 관리번호
+            labelBook2ID = new JLabel(id[book2]);   //도서1 관리번호
             labelBook2ID.setBounds(690, 275, 120, 30);
             //labelBook2ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook2ID.setFont(mainFont18);
             add(labelBook2ID);
 
-            labelBook2Author = new JLabel(author[1]);   //도서1 저자
+            labelBook2Author = new JLabel(author[book2]);   //도서1 저자
             labelBook2Author.setBounds(500, 305, 70, 30);
             //labelBook2Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Author.setFont(mainFont18);
             add(labelBook2Author);
 
-            labelBook2Publisher = new JLabel(publisher[1]);   //도서1 출판사
+            labelBook2Publisher = new JLabel(publisher[book2]);   //도서1 출판사
             labelBook2Publisher.setBounds(570, 305, 120, 30);
             //labelBook2Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Publisher.setFont(mainFont18);
             add(labelBook2Publisher);
 
-            labelBook2PublicationDate = new JLabel(String.valueOf(year[1]));   //도서1 출판년도
+            labelBook2PublicationDate = new JLabel(String.valueOf(year[book2]));   //도서1 출판년도
             labelBook2PublicationDate.setBounds(690, 305, 100, 30);
             //labelBook2PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook2PublicationDate.setFont(mainFont18);
@@ -284,31 +299,31 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             panelBook3Image.setBackground(Color.gray);
             add(panelBook3Image);
 
-            labelBook3Title = new JLabel(title[2]);   //도서3 제목
+            labelBook3Title = new JLabel(title[book3]);   //도서3 제목
             labelBook3Title.setBounds(500, 350, 200, 25);
             //labelBook3Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Title.setFont(mainFont18);
             add(labelBook3Title);
 
-            labelBook3ID = new JLabel(id[2]);   //도서3 관리번호
+            labelBook3ID = new JLabel(id[book3]);   //도서3 관리번호
             labelBook3ID.setBounds(690, 350, 120, 25);
             //labelBook3ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook3ID.setFont(mainFont18);
             add(labelBook3ID);
 
-            labelBook3Author = new JLabel(author[2]);   //도서3 저자
+            labelBook3Author = new JLabel(author[book3]);   //도서3 저자
             labelBook3Author.setBounds(500, 380, 70, 25);
             //labelBook3Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Author.setFont(mainFont18);
             add(labelBook3Author);
 
-            labelBook3Publisher = new JLabel(publisher[2]);   //도서3 출판사
+            labelBook3Publisher = new JLabel(publisher[book3]);   //도서3 출판사
             labelBook3Publisher.setBounds(570, 380, 120, 25);
             //labelBook3Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Publisher.setFont(mainFont18);
             add(labelBook3Publisher);
 
-            labelBook3PublicationDate = new JLabel(String.valueOf(year[2]));   //도서3 출판년도
+            labelBook3PublicationDate = new JLabel(String.valueOf(year[book3]));   //도서3 출판년도
             labelBook3PublicationDate.setBounds(690, 380, 120, 25);
             //labelBook3PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook3PublicationDate.setFont(mainFont18);
@@ -338,31 +353,31 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             panelBook4Image.setBackground(Color.gray);
             add(panelBook4Image);
 
-            labelBook4Title = new JLabel(title[3]);   //도서4 제목
+            labelBook4Title = new JLabel(title[book4]);   //도서4 제목
             labelBook4Title.setBounds(500, 425, 200, 25);
             //labelBook4Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook4Title.setFont(mainFont18);
             add(labelBook4Title);
 
-            labelBook4ID = new JLabel(id[3]);   //도서4 관리번호
+            labelBook4ID = new JLabel(id[book4]);   //도서4 관리번호
             labelBook4ID.setBounds(690, 425, 120, 25);
             //labelBook4ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook4ID.setFont(mainFont18);
             add(labelBook4ID);
 
-            labelBook4Author = new JLabel(author[3]);   //도서4 저자
+            labelBook4Author = new JLabel(author[book4]);   //도서4 저자
             labelBook4Author.setBounds(500, 455, 70, 25);
             //labelBook4Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook4Author.setFont(mainFont18);
             add(labelBook4Author);
 
-            labelBook4Publisher = new JLabel(publisher[3]);   //도서4 출판사
+            labelBook4Publisher = new JLabel(publisher[book4]);   //도서4 출판사
             labelBook4Publisher.setBounds(570, 455, 120, 25);
             //labelBook4Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook4Publisher.setFont(mainFont18);
             add(labelBook4Publisher);
 
-            labelBook4PublicationDate = new JLabel(String.valueOf(year[3]));   //도서4 출판년도
+            labelBook4PublicationDate = new JLabel(String.valueOf(year[book4]));   //도서4 출판년도
             labelBook4PublicationDate.setBounds(690, 455, 120, 25);
             //labelBook4PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook4PublicationDate.setFont(mainFont18);
@@ -388,48 +403,48 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         if (bookSearchSize > 4){
 
             JPanel panelBook5Image = new JPanel();  //도서5 이미지
-            panelBook5Image.setBounds(420, 525, 60, 60);
+            panelBook5Image.setBounds(420, 500, 60, 60);
             panelBook5Image.setBackground(Color.gray);
             add(panelBook5Image);
 
-            labelBook5Title = new JLabel(title[2]);   //도서5 제목
-            labelBook5Title.setBounds(500, 525, 200, 25);
+            labelBook5Title = new JLabel(title[book5]);   //도서5 제목
+            labelBook5Title.setBounds(500, 500, 200, 25);
             //labelBook5Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook5Title.setFont(mainFont18);
             add(labelBook5Title);
 
-            labelBook5ID = new JLabel(id[2]);   //도서5 관리번호
-            labelBook5ID.setBounds(690, 525, 120, 25);
+            labelBook5ID = new JLabel(id[book5]);   //도서5 관리번호
+            labelBook5ID.setBounds(690, 500, 120, 25);
             //labelBook5ID.setHorizontalAlignment(JLabel.CENTER);
             labelBook5ID.setFont(mainFont18);
             add(labelBook5ID);
 
-            labelBook5Author = new JLabel(author[2]);   //도서5 저자
-            labelBook5Author.setBounds(500, 555, 70, 25);
+            labelBook5Author = new JLabel(author[book5]);   //도서5 저자
+            labelBook5Author.setBounds(500, 530, 70, 25);
             //labelBook5Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook5Author.setFont(mainFont18);
             add(labelBook5Author);
 
-            labelBook5Publisher = new JLabel(publisher[2]);   //도서5 출판사
-            labelBook5Publisher.setBounds(570, 555, 120, 25);
+            labelBook5Publisher = new JLabel(publisher[book5]);   //도서5 출판사
+            labelBook5Publisher.setBounds(570, 530, 120, 25);
             //labelBook5Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook5Publisher.setFont(mainFont18);
             add(labelBook5Publisher);
 
-            labelBook5PublicationDate = new JLabel(String.valueOf(year[2]));   //도서5 출판년도
-            labelBook5PublicationDate.setBounds(690, 555, 120, 25);
+            labelBook5PublicationDate = new JLabel(String.valueOf(year[book5]));   //도서5 출판년도
+            labelBook5PublicationDate.setBounds(690, 530, 120, 25);
             //labelBook5PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook5PublicationDate.setFont(mainFont18);
             add(labelBook5PublicationDate);
 
             JPanel panelBook5 = new JPanel();  //도서 검색 키 구분선
-            panelBook5.setBounds(415, 590, 450, 2);
+            panelBook5.setBounds(415, 565, 450, 2);
             panelBook5.setBackground(Color.gray);
             add(panelBook5);
 
             JButton ButtonBook5 = new JButton();   //도서5 상세정보 버튼
             ButtonBook5.setText("<HTML><body><center>상세<br>정보</center></body></HTML>");
-            ButtonBook5.setBounds(820,525,45,60);
+            ButtonBook5.setBounds(820,500,45,60);
             ButtonBook5.setFont(mainFont18);
             //ButtonBook5.setBorderPainted(false);
             ButtonBook5.setContentAreaFilled(false);
@@ -438,6 +453,19 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             ButtonBook5.addActionListener(this);
             add(ButtonBook5);
 
+        }
+        int buttNum = searchKey;
+        buttNum ++;
+        if(buttNum>0) {
+            JButton ButtonNextPage = new JButton(String.valueOf(searchKey));   //뒤로가기 버튼
+            ButtonNextPage.setBounds(580, 580, 30, 30);
+            ButtonNextPage.setFont(mainFont11);
+            //ButtonNextPage.setBorderPainted(false);
+            ButtonNextPage.setContentAreaFilled(false);
+            ButtonNextPage.setFocusPainted(false);
+            ButtonNextPage.setActionCommand("");
+            ButtonNextPage.addActionListener(this);
+            add(ButtonNextPage);
         }
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
@@ -460,7 +488,7 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
-            TextSearchResultPage SR = new TextSearchResultPage(keyword);
+            TextSearchResultPage SR = new TextSearchResultPage(keyword, 0);
             dispose();
 
         } else if (event.equals("BackPage")) {

@@ -295,11 +295,11 @@ public class BookDetailPage extends JFrame implements ActionListener{
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
-            TextSearchResultPage SR = new TextSearchResultPage(keyword);
+            TextSearchResultPage SR = new TextSearchResultPage(keyword, 0);
             dispose();
         } else if (event.equals("BackPage")) {
             String keyword = textSearch.getText();
-            TextSearchResultPage SR = new TextSearchResultPage(SK);;
+            TextSearchResultPage SR = new TextSearchResultPage(SK, 0);;
             dispose();
         } else if(event.equals("Loan")){
             if (UserInfo.getInstance().getUserID()!=null) {

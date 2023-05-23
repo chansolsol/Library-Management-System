@@ -129,7 +129,7 @@ public class AdminPage extends JFrame implements ActionListener{
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
-            TextSearchResultPage TP = new TextSearchResultPage(keyword);
+            TextSearchResultPage TP = new TextSearchResultPage(keyword, 0);
             setVisible(false);
             dispose();
 

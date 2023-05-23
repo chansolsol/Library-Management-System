@@ -523,7 +523,7 @@ public class MyBookPage extends JFrame implements ActionListener{
                 .orElse(null);*/
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
-            TextSearchResultPage SR = new TextSearchResultPage(keyword);
+            TextSearchResultPage SR = new TextSearchResultPage(keyword, 0);
             dispose();
         }
         if (event.equals("Renew1")) {

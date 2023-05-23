@@ -1,5 +1,7 @@
 package BookBRE;
 
+import javax.swing.*;
+
 /** 대출한 상태 */
 public class BorrowedState implements BookState {
 
@@ -8,7 +10,8 @@ public class BorrowedState implements BookState {
 
     @Override
     public void borrow(BookBRE book) {
-        System.out.println("이 책은 이미 대출한 책입니다.");
+        JFrame alert = new JFrame();
+        JOptionPane.showMessageDialog(alert, "이미 대출된 도서입니다.");
     }
 
     @Override

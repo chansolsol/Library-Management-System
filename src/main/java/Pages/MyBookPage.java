@@ -533,20 +533,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .orElse(null);
             int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate1+" ~ "+LoanDate1.plusDays(7));
             if(result==0){
-//                if(book1.extend()) {
-//                    json = gson.toJson(books);
-//                    try {
-//                        Files.write(path, json.getBytes());
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    JOptionPane.showMessageDialog(alert, "연장 완료");
-//                    MyBookPage MB = new MyBookPage();
-//                    dispose();
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
-//                }
+                    book1.getState().extend(book1);
+                    json = gson.toJson(books);
+                    try {
+                        Files.write(path, json.getBytes());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
+
             }
         } else if (event.equals("Renew2")) {
             BookBRE book2 = books.stream()
@@ -555,19 +552,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .orElse(null);
             int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate2+" ~ "+LoanDate2.plusDays(7));
             if(result==0){
-//                if(book2.extend()) {
-//                    json = gson.toJson(books);
-//                    try {
-//                        Files.write(path, json.getBytes());
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    JOptionPane.showMessageDialog(alert, "연장 완료");
-//                    MyBookPage MB = new MyBookPage();
-//                    dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
-//                }
+                    book2.getState().extend(book2);
+                    json = gson.toJson(books);
+                    try {
+                        Files.write(path, json.getBytes());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
+
             }
         } else if (event.equals("Renew3")) {
             BookBRE book3 = books.stream()
@@ -576,19 +571,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .orElse(null);
             int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate3+" ~ "+LoanDate3.plusDays(7));
             if(result==0){
-//                if(book3.extend()) {
-//                    json = gson.toJson(books);
-//                    try {
-//                        Files.write(path, json.getBytes());
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    JOptionPane.showMessageDialog(alert, "연장 완료");
-//                    MyBookPage MB = new MyBookPage();
-//                    dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
-//                }
+                    book3.getState().extend(book3);
+                    json = gson.toJson(books);
+                    try {
+                        Files.write(path, json.getBytes());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
+
             }
         } else if (event.equals("Renew4")) {
             BookBRE book4 = books.stream()
@@ -596,20 +589,19 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .findFirst()
                     .orElse(null);
             int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate4+" ~ "+LoanDate4.plusDays(7));
-            if(result==0){
-//                if(book4.extend()) {
-//                    json = gson.toJson(books);
-//                    try {
-//                        Files.write(path, json.getBytes());
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    JOptionPane.showMessageDialog(alert, "연장 완료");
-//                    MyBookPage MB = new MyBookPage();
-//                    dispose();
-//                } else {
-//                    JOptionPane.showMessageDialog(alert, "연장은 1회만 가능합니다.");
-//                }
+            if (result==0) {
+
+                    book4.getState().extend(book4);
+                    json = gson.toJson(books);
+                    try {
+                        Files.write(path, json.getBytes());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    JOptionPane.showMessageDialog(alert, "연장 완료");
+                    MyBookPage MB = new MyBookPage();
+                    dispose();
+
             }
         }
         if (event.equals("BackPage")) {

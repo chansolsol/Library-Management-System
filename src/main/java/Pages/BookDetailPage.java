@@ -313,19 +313,17 @@ public class BookDetailPage extends JFrame implements ActionListener{
         } else if(event.equals("Loan")){
             if (UserInfo.getInstance().getUserID()!=null) {
                 int result = JOptionPane.showConfirmDialog(alert, "대출 기간 : "+LocalDate.now()+" ~ "+LocalDate.now().plusDays(7));
-//                if(result==0){
-//                    if(book.borrow()) {
-//                        json = gson.toJson(books);
-//                        try {
-//                            Files.write(path, json.getBytes());
-//                        } catch (IOException ex) {
-//                            throw new RuntimeException(ex);
-//                        }
-//                        JOptionPane.showMessageDialog(alert, "대출 완료");
-//                    } else {
-//                        JOptionPane.showMessageDialog(alert, "대출 가능한 도서가 없습니다.");
-//                    }
-//                }
+                if(result==0){
+                        book.getState().borrow(book);
+                        json = gson.toJson(books);
+                        try {
+                            Files.write(path, json.getBytes());
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        JOptionPane.showMessageDialog(alert, "대출 완료");
+
+                }
             } else {
                 JOptionPane.showMessageDialog(alert, "로그인이 필요한 서비스입니다.");
             }

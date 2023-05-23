@@ -2,6 +2,7 @@ package BookBRE;
 
 import Res.UserInfo;
 
+import javax.swing.*;
 import java.time.LocalDate;
 
 /** 대출 가능한 상태 */
@@ -17,12 +18,14 @@ public class AvailableState implements BookState {
 
     @Override
     public void returnBook(BookBRE book) {
-        System.out.println("이 책은 대출한 것이 아니므로 반납할 수 없습니다.");
+        JFrame alert = new JFrame();
+        JOptionPane.showMessageDialog(alert, "반납 가능한 도서가 아닙니다.");
     }
 
     @Override
     public void extend(BookBRE book) {
-        System.out.println("이 책은 대출한 것이 아니므로 연장할 수 없습니다.");
+        JFrame alert = new JFrame();
+        JOptionPane.showMessageDialog(alert, "연장이 가능한 도서가 아닙니다.");
     }
 
     @Override

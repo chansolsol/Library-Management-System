@@ -5,17 +5,26 @@ public class HopeBook {
     private String title;
     private String author;
     private String publisher;
-    private int year;
+    private String year;
+    private String hopeID = ""; // 희망 도서를 신청한 ID
 
-    public HopeBook(String title, String author, String publisher, int year) {
+    public HopeBook(String title, String author, String publisher, String year, String hopeID) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.year = year;
+        this.hopeID = hopeID;
     }
 
+    public String getHopeID() {
+        return hopeID;
+    }
 
-    //getters 및 setters
+    public void setHopeID(String userID) {
+        this.hopeID = userID;
+    }
+
+    // getters 및 setters ..
     public String getTitle() {
         return title;
     }
@@ -40,11 +49,11 @@ public class HopeBook {
         this.publisher = publisher;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 }

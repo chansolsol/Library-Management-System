@@ -26,7 +26,7 @@ public class UpdateBookRequest extends BookRequest {
                 book.setPublisher(newPublisher);
 
                 System.out.println("수정할 년도 입력 : ");
-                int newYear = scanner.nextInt();
+                String newYear = scanner.nextLine();
                 book.setYear(newYear);
 
                 // 콘솔에서 입력된 마지막 개행문자를 소비

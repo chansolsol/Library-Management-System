@@ -17,6 +17,7 @@ public class BookBRE {
     private LocalDate dueDate;  // 만기 날짜
     private String memberID;    // 사용자 ID
     private boolean reserved; // 책 대여 여부
+    private String reservedID = ""; // 책 예약 ID
 
     public BookBRE(String title, String author, String publisher, String year, String id,
                    String state, LocalDate borrowedDate, LocalDate dueDate, String memberID) {

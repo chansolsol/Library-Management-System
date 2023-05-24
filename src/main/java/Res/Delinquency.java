@@ -13,11 +13,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 연체 확인 기능 */
 public class Delinquency {
-
-    /** 메인 페이지 생성자에 넣어서 페이지 출력될때마다 실행되게 하기 */
     private static final String DB_FILE_NAME = "books.json";
     List<Book> books;
+
+    // 메인 페이지 생성자에 넣어서 페이지 출력될때마다 실행되게 하기
     public Delinquency() {
 
         // LocalDate 어댑터를 사용해 Gson 인스턴스 생성
@@ -45,12 +46,13 @@ public class Delinquency {
         }
 
         LocalDate date = LocalDate.now();
-        // 희망 도서 목록 출력
+
+        // 연체된 도서 있는지 확인
         for (int i = 0; i < books.size(); i++) {
 //            System.out.println((i + 1) + ": " + books.get(i).getBorrowedDate() +
 //                    " " + books.get(i).getDueDate());
             try {
-                if (date.isAfter(books.get(i).getDueDate())) {
+                if (date.isAfter(books.get(i).getDueDate())) {  // 현재 날짜가 도서 마감일을 지나면 true 반환
                     JOptionPane alert = new JOptionPane();
                     JOptionPane.showMessageDialog(null, "현재 연체된 도서가 있습니다!", "알림", JOptionPane.WARNING_MESSAGE);
                     break;

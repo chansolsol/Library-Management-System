@@ -1,5 +1,6 @@
 package Pages;
 
+import Res.Delinquency;
 import Res.UserInfo;
 import UserUpdate.MyInfoPage;
 import UserUpdate.User;
@@ -130,6 +131,8 @@ public class MainPage extends JFrame implements ActionListener{
         }
 
         getContentPane().setBackground(Color.white);    //전체 배경 흰색으로 설정
+
+        Delinquency del = new Delinquency();    // 연체된 도서 있는지 확인
 
     }
     public void actionPerformed(ActionEvent e) {

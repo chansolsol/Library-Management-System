@@ -18,7 +18,7 @@ public class ReserveCommand implements Command {
     public void execute() {
         if (seat.isReserved()) {
             JFrame alert = new JFrame();
-            JOptionPane.showMessageDialog(alert, "이미 예약된 자리입니다.");
+            JOptionPane.showMessageDialog(alert, "이미 예약된 자리입니다." + "\n" + "예약자 ID: " + seat.getSeatID());
         } else {
             String seatID = UserInfo.getInstance().getUserID();
             seat.setSeatID(seatID);

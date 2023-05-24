@@ -390,7 +390,7 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             MyRequestedBookPage MRB = new MyRequestedBookPage();
             dispose();
         } else if(event.equals("MyReservedBookPage")) {
-            MyReservedBookPage MRB = new MyReservedBookPage();
+            MyReservedBookPage MRB = new MyReservedBookPage(0);
             dispose();
         }
 

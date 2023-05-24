@@ -102,7 +102,7 @@ public class MainPage extends JFrame implements ActionListener{
             add(ButtonLoanBook);
 
             JButton ButtonReserveSeat = new JButton("<HTML><body><center>열람실 자리 예약</center></body></HTML>");   //도서 추가
-            ButtonReserveSeat.setBounds(520, 320, 240, 40);
+            ButtonReserveSeat.setBounds(520, 380, 240, 40);
             ButtonReserveSeat.setFont(mainFont20);
             ButtonReserveSeat.setContentAreaFilled(false);
             ButtonReserveSeat.setFocusPainted(false);
@@ -111,7 +111,7 @@ public class MainPage extends JFrame implements ActionListener{
             add(ButtonReserveSeat);
 
             JButton ButtonRequestBook = new JButton("희망 도서 신청");   //도서 추가
-            ButtonRequestBook.setBounds(520, 260, 240, 40);
+            ButtonRequestBook.setBounds(520, 320, 240, 40);
             ButtonRequestBook.setFont(mainFont20);
             ButtonRequestBook.setContentAreaFilled(false);
             ButtonRequestBook.setFocusPainted(false);
@@ -120,7 +120,7 @@ public class MainPage extends JFrame implements ActionListener{
             add(ButtonRequestBook);
 
             JButton ButtonReservedBook = new JButton("예약 도서 조회");   //도서 추가
-            ButtonReservedBook.setBounds(520, 380, 240, 40);
+            ButtonReservedBook.setBounds(520, 260, 240, 40);
             ButtonReservedBook.setFont(mainFont20);
             ButtonReservedBook.setContentAreaFilled(false);
             ButtonReservedBook.setFocusPainted(false);
@@ -156,7 +156,7 @@ public class MainPage extends JFrame implements ActionListener{
             ReserveSeatPage RP = new ReserveSeatPage();
             dispose();
         } else if (event.equals("ReservedBook")){
-            MyReservedBookPage MRP = new MyReservedBookPage();
+            MyReservedBookPage MRP = new MyReservedBookPage(0);
             dispose();
         }
 

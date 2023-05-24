@@ -60,7 +60,7 @@ public class Book {
 
     public void reserve(String userID) {this.reserved = true;this.reservedID = userID;}
 
-    public void unreserve() {this.reserved = false;this.reservedID = "";}
+    public void unreserved() {this.reserved = false;this.reservedID = "";}
 
 
     // toString 메서드

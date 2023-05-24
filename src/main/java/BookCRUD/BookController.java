@@ -58,6 +58,11 @@ public class BookController {
             return memberID != null && memberID.contains(keyword); }).collect(Collectors.toList());
     }
 
+    public List<Book> UserReservedBooks(String keyword) {
+        return this.books.stream().filter(b -> {String reservedID = b.getReservedID();
+            return reservedID != null && reservedID.contains(keyword); }).collect(Collectors.toList());
+    }
+
     public void addAll(List<Book> books) {
         this.books.addAll(books);
         //addAll(List<Book> books): 목록에 주어진 Book 객체 목록을 추가합니다.

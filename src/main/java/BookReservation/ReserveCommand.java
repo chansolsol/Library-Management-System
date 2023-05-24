@@ -2,6 +2,9 @@ package BookReservation;
 
 import BookCRUD.Book;
 import Res.UserInfo;
+
+import javax.swing.*;
+
 public class ReserveCommand implements Command {
     private Book book;
 
@@ -19,6 +22,8 @@ public class ReserveCommand implements Command {
         String userID = UserInfo.getInstance().getUserID();
         book.reserve(userID);  // 사용자 ID를 reserve 메서드에 전달합니다.
         System.out.println(book.getTitle() + "이(가) 예약되었습니다.");
+        JFrame alert = new JFrame();
+        JOptionPane.showMessageDialog(alert, book.getTitle()+" 예약 완료");
     }
 }
 //ReserveCommand와 UnreserveCommand 클래스는 Command 인터페이스를 구현합니다.

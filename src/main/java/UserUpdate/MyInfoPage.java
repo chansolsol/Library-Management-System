@@ -74,7 +74,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
 
 
         JPanel panelMenuWhite = new JPanel(); //마이페이지 메뉴 컴포넌트 패널이 위치할 패널
-        panelMenuWhite.setBounds(240, 150, 200, 400);
+        panelMenuWhite.setBounds(50, 150, 200, 400);
         panelMenuWhite.setBackground(Color.white);
         add(panelMenuWhite);
         panelMenuWhite.setLayout(null);
@@ -295,7 +295,7 @@ public class MyInfoPage extends JFrame implements ActionListener {
             MyRequestedBookPage MRB = new MyRequestedBookPage();
             dispose();
         } else if(event.equals("MyReservedBookPage")) {
-            MyReservedBookPage MRB = new MyReservedBookPage();
+            MyReservedBookPage MRB = new MyReservedBookPage(0);
             dispose();
         }
     }

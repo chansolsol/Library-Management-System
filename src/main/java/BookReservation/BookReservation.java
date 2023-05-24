@@ -71,23 +71,23 @@ public class BookReservation {
                     title = scanner.nextLine();
 
                     // 입력한 책 제목과 일치하는 책을 찾음
-                    Book bookToUnreserve = null;
+                    Book bookToUnreserved = null;
                     for (Book book : bookRepo.getBooks()) {
                         if (book.getTitle().equals(title)) {
-                            bookToUnreserve = book;
+                            bookToUnreserved = book;
                             break;
                         }
                     }
 
                     // 일치하는 책이 없는 경우
-                    if (bookToUnreserve == null) {
+                    if (bookToUnreserved == null) {
                         System.out.println("해당하는 책이 없습니다.");
                         break;
                     }
 
                     // 책 예약 취소
                     // 예약 취소하는 Command를 생성하고 실행함
-                    Command unreserveCommand = CommandFactory.createCommand("Unreserve", bookToUnreserve);
+                    Command unreserveCommand = CommandFactory.createCommand("Unreserved", bookToUnreserved);
                     unreserveCommand.execute();
                     try {
                         bookRepo.save(); // 변경 내용 저장

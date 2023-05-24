@@ -42,10 +42,10 @@ public class CreateBookRequest extends BookRequest {
             return;
         }
         scanner.nextLine();
-        
+
         String userID = UserInfo.getInstance().getUserID();
         HopeBook hopeBook = new HopeBook(title, author, publisher, year, userID);
-        hopeBook.setHopeID(userID);  // 사용자 ID를 setHopeID 메서드에 전달합니다.
+//        hopeBook.setHopeID(userID);  // 사용자 ID를 setHopeID 메서드에 전달합니다.
         // 리스트에 새 책 추가
         books.add(hopeBook);
 

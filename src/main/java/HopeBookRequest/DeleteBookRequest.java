@@ -10,14 +10,14 @@ public class DeleteBookRequest extends BookRequest {
      실제 적용 시 콘솔 명령어 빼고 적용
      * */
     @Override
-    public void applicationCUD() {
+    public void applicationCUD(String title, String author, String publisher, String year) {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("희망 도서를 삭제합니다.");
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("희망 도서를 삭제합니다.");
 
             // GUI 에서는 "삭제" 버튼 누를시 해당 희망 도서 삭제하는 방식으로 할 예정
-            System.out.println("삭제할 도서 제목 입력 : ");
-            String title = scanner.nextLine();
+//            System.out.println("삭제할 도서 제목 입력 : ");
+//            String title = scanner.nextLine();
 
             Iterator<HopeBook> iterator = books.iterator();
             while (iterator.hasNext()) {

@@ -1,7 +1,6 @@
 package HopeBookRequest;
 
 import Res.UserInfo;
-import UserUpdate.User;
 
 import javax.swing.*;
 import java.util.Scanner;
@@ -14,25 +13,26 @@ public class CreateBookRequest extends BookRequest {
     private static final String HOPE_BOOKS = "hopebooks.json";
 
     @Override
-    public void applicationCUD() {
+    public void applicationCUD(String title, String author, String publisher, String year) {
 
-        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("희망 도서를 신청합니다.");
+//
+//        System.out.println("희망 도서 제목: ");
+//        String title = scanner.nextLine();
+//
+//        System.out.println("희망 도서 저자: ");
+//        String author = scanner.nextLine();
+//
+//        System.out.println("희망 도서 출판사: ");
+//        String publisher = scanner.nextLine();
+//
+//
+//
+//        System.out.println("희망 도서 출판 년도: ");
+//        String year = scanner.nextLine();
 
-        System.out.println("희망 도서를 신청합니다.");
-
-        System.out.println("희망 도서 제목: ");
-        String title = scanner.nextLine();
-
-        System.out.println("희망 도서 저자: ");
-        String author = scanner.nextLine();
-
-        System.out.println("희망 도서 출판사: ");
-        String publisher = scanner.nextLine();
-
-
-
-        System.out.println("희망 도서 출판 년도: ");
-        String year = scanner.nextLine();
         // 출판년도 값 문자열이면 오류 메시지박스 출력
         try {
             int value = Integer.parseInt(year);
@@ -41,7 +41,7 @@ public class CreateBookRequest extends BookRequest {
             JOptionPane.showMessageDialog(null, "년도를 숫자로 입력해주세요.", "오류", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        scanner.nextLine();
+//        scanner.nextLine();
 
         String userID = UserInfo.getInstance().getUserID();
         HopeBook hopeBook = new HopeBook(title, author, publisher, year, userID);
@@ -49,7 +49,7 @@ public class CreateBookRequest extends BookRequest {
         // 리스트에 새 책 추가
         books.add(hopeBook);
 
-        scanner.close();
+//        scanner.close();
 
     }
 }

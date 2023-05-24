@@ -18,9 +18,9 @@ public abstract class BookRequest {
     Gson gson = new Gson();
 
     /** 템플릿 메소드 */
-    public final void requestBook() {
+    public final void requestBook(String title, String author, String publisher, String year) {
         checkBookInfo();
-        applicationCUD();
+        applicationCUD(title, author, publisher, year);
         saveBookInfo();
     }
 
@@ -47,17 +47,17 @@ public abstract class BookRequest {
         }
 
         // 희망 도서 목록 출력
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println((i + 1) + ": " + books.get(i).getTitle() + " " + books.get(i).getAuthor() +
-                    " " + books.get(i).getPublisher() + " " + books.get(i).getYear());
-        }
+//        for (int i = 0; i < books.size(); i++) {
+//            System.out.println((i + 1) + ": " + books.get(i).getTitle() + " " + books.get(i).getAuthor() +
+//                    " " + books.get(i).getPublisher() + " " + books.get(i).getYear());
+//        }
 
     }
 
     /**
      * 희망 도서 신청서 작성, 수정 및 삭제, 서브클래스에서 구현
      */
-    public abstract void applicationCUD();
+    public abstract void applicationCUD(String title, String author, String publisher, String year);
 
 
     /** 희망 도서 정보 저장 */
@@ -70,7 +70,7 @@ public abstract class BookRequest {
 
             writer.close();
 
-            System.out.println("json 파일 저장 완료");
+//            System.out.println("json 파일 저장 완료");
 
         } catch (IOException e) {
             e.printStackTrace();

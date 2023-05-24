@@ -5,7 +5,7 @@ import java.util.Scanner;
 /** 희망 도서 신청 수정 */
 public class UpdateBookRequest extends BookRequest {
     @Override
-    public void applicationCUD() {
+    public void applicationCUD(String title, String author, String publisher, String year) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("수정할 희망 도서 제목 입력 : ");  //GUI 에선 버튼

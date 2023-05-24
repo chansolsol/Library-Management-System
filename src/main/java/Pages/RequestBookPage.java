@@ -176,15 +176,14 @@ public class RequestBookPage extends JFrame implements ActionListener{
         JOptionPane alert = new JOptionPane();  //알림 패널 생성
 
         if (event.equals("RequestBook")) {
-            /*String title = textBookTitle.getText();
+            String title = textBookTitle.getText();
             String author = textBookAuthor.getText();
             String publisher = textBookPublisher.getText();
-            int year = Integer.parseInt(textBookPublicationDate.getText());*/
-            /*CreateBookRequest createBookRequest = new CreateBookRequest();
-            createBookRequest.applicationCUD();
+            String year = textBookPublicationDate.getText();
 
-            HopeBook hopeBook = new HopeBook(textBookTitle.getText(), textBookAuthor.getText(), textBookPublisher.getText(), Integer.parseInt(textBookPublicationDate.getText()));
-            books.add(hopeBook);*/
+            CreateBookRequest createBookRequest = new CreateBookRequest();
+            createBookRequest.requestBook(title, author, publisher, year);
+
             
         } else if (event.equals("BackPage")) {
             MainPage MP = new MainPage();

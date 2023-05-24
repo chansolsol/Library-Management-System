@@ -8,7 +8,7 @@ public class Test {
         CreateBookRequest createBookRequest = new CreateBookRequest();
         UpdateBookRequest updateBookRequest = new UpdateBookRequest();
 
-        createBookRequest.requestBook();
+//        createBookRequest.requestBook(title, author, publisher, year);
 //        updateBookRequest.requestBook();
 //        deleteBookRequest.requestBook();
 

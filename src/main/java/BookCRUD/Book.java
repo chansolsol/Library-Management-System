@@ -21,6 +21,7 @@ public class Book {
     private LocalDate dueDate;  // 만기 날짜
     private String memberID = "";    // 사용자 ID
     private boolean reserved; // 책 예약 여부
+    private String reservedID = ""; // 책 예약 ID
 
 
     // Book 클래스의 생성자
@@ -31,6 +32,7 @@ public class Book {
         this.year = year;
         this.id = id;
         this.reserved = false;
+        this.reservedID = "";
     }
 
     //Getter 메서드들
@@ -54,10 +56,12 @@ public class Book {
     public LocalDate getBorrowedDate(){return borrowedDate;}
     public LocalDate getDueDate(){return dueDate;}
     public boolean isReserved() {return reserved;}
+    public String getReservedID() {return reservedID;}
 
-    public void reserve() {reserved = true;}
+    public void reserve(String userID) {this.reserved = true;this.reservedID = userID;}
 
-    public void unreserve() {reserved = false;}
+    public void unreserve() {this.reserved = false;this.reservedID = "";}
+
 
     // toString 메서드
     @Override
@@ -73,6 +77,7 @@ public class Book {
                 ", dueDate='" + dueDate + '\'' +
                 ", memberID='" + memberID + '\'' +
                 ", reserved=" + reserved +
+                ", reservedID='" + reservedID + '\'' +
                 '}';
     }
     // Setter 메서드들

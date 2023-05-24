@@ -1,7 +1,7 @@
 package BookReservation;
 
 import BookCRUD.Book;
-
+import Res.UserInfo;
 public class ReserveCommand implements Command {
     private Book book;
 
@@ -16,7 +16,8 @@ public class ReserveCommand implements Command {
 
     @Override
     public void execute() {
-        book.reserve();
+        String userID = UserInfo.getInstance().getUserID();
+        book.reserve(userID);  // 사용자 ID를 reserve 메서드에 전달합니다.
         System.out.println(book.getTitle() + "이(가) 예약되었습니다.");
     }
 }

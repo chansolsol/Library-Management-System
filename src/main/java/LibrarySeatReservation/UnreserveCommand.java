@@ -15,6 +15,7 @@ public class UnreserveCommand implements Command {
     @Override
     public void execute() {
         if (seat.isReserved()) {
+            seat.setSeatID(null);
             seat.unreserved();
             JFrame alert = new JFrame();
             JOptionPane.showMessageDialog(alert, "좌석 : "+seat.getSeatNumber()+"번 퇴실 완료");

@@ -5,7 +5,8 @@
   },
   {
     "seatNumber": 2,
-    "reserved": false
+    "reserved": true,
+    "seatID": "123"
   },
   {
     "seatNumber": 3,

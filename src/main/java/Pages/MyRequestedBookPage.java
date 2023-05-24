@@ -1,5 +1,6 @@
 package Pages;
 
+import HopeBookRequest.DeleteBookRequest;
 import UserUpdate.MyInfoPage;
 import UserUpdate.User;
 
@@ -360,6 +361,7 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
 
         String event = e.getActionCommand();
         JFrame alert = new JFrame();
+        DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
@@ -367,7 +369,6 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             dispose();
         }
         if (event.equals("Renew1")) {
-
         } else if (event.equals("Renew2")) {
 
         } else if (event.equals("Renew3")) {

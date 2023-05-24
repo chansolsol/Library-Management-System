@@ -1,5 +1,7 @@
 package LibrarySeatReservation;
 
+import Res.UserInfo;
+
 import javax.swing.*;
 
 public class ReserveCommand implements Command {
@@ -18,6 +20,8 @@ public class ReserveCommand implements Command {
             JFrame alert = new JFrame();
             JOptionPane.showMessageDialog(alert, "이미 예약된 자리입니다.");
         } else {
+            String seatID = UserInfo.getInstance().getUserID();
+            seat.setSeatID(seatID);
             seat.reserve();
             JFrame alert = new JFrame();
             JOptionPane.showMessageDialog(alert, "좌석 : "+seat.getSeatNumber()+"번 예약 완료");

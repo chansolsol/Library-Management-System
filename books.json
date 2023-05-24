@@ -1,1 +1,92 @@
-[{"title":"컴퓨터개론","author":"김대수","publisher":"생능출판","year":"2019","id":"004컴김19생","state":"ExtendedState","borrowedDate":"2023-05-24","dueDate":"2023-06-07","memberID":"123","reserved":false},{"title":"컴퓨터구조와원리","author":"신종홍","publisher":"한빛아카데미","year":"2021","id":"004컴신21한","state":"ExtendedState","borrowedDate":"2023-05-24","dueDate":"2023-06-07","memberID":"123","reserved":false},{"title":"컴퓨터개론","author":"김대수","publisher":"생능출판","year":"2023","id":"004컴김23생","state":"ExtendedState","borrowedDate":"2023-05-24","dueDate":"2023-06-07","memberID":"123","reserved":false},{"title":"컴퓨터네트워크","author":"박기현","publisher":"한빛아카데미","year":"2016","id":"004컴박16한","state":"ExtendedState","borrowedDate":"2023-05-24","dueDate":"2023-06-07","memberID":"123","reserved":false},{"title":"컴퓨터네트워크","author":"박기현","publisher":"한빛아카데미","year":"2022","id":"004컴박22한","state":"BorrowedState","borrowedDate":"2023-05-24","dueDate":"2023-05-31","memberID":"123","reserved":false},{"title":"컴퓨터구조와원리","author":"신종홍","publisher":"한빛아카데미","year":"2013","id":"004컴신13한","state":"AvailableState","memberID":"","reserved":false},{"title":"1","author":"1","publisher":"1","year":"1","id":"1","state":"AvailableState","reserved":false},{"title":"555","author":"555","publisher":"555","year":"555","id":"555","state":"AvailableState","memberID":"","reserved":true,"reservedID":"123"}]
+[
+  {
+    "title": "컴퓨터개론",
+    "author": "김대수",
+    "publisher": "생능출판",
+    "year": "2019",
+    "id": "004컴김19생",
+    "state": "ExtendedState",
+    "borrowedDate": "2023-05-24",
+    "dueDate": "2023-06-07",
+    "memberID": "123",
+    "reserved": false
+  },
+  {
+    "title": "컴퓨터구조와원리",
+    "author": "신종홍",
+    "publisher": "한빛아카데미",
+    "year": "2021",
+    "id": "004컴신21한",
+    "state": "ExtendedState",
+    "borrowedDate": "2023-05-24",
+    "dueDate": "2023-06-07",
+    "memberID": "123",
+    "reserved": false
+  },
+  {
+    "title": "컴퓨터개론",
+    "author": "김대수",
+    "publisher": "생능출판",
+    "year": "2023",
+    "id": "004컴김23생",
+    "state": "ExtendedState",
+    "borrowedDate": "2023-05-24",
+    "dueDate": "2023-06-07",
+    "memberID": "123",
+    "reserved": false
+  },
+  {
+    "title": "컴퓨터네트워크",
+    "author": "박기현",
+    "publisher": "한빛아카데미",
+    "year": "2016",
+    "id": "004컴박16한",
+    "state": "ExtendedState",
+    "borrowedDate": "2023-05-24",
+    "dueDate": "2023-06-07",
+    "memberID": "123",
+    "reserved": false
+  },
+  {
+    "title": "컴퓨터네트워크",
+    "author": "박기현",
+    "publisher": "한빛아카데미",
+    "year": "2022",
+    "id": "004컴박22한",
+    "state": "BorrowedState",
+    "borrowedDate": "2023-05-24",
+    "dueDate": "2023-05-31",
+    "memberID": "123",
+    "reserved": false
+  },
+  {
+    "title": "컴퓨터구조와원리",
+    "author": "신종홍",
+    "publisher": "한빛아카데미",
+    "year": "2013",
+    "id": "004컴신13한",
+    "state": "AvailableState",
+    "memberID": "",
+    "reserved": false
+  },
+  {
+    "title": "1",
+    "author": "1",
+    "publisher": "1",
+    "year": "1",
+    "id": "1",
+    "state": "AvailableState",
+    "reserved": false
+  },
+  {
+    "title": "555",
+    "author": "555",
+    "publisher": "555",
+    "year": "555",
+    "id": "555",
+    "state": "AvailableState",
+    "memberID": "",
+    "reserved": true,
+    "reservedID": "123"
+  }
+]

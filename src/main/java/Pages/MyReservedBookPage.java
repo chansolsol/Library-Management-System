@@ -489,6 +489,11 @@ public class MyReservedBookPage extends JFrame implements ActionListener {
             if (result == 0) {
 
                 Book bookToUnreserved = null;
+                try {
+                    bookRepo.load();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 for (Book book1 : bookRepo.getBooks()) {
                     if (book1.getId().equals(labelBook1ID.getText())) {
                         bookToUnreserved = book1;

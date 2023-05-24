@@ -375,7 +375,7 @@ public class MyBookPage extends JFrame implements ActionListener{
             panelMainWhite.add(ButtonBook1RenewBook);
         }
         if(bookSearchSize > 1) {
-            LoanDate2 = LoanDate[0];
+            LoanDate2 = LoanDate[1];
             labelBook2ID = new JLabel(ID[1]);    //"도서1관리번호" 메인 라벨
             labelBook2ID.setBounds(20, 260, 200, 35);
             //labelBook2ID.setHorizontalAlignment(JLabel.CENTER);
@@ -467,10 +467,10 @@ public class MyBookPage extends JFrame implements ActionListener{
             panelMainWhite.add(labelBook4LoanDate);
 
             labelBook4ReturnDate = new JLabel(String.valueOf(DueDate[3]));    //"반납예정일" 메인 라벨, 양식 : 2000-00-00
-            labelBook3ReturnDate.setBounds(470, 340, 200, 35);
-            //labelBook3ReturnDate.setHorizontalAlignment(JLabel.CENTER);
-            labelBook3ReturnDate.setFont(mainFont20);
-            panelMainWhite.add(labelBook3ReturnDate);
+            labelBook4ReturnDate.setBounds(470, 340, 200, 35);
+            //labelBook4ReturnDate.setHorizontalAlignment(JLabel.CENTER);
+            labelBook4ReturnDate.setFont(mainFont20);
+            panelMainWhite.add(labelBook4ReturnDate);
 
             JButton ButtonBook4RenewBook = new JButton("<HTML><body><center>연장</center></body></HTML>");   //연장 버튼
             ButtonBook4RenewBook.setBounds(615, 340, 50, 35);
@@ -540,7 +540,6 @@ public class MyBookPage extends JFrame implements ActionListener{
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-                    JOptionPane.showMessageDialog(alert, "연장 완료");
                     MyBookPage MB = new MyBookPage();
                     dispose();
 
@@ -559,7 +558,6 @@ public class MyBookPage extends JFrame implements ActionListener{
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-                    JOptionPane.showMessageDialog(alert, "연장 완료");
                     MyBookPage MB = new MyBookPage();
                     dispose();
 
@@ -578,7 +576,6 @@ public class MyBookPage extends JFrame implements ActionListener{
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-                    JOptionPane.showMessageDialog(alert, "연장 완료");
                     MyBookPage MB = new MyBookPage();
                     dispose();
 
@@ -598,7 +595,7 @@ public class MyBookPage extends JFrame implements ActionListener{
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-                    JOptionPane.showMessageDialog(alert, "연장 완료");
+
                     MyBookPage MB = new MyBookPage();
                     dispose();
 

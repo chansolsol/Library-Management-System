@@ -26,6 +26,8 @@ public class BorrowedState implements BookState {
     public void extend(BookBRE book) {
         book.setDueDate(book.getDueDate().plusDays(7)); // 마감일 7일 연장
         book.setState(new ExtendedState()); // 연장한 상태로 변경
+        JFrame alert = new JFrame();
+        JOptionPane.showMessageDialog(alert, "연장 완료");
     }
 
     @Override

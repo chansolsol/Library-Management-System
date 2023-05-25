@@ -36,6 +36,15 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
     JLabel labelBook2Title;
     JLabel labelBook3Title;
     JLabel labelBook4Title;
+    String[] titles;
+    String[] authors;
+    String[] publishers;
+    String[] years;
+    int book1;
+    int book2;
+    int book3;
+    int book4;
+    int book5;
 
     public MyRequestedBookPage(int searchKey) {
 
@@ -245,10 +254,10 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
         }*/
         int resultBookSize = books.size();
 
-        String[] titles = new String[resultBookSize];
-        String[] authors = new String[resultBookSize];
-        String[] publishers = new String[resultBookSize];
-        String[] years = new String[resultBookSize];
+        titles = new String[resultBookSize];
+        authors = new String[resultBookSize];
+        publishers = new String[resultBookSize];
+        years = new String[resultBookSize];
         for (int i = 0; i < resultBookSize; i++) {
             titles[i] = books.get(i).getTitle();
             authors[i] = books.get(i).getAuthor();
@@ -265,11 +274,11 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             bookSearchSize = 5;
         }
 
-        int book1 = searchKey*5;
-        int book2 = searchKey*5 + 1;
-        int book3 = searchKey*5 + 2;
-        int book4 = searchKey*5 + 3;
-        int book5 = searchKey*5 + 4;
+        book1 = searchKey*5;
+        book2 = searchKey*5 + 1;
+        book3 = searchKey*5 + 2;
+        book4 = searchKey*5 + 3;
+        book5 = searchKey*5 + 4;
 
         if(bookSearchSize > 0){
 
@@ -460,10 +469,18 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
 
             } else if (result == 1) {
                 // "삭제"
-                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
                 if(resultE==0){
+                    String title = titles[book1];
+                    String author = authors[book1];
+                    String publisher = publishers[book1];
+                    String year = years[book1];
 
-                }*/
+                    DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
+                    deleteBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+                }
             } else if (result == 2) {
                 // "취소"
                 //공백으로 두면 됨
@@ -490,10 +507,19 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
 
             } else if (result == 1) {
                 // "삭제"
-                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
                 if(resultE==0){
+                    String title = titles[book2];
+                    String author = authors[book2];
+                    String publisher = publishers[book2];
+                    String year = years[book2];
 
-                }*/
+                    DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
+                    deleteBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+
+                }
             } else if (result == 2) {
                 // "취소"
                 //공백으로 두면 됨
@@ -518,10 +544,20 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
 
             } else if (result == 1) {
                 // "삭제"
-                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
                 if(resultE==0){
 
-                }*/
+                    String title = titles[book3];
+                    String author = authors[book3];
+                    String publisher = publishers[book3];
+                    String year = years[book3];
+
+                    DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
+                    deleteBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+
+                }
             } else if (result == 2) {
                 // "취소"
                 //공백으로 두면 됨
@@ -546,10 +582,19 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
 
             } else if (result == 1) {
                 // "삭제"
-                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
                 if(resultE==0){
+                    String title = titles[book4];
+                    String author = authors[book4];
+                    String publisher = publishers[book4];
+                    String year = years[book4];
 
-                }*/
+                    DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
+                    deleteBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+
+                }
             } else if (result == 2) {
                 // "취소"
                 //공백으로 두면 됨

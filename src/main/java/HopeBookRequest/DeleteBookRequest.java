@@ -22,7 +22,8 @@ public class DeleteBookRequest extends BookRequest {
             Iterator<HopeBook> iterator = books.iterator();
             while (iterator.hasNext()) {
                 HopeBook book = iterator.next();
-                if (book.getTitle().equals(title)) {
+                if (book.getTitle().equals(title) && book.getAuthor().equals(author) &&
+                book.getPublisher().equals(publisher) && book.getYear().equals(year)) {
                     iterator.remove();
                     System.out.println("삭제 완료");
                 } else {

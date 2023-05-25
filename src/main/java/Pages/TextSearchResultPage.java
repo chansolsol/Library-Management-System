@@ -5,6 +5,8 @@ import BookCRUD.Book;
 import BookCRUD.BookController;
 import BookCRUD.BookDatabase;
 import Res.UserInfo;
+import UserUpdate.MyInfoPage;
+import UserUpdate.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
+
+import static UserUpdate.UserInfo.readUserJSON;
+import static UserUpdate.UserInfo.saveUserJSON;
 
 public class TextSearchResultPage extends JFrame implements ActionListener{
 
@@ -442,6 +447,8 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             panelBook5.setBackground(Color.gray);
             add(panelBook5);
 
+
+
             JButton ButtonBook5 = new JButton();   //도서5 상세정보 버튼
             ButtonBook5.setText("<HTML><body><center>상세<br>정보</center></body></HTML>");
             ButtonBook5.setBounds(820,500,45,60);
@@ -454,10 +461,23 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
             add(ButtonBook5);
 
         }
+
+        if (UserInfo.getInstance().getUserID()!=null) {
+
+            JButton ButtonMyPage = new JButton("<HTML><body><center>마이페이지</center></body></HTML>");   //회원 정보 페이지 버튼
+            ButtonMyPage.setBounds(1100, 100, 120, 40);
+            ButtonMyPage.setFont(mainFont20);
+            ButtonMyPage.setContentAreaFilled(false);
+            ButtonMyPage.setFocusPainted(false);
+            ButtonMyPage.setActionCommand("MyPage");
+            ButtonMyPage.addActionListener(this);
+            add(ButtonMyPage);
+        }
+
         int buttNum = searchKey;
         buttNum ++;
         if(buttNum>0) {
-            JButton ButtonNextPage = new JButton(String.valueOf(searchKey));   //뒤로가기 버튼
+            JButton ButtonNextPage = new JButton(String.valueOf(searchKey));   //페이지 이동 버튼
             ButtonNextPage.setBounds(580, 580, 30, 30);
             ButtonNextPage.setFont(mainFont11);
             //ButtonNextPage.setBorderPainted(false);
@@ -518,6 +538,11 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
         } else if (event.equals("Book5")){
             DetailKeyword = labelBook5ID.getText();
             BookDetailPage BDP = new BookDetailPage(DetailKeyword, SK);
+            dispose();
+        } else if (event.equals("MyPage")) {
+            User[] users = readUserJSON("users.json");
+            MyInfoPage infoPage = new MyInfoPage(users[0], "users.json", users);
+            saveUserJSON("users.json", users);
             dispose();
         }
     }

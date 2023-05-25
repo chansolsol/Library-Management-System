@@ -103,7 +103,7 @@ public class MainPage extends JFrame implements ActionListener{
             add(ButtonLoanBook);
 
             JButton ButtonReserveSeat = new JButton("<HTML><body><center>열람실 자리 예약</center></body></HTML>");   //도서 추가
-            ButtonReserveSeat.setBounds(520, 380, 240, 40);
+            ButtonReserveSeat.setBounds(520, 440, 240, 40);
             ButtonReserveSeat.setFont(mainFont20);
             ButtonReserveSeat.setContentAreaFilled(false);
             ButtonReserveSeat.setFocusPainted(false);
@@ -111,8 +111,17 @@ public class MainPage extends JFrame implements ActionListener{
             ButtonReserveSeat.addActionListener(this);
             add(ButtonReserveSeat);
 
+            JButton ButtonRequestedBook = new JButton("희망 도서 조회");   //도서 추가
+            ButtonRequestedBook.setBounds(520, 320, 240, 40);
+            ButtonRequestedBook.setFont(mainFont20);
+            ButtonRequestedBook.setContentAreaFilled(false);
+            ButtonRequestedBook.setFocusPainted(false);
+            ButtonRequestedBook.setActionCommand("RequestedBook");
+            ButtonRequestedBook.addActionListener(this);
+            add(ButtonRequestedBook);
+
             JButton ButtonRequestBook = new JButton("희망 도서 신청");   //도서 추가
-            ButtonRequestBook.setBounds(520, 320, 240, 40);
+            ButtonRequestBook.setBounds(520, 380, 240, 40);
             ButtonRequestBook.setFont(mainFont20);
             ButtonRequestBook.setContentAreaFilled(false);
             ButtonRequestBook.setFocusPainted(false);
@@ -150,16 +159,19 @@ public class MainPage extends JFrame implements ActionListener{
             saveUserJSON("users.json", users);
             dispose();
         } else if (event.equals("MyBook")){
-            MyBookPage BP = new MyBookPage();
+            MyBookPage BP = new MyBookPage(0);
             dispose();
         } else if (event.equals("RequestBook")){
             RequestBookPage RBP = new RequestBookPage();
             dispose();
         }else if (event.equals("ReserveSeat")){
-            ReserveSeatPage RP = new ReserveSeatPage();
+            ReserveSeatPage RPS = new ReserveSeatPage();
             dispose();
         } else if (event.equals("ReservedBook")){
-            MyReservedBookPage MRP = new MyReservedBookPage(0);
+            MyReservedBookPage MBP = new MyReservedBookPage(0);
+            dispose();
+        } else if (event.equals("RequestedBook")) {
+            MyRequestedBookPage MRB = new MyRequestedBookPage(0);
             dispose();
         }
 

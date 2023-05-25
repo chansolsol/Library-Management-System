@@ -1,13 +1,24 @@
 package Pages;
 
 import HopeBookRequest.DeleteBookRequest;
+import HopeBookRequest.HopeBook;
+import LibrarySeatReservation.Command;
+import LibrarySeatReservation.LibrarySeat;
 import UserUpdate.MyInfoPage;
 import UserUpdate.User;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import static UserUpdate.UserInfo.readUserJSON;
 import static UserUpdate.UserInfo.saveUserJSON;
@@ -17,8 +28,16 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
     JPanel panelMainBlue;
     JLabel labelMain;
     JTextField textSearch;
+    private static final String HOPE_BOOKS = "hopebooks.json";
+    List<HopeBook> books;
+    Gson gson = new Gson();
 
-    public MyRequestedBookPage(){
+    JLabel labelBook1Title;
+    JLabel labelBook2Title;
+    JLabel labelBook3Title;
+    JLabel labelBook4Title;
+
+    public MyRequestedBookPage(int searchKey) {
 
         setSize(1280, 720);
         setLayout(null);
@@ -175,7 +194,7 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
         panelMainWhite.add(labelTitle);
 
         JLabel labelAuthor = new JLabel("저자");    //"제목" 메인 라벨
-        labelAuthor.setBounds(180, 110, 200, 35);
+        labelAuthor.setBounds(200, 110, 200, 35);
         //labelAuthor.setHorizontalAlignment(JLabel.CENTER);
         labelAuthor.setFont(mainFont20);
         panelMainWhite.add(labelAuthor);
@@ -192,155 +211,207 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
         labelPublicationDate.setFont(mainFont20);
         panelMainWhite.add(labelPublicationDate);
 
-        JLabel labelCancelBook = new JLabel("취소");    //"연장" 메인 라벨, 연장 버튼이 위치함
+        JLabel labelCancelBook = new JLabel("수정");    //"연장" 메인 라벨, 연장 버튼이 위치함
         labelCancelBook.setBounds(620, 110, 100, 35);
         //labelCancelBook.setHorizontalAlignment(JLabel.CENTER);
         labelCancelBook.setFont(mainFont20);
         panelMainWhite.add(labelCancelBook);
 
 
-        int bookSearchSize = 3;
+
+        try {
+            java.lang.reflect.Type bookListType = new TypeToken<List<HopeBook>>() {
+            }.getType();
+
+            // 희망 도서 json 읽어들이기
+            FileReader reader = new FileReader(HOPE_BOOKS);
+            books = gson.fromJson(reader, bookListType);
+            reader.close();
+
+            // 파일 비어 있으면 새 리스트 만들기
+            if (books == null) {
+                books = new ArrayList<>();
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 희망 도서 목록 출력
+        /*for (int i = 0; i < books.size(); i++) {
+            System.out.println((i + 1) + ": " + books.get(i).getTitle() + " " + books.get(i).getAuthor() +
+                    " " + books.get(i).getPublisher() + " " + books.get(i).getYear());
+        }*/
+        int resultBookSize = books.size();
+
+        String[] titles = new String[resultBookSize];
+        String[] authors = new String[resultBookSize];
+        String[] publishers = new String[resultBookSize];
+        String[] years = new String[resultBookSize];
+        for (int i = 0; i < resultBookSize; i++) {
+            titles[i] = books.get(i).getTitle();
+            authors[i] = books.get(i).getAuthor();
+            publishers[i] = books.get(i).getPublisher();
+            years[i] = books.get(i).getYear();
+        }
+
+        int bookSearchSize = 0;
+        resultBookSize = resultBookSize - searchKey*5;
+
+        if (resultBookSize <= 5) {
+            bookSearchSize = resultBookSize;
+        } else {
+            bookSearchSize = 5;
+        }
+
+        int book1 = searchKey*5;
+        int book2 = searchKey*5 + 1;
+        int book3 = searchKey*5 + 2;
+        int book4 = searchKey*5 + 3;
+        int book5 = searchKey*5 + 4;
+
         if(bookSearchSize > 0){
 
-            JLabel labelBook1Title = new JLabel();    //"도서1제목" 메인 라벨
+            labelBook1Title = new JLabel(titles[book1]);    //"도서1제목" 메인 라벨
             labelBook1Title.setBounds(20, 150, 200, 35);
             //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Title.setFont(mainFont20);
             panelMainWhite.add(labelBook1Title);
 
-            JLabel labelBook1Author = new JLabel();    //"도서1저자" 메인 라벨, 양식 : 2000-00-00
-            labelBook1Author.setBounds(180, 150, 200, 35);
+            JLabel labelBook1Author = new JLabel(authors[book1]);    //"도서1저자" 메인 라벨, 양식 : 2000-00-00
+            labelBook1Author.setBounds(200, 150, 200, 35);
             //labelBook1Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Author.setFont(mainFont20);
             panelMainWhite.add(labelBook1Author);
 
-            JLabel labelBook1Publisher = new JLabel();    //"도서1출판사" 메인 라벨, 양식 : 2000-00-00
+            JLabel labelBook1Publisher = new JLabel(publishers[book1]);    //"도서1출판사" 메인 라벨, 양식 : 2000-00-00
             labelBook1Publisher.setBounds(340, 150, 200, 35);
             //labelBook1Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook1Publisher.setFont(mainFont20);
             panelMainWhite.add(labelBook1Publisher);
 
-            JLabel labelBook1PublicationDate = new JLabel();    //"도서1출판년도" 메인 라벨, 양식 : 2000-00-00
+            JLabel labelBook1PublicationDate = new JLabel(years[book1]);    //"도서1출판년도" 메인 라벨, 양식 : 2000-00-00
             labelBook1PublicationDate.setBounds(470, 150, 200, 35);
             //labelBook1PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook1PublicationDate.setFont(mainFont20);
             panelMainWhite.add(labelBook1PublicationDate);
 
-            JButton ButtonBook1RenewBook = new JButton("<HTML><body><center>취소</center></body></HTML>");   //연장 버튼
+            JButton ButtonBook1RenewBook = new JButton("<HTML><body><center>수정</center></body></HTML>");   //연장 버튼
             ButtonBook1RenewBook.setBounds(615, 150, 50, 35);
             ButtonBook1RenewBook.setFont(mainFont20);
             //ButtonBook2RenewBook.setBorderPainted(false);
             ButtonBook1RenewBook.setContentAreaFilled(false);
             ButtonBook1RenewBook.setFocusPainted(false);
-            ButtonBook1RenewBook.setActionCommand("Renew1");
+            ButtonBook1RenewBook.setActionCommand("RequestedBook1");
             ButtonBook1RenewBook.addActionListener(this);
             panelMainWhite.add(ButtonBook1RenewBook);
         }
         if(bookSearchSize > 1) {
 
-            JLabel labelBook2Title = new JLabel();    //"도서2제목" 메인 라벨
+            labelBook2Title = new JLabel(titles[book2]);    //"도서2제목" 메인 라벨
             labelBook2Title.setBounds(20, 190, 200, 35);
             //labelBook2Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Title.setFont(mainFont20);
             panelMainWhite.add(labelBook2Title);
 
-            JLabel labelBook2Author = new JLabel();    //"도서2저자" 메인 라벨
-            labelBook2Author.setBounds(180, 190, 200, 35);
+            JLabel labelBook2Author = new JLabel(authors[book2]);    //"도서2저자" 메인 라벨
+            labelBook2Author.setBounds(200, 190, 200, 35);
             //labelBook2Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Author.setFont(mainFont20);
             panelMainWhite.add(labelBook2Author);
 
-            JLabel labelBook2Publisher = new JLabel();    //"도서2출판사" 메인 라벨
+            JLabel labelBook2Publisher = new JLabel(publishers[book2]);    //"도서2출판사" 메인 라벨
             labelBook2Publisher.setBounds(340, 190, 200, 35);
             //labelBook2Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook2Publisher.setFont(mainFont20);
             panelMainWhite.add(labelBook2Publisher);
 
-            JLabel labelBook2PublicationDate = new JLabel();    //"도서2출판년도" 메인 라벨
+            JLabel labelBook2PublicationDate = new JLabel(years[book2]);    //"도서2출판년도" 메인 라벨
             labelBook2PublicationDate.setBounds(470, 190, 200, 35);
             //labelBook2PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook2PublicationDate.setFont(mainFont20);
             panelMainWhite.add(labelBook2PublicationDate);
 
-            JButton ButtonBook2RenewBook = new JButton("<HTML><body><center>취소</center></body></HTML>");   //연장 버튼
+            JButton ButtonBook2RenewBook = new JButton("<HTML><body><center>수정</center></body></HTML>");   //연장 버튼
             ButtonBook2RenewBook.setBounds(615, 190, 50, 35);
             ButtonBook2RenewBook.setFont(mainFont20);
             //ButtonBook2RenewBook.setBorderPainted(false);
             ButtonBook2RenewBook.setContentAreaFilled(false);
             ButtonBook2RenewBook.setFocusPainted(false);
-            ButtonBook2RenewBook.setActionCommand("Renew2");
+            ButtonBook2RenewBook.setActionCommand("RequestedBook2");
             ButtonBook2RenewBook.addActionListener(this);
             panelMainWhite.add(ButtonBook2RenewBook);
         }
         if(bookSearchSize > 2) {
 
-            JLabel labelBook3Title = new JLabel();    //"도서3제목" 메인 라벨
+            labelBook3Title = new JLabel(titles[book3]);    //"도서3제목" 메인 라벨
             labelBook3Title.setBounds(20, 230, 200, 35);
             //labelBook3Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Title.setFont(mainFont20);
             panelMainWhite.add(labelBook3Title);
 
-            JLabel labelBook3Author = new JLabel();    //"도서3저자" 메인 라벨
-            labelBook3Author.setBounds(180, 230, 200, 35);
+            JLabel labelBook3Author = new JLabel(authors[book3]);    //"도서3저자" 메인 라벨
+            labelBook3Author.setBounds(200, 230, 200, 35);
             //labelBook3Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Author.setFont(mainFont20);
             panelMainWhite.add(labelBook3Author);
 
-            JLabel labelBook3Publisher = new JLabel();    //"도서3출판사" 메인 라벨
+            JLabel labelBook3Publisher = new JLabel(publishers[book3]);    //"도서3출판사" 메인 라벨
             labelBook3Publisher.setBounds(340, 230, 200, 35);
             //labelBook3Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook3Publisher.setFont(mainFont20);
             panelMainWhite.add(labelBook3Publisher);
 
-            JLabel labelBook3PublicationDate = new JLabel();    //"도서3출판년도" 메인 라벨
+            JLabel labelBook3PublicationDate = new JLabel(years[book3]);    //"도서3출판년도" 메인 라벨
             labelBook3PublicationDate.setBounds(470, 230, 200, 35);
             //labelBook3PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook3PublicationDate.setFont(mainFont20);
             panelMainWhite.add(labelBook3PublicationDate);
 
-            JButton ButtonBook3RenewBook = new JButton("<HTML><body><center>취소</center></body></HTML>");   //연장 버튼
+            JButton ButtonBook3RenewBook = new JButton("<HTML><body><center>수정</center></body></HTML>");   //연장 버튼
             ButtonBook3RenewBook.setBounds(615, 230, 50, 35);
             ButtonBook3RenewBook.setFont(mainFont20);
             //ButtonBook3RenewBook.setBorderPainted(false);
             ButtonBook3RenewBook.setContentAreaFilled(false);
             ButtonBook3RenewBook.setFocusPainted(false);
-            ButtonBook3RenewBook.setActionCommand("Renew3");
+            ButtonBook3RenewBook.setActionCommand("RequestedBook3");
             ButtonBook3RenewBook.addActionListener(this);
             panelMainWhite.add(ButtonBook3RenewBook);
         }
         if(bookSearchSize>3){
 
-            JLabel labelBook4Title = new JLabel();    //"도서4제목" 메인 라벨
+            labelBook4Title = new JLabel(titles[book4]);    //"도서4제목" 메인 라벨
             labelBook4Title.setBounds(20, 280, 200, 35);
             //labelBook4Title.setHorizontalAlignment(JLabel.CENTER);
             labelBook4Title.setFont(mainFont20);
             panelMainWhite.add(labelBook4Title);
 
-            JLabel labelBook4Author = new JLabel();    //"도서4저자" 메인 라벨
-            labelBook4Author.setBounds(180, 280, 200, 35);
+            JLabel labelBook4Author = new JLabel(authors[book4]);    //"도서4저자" 메인 라벨
+            labelBook4Author.setBounds(200, 280, 200, 35);
             //labelBook4Author.setHorizontalAlignment(JLabel.CENTER);
             labelBook4Author.setFont(mainFont20);
             panelMainWhite.add(labelBook4Author);
 
-            JLabel labelBook4Publisher = new JLabel();    //"도서4출판사" 메인 라벨
+            JLabel labelBook4Publisher = new JLabel(publishers[book4]);    //"도서4출판사" 메인 라벨
             labelBook4Publisher.setBounds(340, 280, 200, 35);
             //labelBook4Publisher.setHorizontalAlignment(JLabel.CENTER);
             labelBook4Publisher.setFont(mainFont20);
             panelMainWhite.add(labelBook4Publisher);
 
-            JLabel labelBook4PublicationDate = new JLabel();    //"도서4출판년도" 메인 라벨
+            JLabel labelBook4PublicationDate = new JLabel(years[book4]);    //"도서4출판년도" 메인 라벨
             labelBook4PublicationDate.setBounds(470, 280, 200, 35);
             //labelBook4PublicationDate.setHorizontalAlignment(JLabel.CENTER);
             labelBook4PublicationDate.setFont(mainFont20);
             panelMainWhite.add(labelBook4PublicationDate);
 
-            JButton ButtonBook4RenewBook = new JButton("<HTML><body><center>취소</center></body></HTML>");   //연장 버튼
+            JButton ButtonBook4RenewBook = new JButton("<HTML><body><center>수정</center></body></HTML>");   //연장 버튼
             ButtonBook4RenewBook.setBounds(615, 280, 50, 35);
             ButtonBook4RenewBook.setFont(mainFont20);
             //ButtonBook4RenewBook.setBorderPainted(false);
             ButtonBook4RenewBook.setContentAreaFilled(false);
             ButtonBook4RenewBook.setFocusPainted(false);
-            ButtonBook4RenewBook.setActionCommand("Renew4");
+            ButtonBook4RenewBook.setActionCommand("RequestedBook4");
             ButtonBook4RenewBook.addActionListener(this);
             panelMainWhite.add(ButtonBook4RenewBook);
         }
@@ -361,20 +432,128 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
 
         String event = e.getActionCommand();
         JFrame alert = new JFrame();
-        DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
+        //DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
+        String[] options = { "  수 정  ", "  삭 제  ", "  취 소  " };
 
         if (event.equals("TextSearch")) {
             String keyword = textSearch.getText();
             TextSearchResultPage SR = new TextSearchResultPage(keyword, 0);
             dispose();
         }
-        if (event.equals("Renew1")) {
-        } else if (event.equals("Renew2")) {
+        if (event.equals("RequestedBook1")) {
+            int result = JOptionPane.showOptionDialog(
+                    null,
+                    "희망 도서 수정",
+                    "기능 선택",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            if (result == 0) {
+                // "수정"
+                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                if(resultR==0){
 
-        } else if (event.equals("Renew3")) {
+                }*/
 
-        } else if (event.equals("Renew4")) {
+            } else if (result == 1) {
+                // "삭제"
+                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                if(resultE==0){
 
+                }*/
+            } else if (result == 2) {
+                // "취소"
+                //공백으로 두면 됨
+            }
+
+
+        } else if (event.equals("RequestedBook2")) {
+            int result = JOptionPane.showOptionDialog(
+                    null,
+                    "희망 도서 수정",
+                    "기능 선택",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            if (result == 0) {
+                // "수정"
+                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                if(resultR==0){
+
+                }*/
+
+            } else if (result == 1) {
+                // "삭제"
+                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                if(resultE==0){
+
+                }*/
+            } else if (result == 2) {
+                // "취소"
+                //공백으로 두면 됨
+            }
+        } else if (event.equals("RequestedBook3")) {
+            int result = JOptionPane.showOptionDialog(
+                    null,
+                    "희망 도서 수정",
+                    "기능 선택",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            if (result == 0) {
+                // "수정"
+                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                if(resultR==0){
+
+                }*/
+
+            } else if (result == 1) {
+                // "삭제"
+                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                if(resultE==0){
+
+                }*/
+            } else if (result == 2) {
+                // "취소"
+                //공백으로 두면 됨
+            }
+        } else if (event.equals("RequestedBook4")) {
+            int result = JOptionPane.showOptionDialog(
+                    null,
+                    "희망 도서 수정",
+                    "기능 선택",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+            if (result == 0) {
+                // "수정"
+                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                if(resultR==0){
+
+                }*/
+
+            } else if (result == 1) {
+                // "삭제"
+                /*int resultE = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 삭제하시겠습니까?");
+                if(resultE==0){
+
+                }*/
+            } else if (result == 2) {
+                // "취소"
+                //공백으로 두면 됨
+            }
         }
         if (event.equals("BackPage")) {
             MainPage MP = new MainPage();
@@ -385,10 +564,10 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             saveUserJSON("users.json", users);
             dispose();
         } else if (event.equals("MyBookPage")) {
-            MyBookPage MB = new MyBookPage();
+            MyBookPage MB = new MyBookPage(0);
             dispose();
         } else if(event.equals("MyRequestedBookPage")){
-            MyRequestedBookPage MRB = new MyRequestedBookPage();
+            MyRequestedBookPage MRB = new MyRequestedBookPage(0);
             dispose();
         } else if(event.equals("MyReservedBookPage")) {
             MyReservedBookPage MRB = new MyReservedBookPage(0);

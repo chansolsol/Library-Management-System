@@ -583,10 +583,10 @@ public class MyReservedBookPage extends JFrame implements ActionListener {
             saveUserJSON("users.json", users);
             dispose();
         } else if (event.equals("MyBookPage")) {
-            MyBookPage MB = new MyBookPage();
+            MyBookPage MB = new MyBookPage(0);
             dispose();
         } else if(event.equals("MyRequestedBookPage")){
-            MyRequestedBookPage MRB = new MyRequestedBookPage();
+            MyRequestedBookPage MRB = new MyRequestedBookPage(0);
             dispose();
         } else if(event.equals("MyReservedBookPage")) {
             MyReservedBookPage MRB = new MyReservedBookPage(0);

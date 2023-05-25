@@ -48,6 +48,8 @@ public class CreateBookRequest extends BookRequest {
 //        hopeBook.setHopeID(userID);  // 사용자 ID를 setHopeID 메서드에 전달합니다.
         // 리스트에 새 책 추가
         books.add(hopeBook);
+        JFrame alert = new JFrame();
+        JOptionPane.showMessageDialog(alert, title+" 생성 완료");
 
 //        scanner.close();
 

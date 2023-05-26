@@ -11,7 +11,6 @@ import javax.swing.*;
  * 희망 도서 신청 수정
  */
 public class UpdateBookRequest extends BookRequest {
-    HopeBook hopeBook;
     String newtitle;
     String newauthor;
     String newpublisher;
@@ -63,6 +62,8 @@ public class UpdateBookRequest extends BookRequest {
 
         int result = JOptionPane.showConfirmDialog(null, panel, "희망 도서 수정", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
+        String userID = UserInfo.getInstance().getUserID();
+
         if (result == JOptionPane.OK_OPTION) {
             inputText = new String[4];
             for (int i = 0; i < fields.length; i++) {
@@ -74,26 +75,27 @@ public class UpdateBookRequest extends BookRequest {
             newpublisher = inputText[2];
             newyear = inputText[3];
 
-        }
-
-        String userID = UserInfo.getInstance().getUserID();
-        for (HopeBook book : books) {
-            if (book.getTitle().equals(title) && book.getAuthor().equals(author) &&
-            book.getPublisher().equals(publisher) && book.getYear().equals(year)) {
-                book.setTitle(newtitle);
-                book.setAuthor(newauthor);
-                book.setPublisher(newpublisher);
-                book.setYear(newyear);
-                book.setHopeID(userID);
+            for (HopeBook book : books) {
+                if (book.getTitle().equals(title) && book.getAuthor().equals(author) &&
+                        book.getPublisher().equals(publisher) && book.getYear().equals(year)) {
+                    book.setTitle(newtitle);
+                    book.setAuthor(newauthor);
+                    book.setPublisher(newpublisher);
+                    book.setYear(newyear);
+                    book.setHopeID(userID);
+                }
             }
+        } else if (result == JOptionPane.CANCEL_OPTION) {
+
         }
+    }
 
 //        System.out.println("입력된 텍스트:");
 //        for (String text : inputText) {
 //            System.out.println(text);
 //        }
-    }
-
 }
+
+
 
 

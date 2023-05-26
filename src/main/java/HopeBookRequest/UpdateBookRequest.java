@@ -2,10 +2,22 @@ package HopeBookRequest;
 
 import Res.UserInfo;
 
+import java.awt.*;
 import java.util.Scanner;
+import javax.swing.*;
 
-/** 희망 도서 신청 수정 */
+
+/**
+ * 희망 도서 신청 수정
+ */
 public class UpdateBookRequest extends BookRequest {
+    HopeBook hopeBook;
+    String newtitle;
+    String newauthor;
+    String newpublisher;
+    String newyear;
+    String[] inputText;
+
     @Override
     public void applicationCUD(String title, String author, String publisher, String year) {
 //        Scanner scanner = new Scanner(System.in);
@@ -36,7 +48,52 @@ public class UpdateBookRequest extends BookRequest {
 //            }
 //        }
 
+        String[] labels = {"이름", "저자", "출판사", "년도"};
+        JTextField[] fields = new JTextField[4];
+
+        JPanel panel = new JPanel(new GridLayout(0, 2));
+
+        for (int i = 0; i < labels.length; i++) {
+            JLabel label = new JLabel(labels[i]);
+            JTextField field = new JTextField(10);
+            panel.add(label);
+            panel.add(field);
+            fields[i] = field;
+        }
+
+        int result = JOptionPane.showConfirmDialog(null, panel, "희망 도서 수정", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            inputText = new String[4];
+            for (int i = 0; i < fields.length; i++) {
+                inputText[i] = fields[i].getText();
+            }
+
+            newtitle = inputText[0];
+            newauthor = inputText[1];
+            newpublisher = inputText[2];
+            newyear = inputText[3];
+
+        }
+
         String userID = UserInfo.getInstance().getUserID();
-        HopeBook hopeBook = new HopeBook(title, author, publisher, year, userID);
+        for (HopeBook book : books) {
+            if (book.getTitle().equals(title) && book.getAuthor().equals(author) &&
+            book.getPublisher().equals(publisher) && book.getYear().equals(year)) {
+                book.setTitle(newtitle);
+                book.setAuthor(newauthor);
+                book.setPublisher(newpublisher);
+                book.setYear(newyear);
+                book.setHopeID(userID);
+            }
+        }
+
+//        System.out.println("입력된 텍스트:");
+//        for (String text : inputText) {
+//            System.out.println(text);
+//        }
     }
+
 }
+
+

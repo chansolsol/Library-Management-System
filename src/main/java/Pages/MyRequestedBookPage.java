@@ -2,6 +2,7 @@ package Pages;
 
 import HopeBookRequest.DeleteBookRequest;
 import HopeBookRequest.HopeBook;
+import HopeBookRequest.UpdateBookRequest;
 import LibrarySeatReservation.Command;
 import LibrarySeatReservation.LibrarySeat;
 import UserUpdate.MyInfoPage;
@@ -462,10 +463,18 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             );
             if (result == 0) {
                 // "수정"
-                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
                 if(resultR==0){
+                    String title = titles[book1];
+                    String author = authors[book1];
+                    String publisher = publishers[book1];
+                    String year = years[book1];
 
-                }*/
+                    UpdateBookRequest updateBookRequest = new UpdateBookRequest();
+                    updateBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+                }
 
             } else if (result == 1) {
                 // "삭제"

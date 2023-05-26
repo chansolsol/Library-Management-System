@@ -509,10 +509,19 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             );
             if (result == 0) {
                 // "수정"
-                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
                 if(resultR==0){
 
-                }*/
+                    String title = titles[book2];
+                    String author = authors[book2];
+                    String publisher = publishers[book2];
+                    String year = years[book2];
+
+                    UpdateBookRequest updateBookRequest = new UpdateBookRequest();
+                    updateBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+                }
 
             } else if (result == 1) {
                 // "삭제"
@@ -546,10 +555,19 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             );
             if (result == 0) {
                 // "수정"
-                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
                 if(resultR==0){
 
-                }*/
+                    String title = titles[book3];
+                    String author = authors[book3];
+                    String publisher = publishers[book3];
+                    String year = years[book3];
+
+                    UpdateBookRequest updateBookRequest = new UpdateBookRequest();
+                    updateBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+                }
 
             } else if (result == 1) {
                 // "삭제"
@@ -584,10 +602,19 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
             );
             if (result == 0) {
                 // "수정"
-                /*int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
+                int resultR = JOptionPane.showConfirmDialog(alert, "도서 : "+ event + "번을 수정하시겠습니까?");
                 if(resultR==0){
+                    String title = titles[book4];
+                    String author = authors[book4];
+                    String publisher = publishers[book4];
+                    String year = years[book4];
 
-                }*/
+                    UpdateBookRequest updateBookRequest = new UpdateBookRequest();
+                    updateBookRequest.requestBook(title, author, publisher, year);
+
+                    new MyRequestedBookPage(0);
+
+                }
 
             } else if (result == 1) {
                 // "삭제"

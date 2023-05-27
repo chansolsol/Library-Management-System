@@ -529,17 +529,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .filter(b -> b.getId().equals(labelBook1ID.getText()))
                     .findFirst()
                     .orElse(null);
-            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate1+" ~ "+LoanDate1.plusDays(7));
+            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate1.plusDays(7)+" ~ "+LoanDate1.plusDays(14));
             if(result==0){
-                    book1.getState().extend(book1);
-                    json = gson.toJson(books);
-                    try {
-                        Files.write(path, json.getBytes());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    MyBookPage MB = new MyBookPage(0);
-                    dispose();
+                book1.getState().extend(book1);
+                json = gson.toJson(books);
+                try {
+                    Files.write(path, json.getBytes());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                MyBookPage MB = new MyBookPage(0);
+                dispose();
 
             }
         } else if (event.equals("Renew2")) {
@@ -547,17 +547,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .filter(b -> b.getId().equals(labelBook2ID.getText()))
                     .findFirst()
                     .orElse(null);
-            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate2+" ~ "+LoanDate2.plusDays(7));
+            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate2.plusDays(7)+" ~ "+LoanDate2.plusDays(14));
             if(result==0){
-                    book2.getState().extend(book2);
-                    json = gson.toJson(books);
-                    try {
-                        Files.write(path, json.getBytes());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    MyBookPage MB = new MyBookPage(0);
-                    dispose();
+                book2.getState().extend(book2);
+                json = gson.toJson(books);
+                try {
+                    Files.write(path, json.getBytes());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                MyBookPage MB = new MyBookPage(0);
+                dispose();
 
             }
         } else if (event.equals("Renew3")) {
@@ -565,17 +565,17 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .filter(b -> b.getId().equals(labelBook3ID.getText()))
                     .findFirst()
                     .orElse(null);
-            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate3+" ~ "+LoanDate3.plusDays(7));
+            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate3.plusDays(7)+" ~ "+LoanDate3.plusDays(14));
             if(result==0){
-                    book3.getState().extend(book3);
-                    json = gson.toJson(books);
-                    try {
-                        Files.write(path, json.getBytes());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    MyBookPage MB = new MyBookPage(0);
-                    dispose();
+                book3.getState().extend(book3);
+                json = gson.toJson(books);
+                try {
+                    Files.write(path, json.getBytes());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                MyBookPage MB = new MyBookPage(0);
+                dispose();
 
             }
         } else if (event.equals("Renew4")) {
@@ -583,19 +583,19 @@ public class MyBookPage extends JFrame implements ActionListener{
                     .filter(b -> b.getId().equals(labelBook4ID.getText()))
                     .findFirst()
                     .orElse(null);
-            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate4+" ~ "+LoanDate4.plusDays(7));
+            int result = JOptionPane.showConfirmDialog(alert, "연장 기간 : "+LoanDate4.plusDays(7)+" ~ "+LoanDate4.plusDays(14));
             if (result==0) {
 
-                    book4.getState().extend(book4);
-                    json = gson.toJson(books);
-                    try {
-                        Files.write(path, json.getBytes());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                book4.getState().extend(book4);
+                json = gson.toJson(books);
+                try {
+                    Files.write(path, json.getBytes());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
 
-                    MyBookPage MB = new MyBookPage(0);
-                    dispose();
+                MyBookPage MB = new MyBookPage(0);
+                dispose();
 
             }
         }

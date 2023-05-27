@@ -37,6 +37,13 @@ public class DeleteBookPage extends JFrame implements ActionListener{
 
     public DeleteBookPage(){
 
+        try {
+            books = database.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        controller.addAll(books);
+
         setSize(1280, 720); //JFrame 크기 설정
         setLayout(null);    //컴포넌트를 자유롭게 배치
         setLocationRelativeTo(null);    //JFrame 생성시 화면 중앙에 배치
@@ -136,12 +143,7 @@ public class DeleteBookPage extends JFrame implements ActionListener{
 
         if (event.equals("DeleteBook")) {
 
-            try {
-                books = database.load();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            controller.addAll(books);
+
 
             controller.removeBook(DeleteId);
             try {

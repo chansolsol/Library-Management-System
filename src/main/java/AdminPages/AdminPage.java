@@ -87,7 +87,7 @@ public class AdminPage extends JFrame implements ActionListener{
         ButtonCreateBook.setFont(mainFont20);
         ButtonCreateBook.setContentAreaFilled(false);
         ButtonCreateBook.setFocusPainted(false);
-        ButtonCreateBook.setActionCommand("CreateBook");  //
+        ButtonCreateBook.setActionCommand("CreateBook");
         ButtonCreateBook.addActionListener(this);
         add(ButtonCreateBook);
 
@@ -96,11 +96,11 @@ public class AdminPage extends JFrame implements ActionListener{
         ButtonUpdateBook.setFont(mainFont20);
         ButtonUpdateBook.setContentAreaFilled(false);
         ButtonUpdateBook.setFocusPainted(false);
-        ButtonUpdateBook.setActionCommand("UpdateBook");  //
+        ButtonUpdateBook.setActionCommand("UpdateBook");
         ButtonUpdateBook.addActionListener(this);
         add(ButtonUpdateBook);
 
-        ButtonDeleteBook = new JButton("도서 삭제");   //도서 삭제
+        ButtonDeleteBook = new JButton("도서 삭제");
         ButtonDeleteBook.setBounds(540,340,200,40);
         ButtonDeleteBook.setFont(mainFont20);
         ButtonDeleteBook.setContentAreaFilled(false);
@@ -109,12 +109,21 @@ public class AdminPage extends JFrame implements ActionListener{
         ButtonDeleteBook.addActionListener(this);
         add(ButtonDeleteBook);
 
-        ButtonReturnBook = new JButton("도서 반납");   //도서 삭제
+        ButtonReturnBook = new JButton("도서 반납");
         ButtonReturnBook.setBounds(540,410,200,40);
         ButtonReturnBook.setFont(mainFont20);
         ButtonReturnBook.setContentAreaFilled(false);
         ButtonReturnBook.setFocusPainted(false);
         ButtonReturnBook.setActionCommand("ReturnBook");
+        ButtonReturnBook.addActionListener(this);
+        add(ButtonReturnBook);
+
+        ButtonReturnBook = new JButton("희망 도서 목록");
+        ButtonReturnBook.setBounds(540,480,200,40);
+        ButtonReturnBook.setFont(mainFont20);
+        ButtonReturnBook.setContentAreaFilled(false);
+        ButtonReturnBook.setFocusPainted(false);
+        ButtonReturnBook.setActionCommand("RequestedBook");
         ButtonReturnBook.addActionListener(this);
         add(ButtonReturnBook);
 
@@ -135,20 +144,19 @@ public class AdminPage extends JFrame implements ActionListener{
 
         } else if (event.equals("CreateBook")) {
             CreateBookPage CB = new CreateBookPage();
-            setVisible(false);
             dispose();
 
         } else if (event.equals("UpdateBook")){
             UpdateBookPage UB = new UpdateBookPage();
-            setVisible(false);
             dispose();
         } else if (event.equals("DeleteBook")){
             DeleteBookPage DB = new DeleteBookPage();
-            setVisible(false);
             dispose();
         } else if (event.equals("ReturnBook")){
             ReturnBookPage RP = new ReturnBookPage();
-            setVisible(false);
+            dispose();
+        } else if (event.equals("RequestedBook")){
+            ReadHopeBookPage RHB = new ReadHopeBookPage(0);
             dispose();
         }
 

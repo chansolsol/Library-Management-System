@@ -45,6 +45,3 @@ public class SeatRepository {
         return true;
     }
 }
-//SeatRepository 클래스는 파일로부터 좌석 정보를 읽어오거나 파일에 좌석 정보를 저장합니다.
-// load() 메서드는 libraryseat.json 파일에서 좌석 정보를 읽어와 LibrarySeat 객체 리스트를 만들고,
-// getSeats() 메서드는 리스트를 반환합니다. save() 메서드는 LibrarySeat 객체 리스트를 libraryseat.json 파일에 저장합니다.

@@ -53,7 +53,3 @@ public class BookRepository {
 }
 
 
-//BookRepository 클래스는 books라는 List를 가지고 있으며, 이 리스트는 도서관에서 관리되는 도서 목록을 담고 있습니다.
-// 이 클래스는 load() 메서드와 save() 메서드를 가지고 있습니다.
-// load() 메서드는 파일에서 JSON 형태로 저장된 도서 목록을 읽어와 books 리스트에 추가하고,
-// save() 메서드는 books 리스트에 저장된 도서 목록을 JSON 형태로 파일에 저장합니다.

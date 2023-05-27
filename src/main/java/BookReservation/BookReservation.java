@@ -106,10 +106,4 @@ public class BookReservation {
         }
     }
 }
-//커맨드 패턴이 적용된 부분은 Command 인터페이스와 ReserveCommand, UnreserveCommand 클래스입니다.
-// Command 인터페이스는 명령 객체들이 구현해야 하는 execute() 메서드를 선언합니다.
-// ReserveCommand와 UnreserveCommand 클래스는 Command 인터페이스를 구현하여 execute() 메서드를 구현하고,
-// 해당 도서 객체의 reserve() 또는 unreserve() 메서드를 호출합니다. 이를 통해 각각의 명령이 도서 객체에 적용되며,
-// 명령 객체들은 도서 객체와 독립적으로 존재합니다. 이렇게 함으로써,
-// 예약 시스템에 새로운 명령이 추가될 경우 명령 객체만 추가하면 되므로 코드의 확장성이 좋아집니다.
 

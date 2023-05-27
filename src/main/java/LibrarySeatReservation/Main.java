@@ -53,7 +53,3 @@ public class Main {
         return null;
     }
 }
-//Main 클래스에서는 SeatRepository를 이용하여 LibrarySeat의 목록을 로드하고,
-// Scanner를 이용하여 사용자로부터 명령어와 자리 번호를 입력받습니다.
-// findSeat() 메소드를 이용하여 해당 자리 번호에 해당하는 LibrarySeat 객체를 찾은 뒤,
-// CommandFactory를 이용하여 해당 명령어에 해당하는 Command 객체를 생성하고 실행합니다.

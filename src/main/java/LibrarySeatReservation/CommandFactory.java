@@ -12,6 +12,3 @@ public class CommandFactory {
         }
     }
 }
-//CommandFactory 클래스는 createCommand() 메서드를 통해 ReserveCommand와 UnreserveCommand 객체를 생성합니다.
-// createCommand() 메서드는 인자로 받은 명령어를 판단하여 ReserveCommand 객체 또는 UnreserveCommand 객체를 생성하고
-// 반환합니다.

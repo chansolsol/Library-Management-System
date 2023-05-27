@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package BookCRUD;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author cyc53
- */
 public class Book {
     private String title;   //책 제목
     private String author;  //책 저자
@@ -95,10 +88,3 @@ public class Book {
     }
 
 }
-/*Book 클래스의 멤버 변수들은 private으로 선언되어 있습니다. 이는 외부에서 Book 클래스의 멤버 변수에 접근하는 것을 막기 위해서입니다. 멤버 변수에 접근하려면 Getter와 Setter 메서드를 사용해야 합니다.
-
-Book 클래스의 생성자는 title, author, publisher, year, id를 인자로 받습니다. 이들은 Book 객체가 생성될 때 초기화됩니다. 생성자는 클래스 이름과 동일한 이름을 가지고 있습니다.
-
-Book 클래스의 toString() 메서드는 문자열로 변환된 객체를 반환합니다. 이 메서드를 호출하면 책의 제목, 저자, 그리고 고유 식별자가 문자열로 반환됩니다.
-
-마지막으로, Book 클래스의 Setter 메서드들은 각 멤버 변수를 업데이트할 때 사용됩니다. Setter 메서드들은 public으로 선언되어 있으므로 외부에서 호출이 가능합니다.*/

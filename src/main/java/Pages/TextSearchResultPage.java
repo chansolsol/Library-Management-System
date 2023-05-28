@@ -476,17 +476,17 @@ public class TextSearchResultPage extends JFrame implements ActionListener{
 
         int buttNum = searchKey;
         buttNum ++;
-        if(buttNum>0) {
-            JButton ButtonNextPage = new JButton(String.valueOf(searchKey));   //페이지 이동 버튼
-            ButtonNextPage.setBounds(580, 580, 30, 30);
-            ButtonNextPage.setFont(mainFont11);
-            //ButtonNextPage.setBorderPainted(false);
-            ButtonNextPage.setContentAreaFilled(false);
-            ButtonNextPage.setFocusPainted(false);
-            ButtonNextPage.setActionCommand("");
-            ButtonNextPage.addActionListener(this);
-            add(ButtonNextPage);
-        }
+//        if(buttNum>0) {
+//            JButton ButtonNextPage = new JButton(String.valueOf(searchKey));   //페이지 이동 버튼
+//            ButtonNextPage.setBounds(580, 580, 30, 30);
+//            ButtonNextPage.setFont(mainFont11);
+//            //ButtonNextPage.setBorderPainted(false);
+//            ButtonNextPage.setContentAreaFilled(false);
+//            ButtonNextPage.setFocusPainted(false);
+//            ButtonNextPage.setActionCommand("");
+//            ButtonNextPage.addActionListener(this);
+//            add(ButtonNextPage);
+//        }
 
         ButtonBackPage = new JButton("뒤로가기");   //뒤로가기 버튼
         ButtonBackPage.setBounds(580,600,120,40);

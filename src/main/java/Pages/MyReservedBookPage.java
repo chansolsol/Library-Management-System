@@ -509,7 +509,8 @@ public class MyReservedBookPage extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     System.out.println("책 목록을 저장하는 데 실패했습니다.");
                 }
-                new MyReservedBookPage(0);
+                MyReservedBookPage MRB = new MyReservedBookPage(0);
+                dispose();
 
             }
         } else if (event.equals("Unreserved2")) {
@@ -533,7 +534,8 @@ public class MyReservedBookPage extends JFrame implements ActionListener {
                     System.out.println("책 목록을 저장하는 데 실패했습니다.");
                 }
             }
-            new MyReservedBookPage(0);
+            MyReservedBookPage MRB = new MyReservedBookPage(0);
+            dispose();
 
         } else if (event.equals("Unreserved3")) {
             int result = JOptionPane.showConfirmDialog(alert, "도서 예약 취소");
@@ -555,7 +557,8 @@ public class MyReservedBookPage extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     System.out.println("책 목록을 저장하는 데 실패했습니다.");
                 }
-                new MyReservedBookPage(0);
+                MyReservedBookPage MRB = new MyReservedBookPage(0);
+                dispose();
 
             }
         } else if (event.equals("Unreserved4")) {
@@ -578,7 +581,8 @@ public class MyReservedBookPage extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     System.out.println("책 목록을 저장하는 데 실패했습니다.");
                 }
-                new MyReservedBookPage(0);
+                MyReservedBookPage MRB = new MyReservedBookPage(0);
+                dispose();
 
             }
         }

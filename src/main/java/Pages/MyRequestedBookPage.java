@@ -519,7 +519,8 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
                     UpdateBookRequest updateBookRequest = new UpdateBookRequest();
                     updateBookRequest.requestBook(title, author, publisher, year);
 
-                    new MyRequestedBookPage(0);
+                    MyRequestedBookPage MRB = new MyRequestedBookPage(0);
+                    dispose();
                 }
 
             } else if (result == 1) {
@@ -534,7 +535,8 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
                     DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
                     deleteBookRequest.requestBook(title, author, publisher, year);
 
-                    new MyRequestedBookPage(0);
+                    MyRequestedBookPage MRB = new MyRequestedBookPage(0);
+                    dispose();
 
                 }
             } else if (result == 2) {
@@ -565,7 +567,8 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
                     UpdateBookRequest updateBookRequest = new UpdateBookRequest();
                     updateBookRequest.requestBook(title, author, publisher, year);
 
-                    new MyRequestedBookPage(0);
+                    MyRequestedBookPage MRB = new MyRequestedBookPage(0);
+                    dispose();
                 }
 
             } else if (result == 1) {
@@ -581,7 +584,8 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
                     DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
                     deleteBookRequest.requestBook(title, author, publisher, year);
 
-                    new MyRequestedBookPage(0);
+                    MyRequestedBookPage MRB = new MyRequestedBookPage(0);
+                    dispose();
 
                 }
             } else if (result == 2) {
@@ -611,7 +615,8 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
                     UpdateBookRequest updateBookRequest = new UpdateBookRequest();
                     updateBookRequest.requestBook(title, author, publisher, year);
 
-                    new MyRequestedBookPage(0);
+                    MyRequestedBookPage MRB = new MyRequestedBookPage(0);
+                    dispose();
 
                 }
 
@@ -627,7 +632,8 @@ public class MyRequestedBookPage extends JFrame implements ActionListener {
                     DeleteBookRequest deleteBookRequest = new DeleteBookRequest();
                     deleteBookRequest.requestBook(title, author, publisher, year);
 
-                    new MyRequestedBookPage(0);
+                    MyRequestedBookPage MRB = new MyRequestedBookPage(0);
+                    dispose();
 
                 }
             } else if (result == 2) {
